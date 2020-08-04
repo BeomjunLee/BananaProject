@@ -1,0 +1,46 @@
+.category {
+    display: grid;
+    grid-template-columns: 150px 1fr 160px 100px;
+    border-bottom: 3px lightpink solid;
+    padding: 20px;
+    font-size: 30px;
+}
+#login {
+    text-align: right;
+}
+.info {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-left: 40px;
+}
+.customerInfo {
+    border: 3px lightpink solid;
+    text-align: center;
+}
+#editInfo {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.orderInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 70px;
+    text-align: center;
+}
+#subscription {
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+body {
+    margin-left: 0;
+    margin-right: 0;
+}
+h1 {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    font-size: 40px;
+}
