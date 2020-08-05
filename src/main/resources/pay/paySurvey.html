@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>BATHDAL</title>
+    <link rel="stylesheet" href="header.css">
+    <style>
+    .progress{
+    margin:50px;
+    text-align:center;
+     }
+
+    .progress div{
+    border:5px solid pink;
+    display:inline;
+    padding:5px;
+    margin:40px;
+    }
+
+    #survey{
+    border:5px solid #F65A79;
+    }
+
+    div.buttonSub
+    {
+    margin: auto;
+    width: 50%;
+    }
+
+   div.button input
+   {
+   padding: 5px;
+   width: 100%;
+   font-size: 18px;
+   }
+    </style>
+</head>
+<body>
+<nav>
+    <a href = "home.html"><img src="BATHDAL_LOGO_2.png" class="logo"></img></a>
+    <a href = "shop.html"><img src="SHOPPINGMALL_LOGO_2.png" class = "shoppingmall"></img></a>
+    <ul>
+        <li><a href="/myPage.html">MY PAGE</a></li>
+        <li><a href="/login.html">LOGIN</a></li>
+    </ul>
+    <img src="Fade_Border.png" class = "border"></img>
+</nav>
+
+<div class="progress">
+    <div id="type">type</div>
+    <div id="survey">survey</div>
+    <div id="result">result</div>
+    <div id="payment">payment</div>
+</div>
+
+<h2 style="text-align:center">Please answer this survey.</h2>
+<div>1. 어떤 상품을 원하시나요?</div><br><br>
+<div>2. 어떤 색깔을 선호하시나요?</div><br><br>
+<div>3. 사용 목적은 무엇인가요?</div><br><br>
+<div>4. 어떤 향을 좋아하시나요?</div><br><br>
+<div>5. 어떤 향을 싫어하시나요?</div><br><br>
+<div>6. 어떤 성분을 원하시나요?</div><br><br>
+
+<div class="buttonSub">
+    <input id="submission" type="button" value="SUBMISSION" onclick="location.href='payResult.html'">
+</div>
+</body>
+</html>
