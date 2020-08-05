@@ -25,7 +25,7 @@
     .payform{
     border:5px solid pink;
     width:500px;
-    height:700px;
+    height:1000px;
     padding:10px;
     top:50%;
     left:50%;
@@ -40,6 +40,46 @@
     #specificsIn{
     width:400px;
     height:200px;
+    }
+
+    #num1{
+    width:100px;
+    }
+    #num2{
+    width:100px;
+    }
+    #num3{
+    width:100px;
+    }
+    #num4{
+    width:100px;
+    }
+
+    #date1{
+    width:208px;
+    }
+    #date2{
+    width:208px;
+    }
+
+    #deliveryabout{
+    border:5px solid #F65A79;
+    text-align:center;
+    padding:5px;
+    margin:30px;
+    width:250px;
+    top:50%;
+    left:50%;
+    margin:auto;
+    }
+    .paynext{
+    text-align:center;
+    margin:10px;
+    }
+
+    .paynext a{
+    border:5px solid pink;
+    display:inline;
     }
     </style>
 </head>
@@ -61,7 +101,7 @@
     <div id="payment">payment</div>
 </div>
 
-<h2 style="text-align:center">Please fill in the payment information.</h2>
+<h2 style="text-align:center">Please fill in the delivery information.</h2>
 
 <div class="payform">
     <div class="name">NAME *</div>
@@ -77,9 +117,20 @@
     <div class="specifics">Delivery specifics</div>
     <input type="text" id="specificsIn" placeholder="Please write unusual details when shipping.">
     <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]</div>
+    <input type="text" id="num1" placeholder="XXXX"><input type="text" id="num2" placeholder="XXXX"><input type="text" id="num3" placeholder="XXXX"><input type="text" id="num4" placeholder="XXXX">
     <div class="cardexpdate">Card expiration date</div>
+    <input type="text" id="date1" placeholder="MM"><input type="text" id="date2" placeholder="YY">
     <div class="cardpw">First two digits of the card password</div>
+    <input type="text" placeholder="**">
+    <br><br>
+    <div id="deliveryabout">
+        <h2>BATHDAL</h2>
+        <h4>첫 배달일은 00월 00일입니다.</h4>
+        <h3 style="color:#F65A79;">결제 금액 0000원</h3>
+        <h2><div class="paynext"><a href="payComplete.html">Pay</a></div></h2>
+    </div>
 </div>
+
 
 
 </body>
