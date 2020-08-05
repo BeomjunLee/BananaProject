@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL</title>
     <link rel="stylesheet" href="header.css">
+    <style>
+    .progress{
+    margin:50px;
+    text-align:center;
+     }
+
+    .progress div{
+    border:5px solid pink;
+    display:inline;
+    padding:5px;
+    margin:40px;
+    }
+
+    #payment{
+    border:5px solid #F65A79;
+    }
+
+    .payform{
+    border:5px solid pink;
+    width:500px;
+    height:700px;
+    padding:10px;
+    top:50%;
+    left:50%;
+    margin:auto;
+     }
+
+    .payform div{
+    padding:3px;
+    margin:5px;
+    }
+
+    #specificsIn{
+    width:400px;
+    height:200px;
+    }
+    </style>
 </head>
 <body>
 <nav>
@@ -16,5 +53,34 @@
     </ul>
     <img src="Fade_Border.png" class = "border"></img>
 </nav>
+
+<div class="progress">
+    <div id="type">type</div>
+    <div id="survey">survey</div>
+    <div id="result">result</div>
+    <div id="payment">payment</div>
+</div>
+
+<h2 style="text-align:center">Please fill in the payment information.</h2>
+
+<div class="payform">
+    <div class="name">NAME *</div>
+    <input type="text">
+    <div class="phonenum">Phone number *</div>
+    <input type="text" placeholder="- 없이 입력해주세요.">
+    <div class="zipcode">Zip code</div>
+    <input type="text" placeholder="Zip code"> <input type="button" value="SEARCH">
+    <div class="addr">Address *</div>
+    <input type="text" placeholder="Street name address">
+    <div class="detailaddr">Detailed address *</div>
+    <input type="text" placeholder="Detailed address">
+    <div class="specifics">Delivery specifics</div>
+    <input type="text" id="specificsIn" placeholder="Please write unusual details when shipping.">
+    <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]</div>
+    <div class="cardexpdate">Card expiration date</div>
+    <div class="cardpw">First two digits of the card password</div>
+</div>
+
+
 </body>
 </html>
