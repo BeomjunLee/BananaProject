@@ -1,5 +1,4 @@
 package com.banana.Bathbomb.service;
-
 import com.banana.Bathbomb.domain.Member;
 import com.banana.Bathbomb.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +40,20 @@ public class MemberService {
      */
     public Member findMemberById(String memberId){
         return memberRepository.findById(memberId);
+    }
+
+    /**
+     * 회원 정보 수정
+     */
+    public int updateMember(Member member){
+        return memberRepository.update(member);
+    }
+
+    /**
+     * 회원 탈퇴
+     */
+    public int deleteMember(int memberUid){
+        return memberRepository.delete(memberUid);
     }
 
 }

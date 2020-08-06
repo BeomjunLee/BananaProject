@@ -1,11 +1,9 @@
 package com.banana.Bathbomb.repository;
-
 import com.banana.Bathbomb.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,22 +20,25 @@ public class MemberRepository {
     }
 
     /**
-     * 회원 insert
+     * 회원 가입 insert
      */
     public int save(Member member) {
-        return jdbcTemplate.update("insert into member(member_uid, member_id) values(member_SEQ.NEXTVAL, ?)", member.getMemberId());
+        return jdbcTemplate.update("insert into member(member_uid, member_id) values(member_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
+                member.getMemberId(), member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
+                member.getMemberEmail(), member.getMemberGender(), member.getMemberRegDate());
     }
 
     /**
-     * 회원 select
+     * 회원 정보 select by uid
      */
     public Member findOne(int memberUid) {
-
-        return null;
+        List<Member> result = jdbcTemplate.query("select * from member where member_uid = ?", memberRowMapper(), memberUid);
+        if (result.isEmpty()) return null;
+        else return result.get(0);
     }
 
     /**
-     * 회원 select by id
+     * 회원 정보 select by 아이디
      */
     public Member findById(String memberId) {
         List<Member> result = jdbcTemplate.query("select * from member where member_id = ?", memberRowMapper(), memberId);
@@ -45,7 +46,28 @@ public class MemberRepository {
         else return result.get(0);
     }
 
-    //회원리스트
+    /**
+     * 회원 수정 update
+     */
+    public int update(Member member){
+        return jdbcTemplate.update("update member set member_pw = ?, member_name = ?, member_phone_num = ?, member_email = ?" +
+                "member_gender = ? where member_uid = ?", member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
+                member.getMemberEmail(), member.getMemberGender(), member.getMemberUid());
+    }
+
+    /**
+     * 회원 탈퇴 delete
+     */
+    public int delete(int memberUid){
+        return 0;
+    }
+
+    /**
+     * 전체 회원 리스트 select
+     */
+    public List<Member> findAll(){
+        return null;
+    }
 
 
     /**
@@ -58,6 +80,12 @@ public class MemberRepository {
                 Member member = new Member();
                 member.setMemberUid(rs.getInt("member_uid"));
                 member.setMemberId(rs.getString("member_id"));
+                member.setMemberPw(rs.getString("member_pw"));
+                member.setMemberName(rs.getString("member_name"));
+                member.setMemberPhoneNum(rs.getString("member_phone_num"));
+                member.setMemberEmail(rs.getString("member_email"));
+                member.setMemberGender(rs.getString("member_gender")); //남, 여
+                member.setMemberRegDate(rs.getString("member_reg_date"));
                 return member;
             }
         };
