@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            margin : 0;
+            padding :0;
+            background: white;            
+            font-family : 'Bahnschrift';
+            overflow-x: hidden;
+        }
+        nav a img.logo{
+            position: fixed;
+            top: 20px;
+            left : 40px;
+            box-sizing : border-box;
+        }
+
+        nav div.shoppingmall{
+            display : block;
+            color : grey;
+            text-decoration: none;
+            font-size : 17px;
+            font-weight: bold;
+            position : absolute;
+            top : 40px;
+            left : 240px;
+        }
+
+        nav{
+            width : 100%;
+            height: 70px;
+            position: fixed;
+            top: 0px;
+            background : white;
+            border-bottom: 1px solid pink;
+            z-index : 8;
+        }
+        nav ul{
+            display : flex;
+            margin :0;
+            padding : 40px 100px;
+            float :right;
+        }
+        nav ul li{
+            list-style : none;
+        }
+        nav ul li a{
+            display : block;
+            color :grey;
+            padding : 0 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size : 12px;
+        }
+        img.banner_border{
+            position : absolute;
+            top : 70px;
+        }
+
+        div.sec1{
+            height: 671px;
+            margin-top: 0;
+            margin-left: 180px;
+            margin-right : 181px;
+            background: #f26d7d;
+            z-index: 0;
+        }
+        h4.banner{
+            position: relative;
+            top: 175px;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 1vw;
+            font-family: 'Times';
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        h1.banner{
+            position : relative;
+            top : 220px;
+            left : 55%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            color: white;
+            font-size: 7vw;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+    
+        div.banner_text{
+            position: absolute;
+            top: 43%;
+            left: 25%;
+            color : #b8b0b0;
+            font-size: 20px;
+            font-family : 'Bahnschrift';
+            text-transform: uppercase;
+            font-weight : 700;
+            font-stretch: 20px;
+            text-align: right;
+        }
+        span#stress{
+            color: white;
+        }
+
+        div.video_container{
+            position : absolute;
+            top : 70px;
+            left : 750px;
+            z-index: 2;
+        }
+
+        div.sec2{        
+            text-align : justify;
+            position: absolute;
+            top : 800px;
+            left : 700px;
+            font-size: 20px;
+            margin-right: 200px;
+            color: grey;
+        }
+
+        div.sec3{
+            text-align : justify;
+            position: absolute;
+            top : 1100px;
+            right: 700px;
+            font-size: 20px;
+            margin-left: 200px;
+            color: grey;
+        }
+
+        button{
+            border : 3px solid  #f26d7d;
+            background-color : #f26d7d;
+            padding : 18px 48px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-family: 'Bahnschrift';
+            border-radius: 4px;
+            transition-duration: 0.2s;
+            position : relative;
+            top : 270px;
+            left : 80px;
+            color : white;
+        }
+        button::after{
+            background: none repeat scroll 0 0 transparent;
+            bottom: 15px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            background: #fff;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+        }
+        button:hover::after{
+            width: 60%; 
+            left: 21%;
+        }
+
+        div.button_container{
+            position : relative;
+            top : 700px;  
+            left : 40%; 
+        }
+
+        div.subscribe_container{
+            background-color :#fae3d9;
+            border-radius: 4px;
+            width : 360px;
+            height : 420px;
+            position : relative;
+            right : 200px;
+            
+        }
+
+        div.purchase_container{
+            background-color : #fae3d9;
+            border-radius: 4px;
+            width : 360px;
+            height : 420px;
+            position : relative;
+            bottom : 440px;
+            left : 200px;
+        }
+
+        div.sec4_text{
+            position :relative;
+            top : 30px;
+            text-align: center;
+            color : white;
+        }
+
+    </style>
+</head>
+    <body>
+        <nav>
+            <a href = "home.html"><img src="BATHDAL_LOGO_2.png" class="logo"></img></a>
+            <div class = "shoppingmall">SHOPPING MALL</div>
+            <ul>
+                <li><a href="/myPage.html">MY PAGE</a></li> 
+                <li><a href="/login.html">LOGIN</a></li>
+            </ul>
+            <img src = "Fade_Border.png" class = "banner_border">
+        </nav>
+
+        <div class = "sec1">
+            <div class = "sec1_text">
+                <h4 class = "banner" style = "text-decoration: underline;">BATH SUBSCRIPTION SERVICE</h4>
+                <h1 class= "banner">BATHDAL</h1>
+            </div>
+            <div class = "video_container">
+                <video class = "banner_background_video" width = "125.7%" height = "auto" loop data-video="0" autoplay = "autoplay" muted = "muted">
+                    <source src = "banner_video.mp4" type = "video/mp4">
+                </video>
+            </div>
+            <div class = "banner_text">
+                To Bring<br> a <span id ="stress">Friendly</span> & <span id ="stress">Luxurious</span> Experience<br> To Your <span id ="stress">Bathroom</span> !
+            </div>    
+            
+        </div>
+
+        <div class = "sec2">
+            <div>
+                <h2>BATH BOMB</h2>
+                <div>
+                    Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+                </div>
+            </div>
+        </div>
+
+        <div class = "sec3">
+           <div>
+                <h2 style = "text-align: right;">NATURAL SOAP</h2>
+                <div>
+                    Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class = "sec4">
+            <div class = "button_container">
+                <div class = "subscribe">  
+                    <div class = "subscribe_container">
+                        <div class = "sec4_text">
+                            <h2 style = "color: black;">NOT SUBSCRIBED YET?</h2>
+                            <p>
+    
+                            </p>
+                        </div>  
+                        <button type = "button" class= "subscribe">
+                            SUBSCRIBE
+                        </button>
+                    </div>            
+                </div>
+
+                <div class = "purchase">    
+                    <div class = "purchase_container">
+                        <div class = "sec4_text">
+                            <h2 style = "color: black;">ONLY WANT TO BUY ONE TIME?</h2>
+                            <p>
+
+                            </p>
+                        </div>  
+                        <button type = "button" class= "purchase">
+                            PURCHASE
+                        </button>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
