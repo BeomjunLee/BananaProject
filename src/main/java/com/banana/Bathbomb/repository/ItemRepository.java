@@ -1,4 +1,4 @@
 package com.banana.Bathbomb.repository;
 
-public interface ItemRepository {
+public class ItemRepository {
 }
