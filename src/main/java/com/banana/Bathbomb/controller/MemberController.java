@@ -19,13 +19,13 @@ public class MemberController {
         return "";
     }
 
-    @GetMapping("/")
+    @GetMapping("")
         public String h(){
             return "";
         }
 
 
-    @PostMapping("/")
+    @PostMapping("")
     public String signUp(MemberForm form, HttpSession session){
         String memberId = form.getId();
         Member member = new Member();

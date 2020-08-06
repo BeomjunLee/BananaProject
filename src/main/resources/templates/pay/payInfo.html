@@ -83,6 +83,45 @@
     }
     </style>
 </head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //주소 api
+    function openDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = '';
+                var extraAddr = '';
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드로
+                    document.getElementById("extraAddress").value = extraAddr;
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+                // 우편번호와 주소 정보를 해당 필드
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                // 커서를 상세주소로
+                document.getElementById("detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 <body>
 <nav>
     <a href = "../home.html"><img src="../image/BATHDAL_LOGO_2.png" class="logo"></img></a>
@@ -107,12 +146,12 @@
     <input type="text">
     <div class="phonenum">Phone number *</div>
     <input type="text" placeholder="please enter without '-'">
-    <div class="zipcode">Zip code</div>
-    <input type="text" placeholder="Zip code"> <input type="button" value="SEARCH">
+    <div class="Postcode">Post code</div>
+    <input type="text" id="postcode" readonly="readonly" placeholder="Post code"> <input type="button" onclick="openDaumPostcode()" value="SEARCH">
     <div class="addr">Address *</div>
-    <input type="text" placeholder="Street name address">
+    <input type="text" id="address" readonly="readonly" placeholder="Street name address"> <input type="text" id="extraAddress" readonly="readonly" size="10" placeholder="Extra adress">
     <div class="detailaddr">Detailed address *</div>
-    <input type="text" placeholder="Detailed address">
+    <input type="text" id="detailAddress" placeholder="Detailed address">
     <div class="specifics">Delivery specifics</div>
     <input type="text" id="specificsIn" placeholder="Please write unusual details when shipping.">
     <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]</div>

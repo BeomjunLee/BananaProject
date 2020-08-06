@@ -13,12 +13,12 @@ import javax.servlet.http.HttpSession;
 public class SubscribeController {
     private final SubscribeService subscribeService;
 
-    @GetMapping("/")
+    @GetMapping("")
         public String fail(){
-            return "/";
+            return "";
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String subscribe(HttpSession session){
         Subscribe subscribe = new Subscribe();
         int memberUid = Integer.parseInt(session.getAttribute("sessionId").toString());
@@ -31,9 +31,9 @@ public class SubscribeController {
         Subscribe findSubscribe = subscribeService.findSubscribe(memberUid);
         if(findSubscribe == null){
             subscribeService.doSubscribe(subscribe);
-            return "/";
+            return "";
         }
-        return "/";
+        return "";
     }
 
 }
