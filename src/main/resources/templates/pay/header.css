@@ -1,56 +1,55 @@
-body{
-    margin : 0;
-    padding :0;
-    font-family 'Georgia';
-    background: white;
-    }
-nav a img.logo{
-    position: fixed;
-    top: 13px;
-    left : 28px;
-    box-sizing : border-box;
-    }
-nav a img.shoppingmall{
-    position : fixed;
-    top : 22px;
-    left : 170px;
-    box-sizing: border-box;
-    }
-section{
-    font-size : 1em;
-    margin:10;
-    padding :50px;
-    width : 100%;
-    height : auto;
-    box-sizing: border-box;
-    font: Georgia;
-    }
-nav{
-    width : 100%;
-    height:55px;
-    background : rgba(255,255,255);
-    border-bottom : 1px solid pink;
-    position: sticky;
-    top: 0px;
-    }
-nav ul{
-    display : flex;
-    margin :0;
-    padding : 25px 100px;
-    float :right;
-    }
-nav ul li{
-    list-style : none;
-    }
-nav ul li a{
-    display : block;
-    color : gray;
-    padding : 0 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size : 12px;
-    }
-nav img.border{
-    position : fixed;
-    top : 55px;
-    }
+        body{
+            margin : 0;
+            padding :0;
+            background: white;
+            font-family : 'Bahnschrift';
+            overflow-x: hidden;
+        }
+        nav a img.logo{
+            position: fixed;
+            top: 20px;
+            left : 40px;
+            box-sizing : border-box;
+        }
+
+        nav div.shoppingmall{
+            display : block;
+            color : grey;
+            text-decoration: none;
+            font-size : 17px;
+            font-weight: bold;
+            position : absolute;
+            top : 40px;
+            left : 240px;
+        }
+
+        nav{
+            width : 100%;
+            height: 70px;
+            position: fixed;
+            top: 0px;
+            background : white;
+            border-bottom: 1px solid pink;
+            z-index : 8;
+        }
+        nav ul{
+            display : flex;
+            margin :0;
+            padding : 40px 100px;
+            float :right;
+        }
+        nav ul li{
+            list-style : none;
+        }
+        nav ul li a{
+            display : block;
+            color :grey;
+            padding : 0 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size : 12px;
+        }
+        img.banner_border{
+            position : absolute;
+            top : 70px;
+        }

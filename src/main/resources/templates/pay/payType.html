@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="header.css">
     <style>
     .progress{
-    margin:50px;
+    margin:100px;
     text-align:center;
      }
 
@@ -29,24 +29,27 @@
     .selection div{
     border:5px solid pink;
     margin:20px;
-    padding:30px;
+    padding:15px;
+    }
+
+    .selection div h2{
+    color:#F65A79;
     }
     </style>
 </head>
 <body>
 <nav>
-    <a href="home.html"><img src="BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <a href="shop.html"><img src="SHOPPINGMALL_LOGO_2.png" class="shoppingmall"></img></a>
+    <a href = "../home.html"><img src="../image/BATHDAL_LOGO_2.png" class="logo"></img></a>
+    <div class = "shoppingmall">SHOPPING MALL</div>
     <ul>
-        <li><a href="/myPage.html">MY PAGE</a></li>
-        <li><a href="/login.html">LOGIN</a></li>
+        <li><a href="../myPage/myPage.html">MY PAGE</a></li>
+        <li><a href="../login.html">LOGIN</a></li>
     </ul>
-    <img src="Fade_Border.png" class="border"></img>
+    <img src="../image/Fade_Border.png" class = "banner_border"></img>
 </nav>
 
 <div class="progress">
     <div id="type">type</div>
-    <div id="survey">survey</div>
     <div id="result">result</div>
     <div id="payment">payment</div>
 </div>
@@ -55,14 +58,14 @@
 
 <div class="selection">
     <div id="typeselect1">
-        <h3>For me</h3>
-        <h4>정기적으로 나에게 선물하세요!</h4>
-        <h5><a href="paySurvey.html">[정기 결제]</a></h5>
+        <h2>For me</h2>
+        <h3>Give it to yourself regularly!</h3>
+        <h4><a href="payResult.html">[Monthly payment]</a></h4>
     </div>
     <div id="typeselect2">
-        <h3>For Others</h3>
-        <h4>소중한 사람에게 선물하세요!</h4>
-        <h5>[1회 선물]</h5>
+        <h2>For Others</h2>
+        <h3>Give it to someone precious around you!</h3>
+        <h4><a href="../shoppingMall.html">[A one-time gift]</a></h4>
     </div>
 </div>
 </body>
