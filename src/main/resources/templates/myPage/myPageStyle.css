@@ -74,6 +74,7 @@ body{
     margin : 0;
     padding :0;
     font-family : 'Bahnschrift';
+    color: grey;
     background: white;
 }
 nav a img.logo{
