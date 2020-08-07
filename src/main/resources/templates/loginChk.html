@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+    <th:block th:if="${resultCode.equals('성공')}">
+        <script>
+            alert("로그인 성공");
+            location.replace("/");
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode.equals('실패1')}">
+        <script>
+            alert("회원정보가 존재하지 않습니다");
+            location.replace("/login");
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode.equals('실패2')}">
+        <script>
+            alert("이미 로그인 중입니다");
+            location.replace("/login");
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode.equals('실패3')}">
+        <script>
+            alert("비밀번호가 일치하지 않습니다");
+            location.replace("/login");
+        </script>
+    </th:block>
+</body>
+</html>

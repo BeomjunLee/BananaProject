@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,6 +50,29 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/login";
+    }
+
+    @PostMapping("/loginChk")//로그인 체크
+    public String loginChk(HttpSession session, Member member, Model model){
+        //입력된 아이디값을 받아서 회원 검색
+        Member findMember = memberService.findMemberById(member.getMemberId());
+        String findId = findMember.getMemberId();
+        String findPw = findMember.getMemberPw();
+
+        String sessionId = (String)session.getAttribute("sessionId");
+        String resultCode = ""; //오류코드
+        if(member.getMemberId().equals(findId) && member.getMemberPw().equals(findPw) && sessionId == null){
+            resultCode = "성공"; //성공
+            session.setAttribute("sessionId", findMember.getMemberUid());//세션생성
+        }else if(member == null){
+            resultCode = "실패1"; //회원정보x
+        }else if(sessionId != null){
+            resultCode = "실패2";//이미 로그인중
+        }else{
+            resultCode = "실패3";//비밀번호 일치x
+        }
+        model.addAttribute("resultCode", resultCode);
+        return "/loginChk";
     }
 
 }

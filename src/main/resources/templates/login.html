@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
+    <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+
 </head>
 <body>
-<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
 
 <!-- br은 줄바꿈이라서 나중에 alt + 왼쪽마우스버튼으로 드래그 해서 한번에 지우시면됩니다 -->
     <!-- 로그인 폼 -->
                                                                     <br><br><br><br>
-    <form action="" method="post">
-        UserID)                                                   <br>
+    <form action="/loginChk" method="post">
+        <div>UserID</div>
         <input type="text" name="memberId">                         <br>
-        Password                                                    <br>
+        <div>Password</div>
         <input type="password" name="memberPw">                     <br>
         <input type="submit" value="LogIn">
     </form>

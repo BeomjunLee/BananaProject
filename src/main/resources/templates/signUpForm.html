@@ -3,36 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
+    <th:block th:include="/fragments/header"></th:block> <!-- 헤더 -->
 </head>
 <style>
-    .fieldError {
+    .inputError {
         border-color: #bd2130;
     }
 </style>
 <body>
-<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
 
-<!-- br은 줄바꿈이라서 나중에 alt + 왼쪽마우스버튼으로 드래그 해서 한번에 지우시면됩니다 -->
-    <!-- 회원 가입 폼 -->
-    <form action="/signUp" method="post" th:object="${memberForm}">
-        <div th:for="memberId">UserID</div>
-        <input type="text" th:field="*{memberId}" class="form-control"
-            th:class="${#fields.hasErrors('memberId')} ? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
-        Password                                                         <br>
-        <input type="password" name="memberPw" >                         <br>
-        Re-enter PassWord                                                <br>
+<br><br><br><br><!-- 헤더때문에 가려서 -->
+
+<!-- 회원 가입 폼 -->
+    <form action="/signUp" method="post" th:object="${memberForm}" onsubmit="return genderChk();">
+        <div>UserID</div>
+        <input type="text" th:field="*{memberId}" class="signupForm"
+               th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
+        <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
+        <div>Password</div>
+        <input type="password" th:field="*{memberPw}" class="signupForm"
+               th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
+        <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
+        <div>Re-enter Password</div>
         <input type="password" name="memberPw2">                         <br>
-        Name                                                             <br>
-        <input type="text" name="memberName">                            <br>
-        Phone Number                                                     <br>
-        <input type="text" name="memberPhoneNum">                        <br>
-        E-mail                                                           <br>
-        <input type="text" name="memberEmail">                           <br>
-        <input type="radio" name="memberGender" value="남성">Male
-        <input type="radio" name="memberGender" value="여성">Female       <br>
+        <div>Name</div>
+        <input type="text" th:field="*{memberName}" class="signupForm"
+               th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
+        <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+        <div>Phone Number</div>
+        <input type="text" th:field="*{memberPhoneNum}" class="signupForm"
+               th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
+        <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+        <div>E-mail</div>
+        <input type="text" th:field="*{memberEmail}" class="signupForm"
+               th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
+        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
+        <br>
+        <input type="radio" id="memberGender1" name="memberGender" value="남성">Male
+        <input type="radio" id="memberGender2" name="memberGender" value="여성">Female
+        <br>
         <input type="submit" value="Create a Account">
-
     </form>
+
+
+<script>
+    //성별 체크안할시 alert
+    function genderChk() {
+        if (document.getElementById("memberGender1").checked != true &&
+            document.getElementById("memberGender2").checked != true)
+        {
+            alert("Please Check your Gender");
+            document.getElementById("memberGender1").focus();
+            return false;
+        }
+    }
+</script>
 </body>
 </html>
