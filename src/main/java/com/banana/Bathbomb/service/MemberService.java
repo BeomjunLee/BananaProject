@@ -15,14 +15,14 @@ public class MemberService {
      */
     public int join(Member member){
         validateDuplicateMember(member);    //중복 회원 검증
-        return memberRepository.save(member);
+        return memberRepository.insert(member);
     }
 
     /**
      * 중복 회원 검증
      */
     private void validateDuplicateMember(Member member) {
-        Member findMember = memberRepository.findById(member.getMemberId());
+        Member findMember = memberRepository.selectById(member.getMemberId());
         if(findMember != null){
             throw new IllegalStateException("이미 존재하는 회원입니다");
         }
@@ -32,14 +32,14 @@ public class MemberService {
      * 회원 정보 조회
      */
     public Member findMember(int uid){
-        return memberRepository.findOne(uid);
+        return memberRepository.selectByUid(uid);
     }
 
     /**
      * 회원 정보 조회 by id
      */
     public Member findMemberById(String memberId){
-        return memberRepository.findById(memberId);
+        return memberRepository.selectById(memberId);
     }
 
     /**

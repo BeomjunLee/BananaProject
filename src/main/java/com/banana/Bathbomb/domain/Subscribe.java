@@ -14,7 +14,7 @@ public class Subscribe {
     private String sbRegDate;        //구독 일자
     private int sbMonthChk;         //몇개월 구독중인지
     private String sbDeliveryStatus; //배송 상태
-    private int sbCancelStatus;      //구독 취소 여부
+    private int sbCancelStatus;      //구독 취소 상태  1:취소 0:구독중
     private String sbCancelDate;     //구독 취소 일자
 
 }

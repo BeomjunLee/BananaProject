@@ -20,9 +20,9 @@ public class SubscribeRepository {
     }
 
     /**
-     * 구독 insert
+     * 구독 완료 insert
      */
-    public int save(Subscribe subscribe){
+    public int insert(Subscribe subscribe){
        return jdbcTemplate.update("insert into subscribe(sb_uid, member_uid, sb_delivery_address, sb_delivery_memo, sb_price" +
                        "sb_reg_date, sb_repeat_cnt, sb_delevery_status, sb_cancel_status, sb_cancel_date) " +
                        "values(subscribe_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -31,9 +31,9 @@ public class SubscribeRepository {
     }
 
      /**
-     * 구독 select by member_uid
+     * 구독 정보 select by member_uid
      */
-    public Subscribe findOne(int member_uid){
+    public Subscribe selectByUid(int member_uid){
         List<Subscribe> result = jdbcTemplate.query("select * from subscribe where member_uid = ?", subscribeRowMapper(), member_uid);
         if (result.isEmpty()) return null;
         else return result.get(0);

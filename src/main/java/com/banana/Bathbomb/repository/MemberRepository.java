@@ -22,7 +22,7 @@ public class MemberRepository {
     /**
      * 회원 가입 insert
      */
-    public int save(Member member) {
+    public int insert(Member member) {
         return jdbcTemplate.update("insert into member(member_uid, member_id) values(member_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
                 member.getMemberId(), member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
                 member.getMemberEmail(), member.getMemberGender(), member.getMemberRegDate());
@@ -31,7 +31,7 @@ public class MemberRepository {
     /**
      * 회원 정보 select by uid
      */
-    public Member findOne(int memberUid) {
+    public Member selectByUid(int memberUid) {
         List<Member> result = jdbcTemplate.query("select * from member where member_uid = ?", memberRowMapper(), memberUid);
         if (result.isEmpty()) return null;
         else return result.get(0);
@@ -40,7 +40,7 @@ public class MemberRepository {
     /**
      * 회원 정보 select by 아이디
      */
-    public Member findById(String memberId) {
+    public Member selectById(String memberId) {
         List<Member> result = jdbcTemplate.query("select * from member where member_id = ?", memberRowMapper(), memberId);
         if (result.isEmpty()) return null;
         else return result.get(0);
@@ -65,7 +65,7 @@ public class MemberRepository {
     /**
      * 전체 회원 리스트 select
      */
-    public List<Member> findAll(){
+    public List<Member> selectAll(){
         return null;
     }
 
