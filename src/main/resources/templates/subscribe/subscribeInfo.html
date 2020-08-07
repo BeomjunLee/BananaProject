@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>BATHDAL</title>
+    <title>BATHDAL :: A Special Day</title>
     <link rel="stylesheet" href="header.css">
     <style>
     .progress{
@@ -121,17 +121,10 @@
             }
         }).open();
     }
-</script>
+</script> <!-- 주소 API -->
 <body>
-<nav>
-    <a href = "../home.html"><img src="../../static/image/BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <div class = "shoppingmall">SHOPPING MALL</div>
-    <ul>
-        <li><a href="../myPage/myPage.html">MY PAGE</a></li>
-        <li><a href="../login.html">LOGIN</a></li>
-    </ul>
-    <img src="../../static/image/Fade_Border.png" class = "banner_border"></img>
-</nav>
+<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+
 
 <div class="progress">
     <div id="type">type</div>
@@ -167,7 +160,7 @@
         <h2>BATHDAL</h2>
         <h4>The first delivery date is the ___ of the month.</h4>
         <h3 style="color:#F65A79;">Payment amount : ____won</h3>
-        <h2><div class="paynext"><a href="payComplete.html">Pay</a></div></h2>
+        <h2><div class="paynext"><a href="">Pay</a></div></h2>
     </div>
 </div>
 

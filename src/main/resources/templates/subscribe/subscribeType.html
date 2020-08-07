@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>BATHDAL</title>
+    <title>BATHDAL :: A Special Day</title>
     <link rel="stylesheet" href="header.css">
     <style>
     .progress{
@@ -38,15 +38,7 @@
     </style>
 </head>
 <body>
-<nav>
-    <a href = "../home.html"><img src="../../static/image/BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <div class = "shoppingmall">SHOPPING MALL</div>
-    <ul>
-        <li><a href="../myPage/myPage.html">MY PAGE</a></li>
-        <li><a href="../login.html">LOGIN</a></li>
-    </ul>
-    <img src="../../static/image/Fade_Border.png" class = "banner_border"></img>
-</nav>
+<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
 
 <div class="progress">
     <div id="type">type</div>
@@ -60,12 +52,12 @@
     <div id="typeselect1">
         <h2>For me</h2>
         <h3>Give it to yourself regularly!</h3>
-        <h4><a href="payResult.html">[Monthly payment]</a></h4>
+        <h4><a href="/subscribeResult">[Monthly payment]</a></h4>
     </div>
     <div id="typeselect2">
         <h2>For Others</h2>
         <h3>Give it to someone precious around you!</h3>
-        <h4><a href="../shoppingMall.html">[A one-time gift]</a></h4>
+        <h4><a href="/shop">[A one-time gift]</a></h4>
     </div>
 </div>
 </body>

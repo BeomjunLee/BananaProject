@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>BATHDAL</title>
+    <title>BATHDAL :: A Special Day</title>
     <link rel="stylesheet" href="header.css">
     <style>
     h1{
@@ -27,21 +27,14 @@
     </style>
 </head>
 <body>
-<nav>
-    <a href = "../home.html"><img src="../../static/image/BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <div class = "shoppingmall">SHOPPING MALL</div>
-    <ul>
-        <li><a href="../myPage/myPage.html">MY PAGE</a></li>
-        <li><a href="../login.html">LOGIN</a></li>
-    </ul>
-    <img src="../../static/image/Fade_Border.png" class = "banner_border"></img>
-</nav>
+<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+
 
 <br><br><br><br><br><br><br>
 <h1>Payment is completed.</h1>
 <br><br><br>
 <h3>Thank you for using BATHDAL.</h3>
 <br><br><br><br>
-<div class="next"><a href="../home.html">HOME</a> <a href="">ORDER HISTORY</a></div>
+<div class="next"><a href="/goHome">HOME</a> <a href="">ORDER HISTORY</a></div>
 </body>
 </html>

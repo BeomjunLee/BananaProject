@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>BATHDAL</title>
-    <link rel="stylesheet" href="myPageStyle.css">
+    <title>BATHDAL :: A Special Day</title>
+    <link rel="stylesheet" href="/css/myPageStyle.css">
     <style>
         .info .orderInfo #subscribeList {
             text-decoration-line: underline;
@@ -12,14 +12,7 @@
 </head>
 <body>
 <nav>
-    <a href = "..\home.html"><img src="..\image\BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <div class = "shoppingmall">SHOPPING MALL</div>
-    <ul>
-        <li><a href="..\myPage\myPage.html">MY PAGE</a></li>
-        <li><a href="login.html">LOGIN</a></li>
-    </ul>
-    <img src = "..\image\Fade_Border.png" class = "banner_border">
-</nav>
+    <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
     <h1>My Page</h1>
     <div class="info">
         <div class="customerInfo">
@@ -31,10 +24,10 @@
         </div>
 
         <div class="orderInfo">
-            <a href="orderList.html" id="orderList">Order List</a>
-            <a href="subscribeList.html" id="subscribeList">Subscription</a>
-            <a href="myReview.html" id="myReview">Review</a>
-            <a href="cart.html" id="cart">Cart</a>
+            <a href="/orderList" id="orderList">Order List</a>
+            <a href="/mySubscribeList" id="subscribeList">Subscription</a>
+            <a href="/myReview" id="myReview">Review</a>
+            <a href="/myCart" id="cart">Cart</a>
         </div>
         <div id="subscription">
             Subscripted.
