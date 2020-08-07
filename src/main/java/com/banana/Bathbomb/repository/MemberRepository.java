@@ -84,7 +84,7 @@ public class MemberRepository {
                 member.setMemberName(rs.getString("member_name"));
                 member.setMemberPhoneNum(rs.getString("member_phone_num"));
                 member.setMemberEmail(rs.getString("member_email"));
-                member.setMemberGender(rs.getString("member_gender")); //남, 여
+                member.setMemberGender(rs.getString("member_gender")); //남성, 여성
                 member.setMemberRegDate(rs.getString("member_reg_date"));
                 return member;
             }
