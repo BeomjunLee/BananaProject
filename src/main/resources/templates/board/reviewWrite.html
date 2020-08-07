@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL</title>
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+<nav>
+    <a href = "..\home.html"><img src="..\image\BATHDAL_LOGO_2.png" class="logo"></img></a>
+    <div class = "shoppingmall">SHOPPING MALL</div>
+    <ul>
+        <li><a href="..\myPage\myPage.html">MY PAGE</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+    </ul>
+    <img src = "..\image\Fade_Border.png" class = "banner_border">
+</nav>
+
+<div align="center" style="color:hotpink; font-family:Georgia;" >
+    <h1>REVIEW WRITING</h1>
+</div>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+    }
+    td{
+        border-bottom: 1px solid #dddddd;
+        border-top: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+        width: 70%
+    }
+    th{width: 30%;
+        border-bottom: 1px solid #dddddd;
+        border-top: 1px solid #dddddd;
+    }
+    .submit {background-color: white; border:1px solid #dddddd;font-size:15px;}
+</style>
+
+<table>
+    <tr>
+        <th>Title </th>
+        <td><input type="text"></td>
+    </tr>
+    <tr>
+        <th>Name </th>
+        <td><input type="text"></td>
+    </tr>
+    <tr>
+        <th>Date </th>
+        <td><input type="date"></td>
+    </tr>
+    <tr>
+        <th>Image </th>
+        <td><input type="file"  accept="image/*"></td>
+    </tr>
+    <tr>
+        <th>Contents </th>
+        <td><textarea cols=85 rows=15></textarea></td>
+    </tr>
+</table>
+<div align="center"><br><input type = "submit" value="SUBMIT" class="submit"></div>
+</body>
+</html>

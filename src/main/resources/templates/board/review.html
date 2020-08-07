@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL</title>
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+<nav>
+    <a href = "..\home.html"><img src="..\image\BATHDAL_LOGO_2.png" class="logo"></img></a>
+    <div class = "shoppingmall">SHOPPING MALL</div>
+    <ul>
+        <li><a href="..\myPage\myPage.html">MY PAGE</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+    </ul>
+    <img src = "..\image\Fade_Border.png" class = "banner_border">
+</nav>
+
+<div align="center" style="color:hotpink; font-family:Georgia;" >
+<h1>REVIEWS</h1>
+</div>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto;
+
+    }
+    td{
+        border-bottom: 1px solid #dddddd;
+        border-top: 1px solid #dddddd;
+        padding: 8px;
+    }
+    td:nth-child(1){width:200px;text-align: center;}
+    td:nth-child(2){width:200px;text-align: center;}
+    td:nth-child(3){width:600px;text-align: left;}
+    td:nth-child(4){width:100px;text-align: center;}
+    td:nth-child(5){width:100px;text-align: center;}
+    .img {width:100px; height:100px;}
+    .button1 {margin-left:10%; background-color: white; border:1px solid #dddddd;font-size:15px;}
+    .button2 {background-color: white; border:1px solid #dddddd;font-size:15px;}
+    .button3 {margin-right:10%; background-color: white; border:none; font-size:20px;}
+    a { text-decoration:none !important } a:hover { text-decoration:none !important }
+    .pagination {
+        display: inline-block;
+        text-align: center;
+    }
+    .pagination a {
+        color: black;
+        float: none;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+
+<button type="Button" class="button1">Bath Bomb</button>
+<button type="Button" class="button2">Natural Soap</button>
+<div align="right"><button type="Button" class="button3" onclick="location.href='reviewWrite.html'">Write Review</button></div>
+
+
+<div>
+    <table>
+        <tbody>
+        <tr>
+            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-mGojrC1NFOSeih2zCKGIPzn8Gsg2xT9lJw&usqp=CAU" class="img"></td>
+            <td>BathBomb1</td>
+            <td style="word-break: break-all">good</td>
+            <td>Park</td>
+            <td>2020.8.5</td>
+        </tr>
+        <tr>
+            <td><img src="https://cdn.shopify.com/s/files/1/1514/8550/products/this_one_grande.png?v=1497569236" class="img"></td>
+            <td>NaturalSoap1</td>
+            <td style="word-break: break-all">very good</td>
+            <td>Lee</td>
+            <td>2020.8.5</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div align="center">
+    <ul class="pagination" >
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+</ul>
+</div>
+</body>
+</html>
