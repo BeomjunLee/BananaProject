@@ -23,7 +23,8 @@ public class MemberRepository {
      * 회원 가입 insert
      */
     public int insert(Member member) {
-        return jdbcTemplate.update("insert into member(member_uid, member_id) values(member_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
+        return jdbcTemplate.update("insert into member(member_uid, member_id, member_pw, member_name, member_phone_num, " +
+                        "member_email, member_gender, member_reg_date) values(member_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
                 member.getMemberId(), member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
                 member.getMemberEmail(), member.getMemberGender(), member.getMemberRegDate());
     }

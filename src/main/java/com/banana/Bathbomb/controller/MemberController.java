@@ -18,18 +18,25 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
-    
-    @GetMapping("/signUpForm")//회원가입 폼으로
+
+    /**
+     * 회원가입 폼으로 
+     */
+    @GetMapping("/signUp")
     public String SignUpForm(Model model){
         //빈 껍대기를 가지고 폼으로 넘어감
         model.addAttribute("memberForm", new MemberForm());
         return "/signUpForm";
     }
 
-    @PostMapping("/signUp")//회원 가입 처리
-    public String create(@Valid MemberForm form, BindingResult result){
+    /**
+     * 회원 가입 로직
+     */
+    @PostMapping("/signUp")
+    public String signUp(@Valid MemberForm form, BindingResult result){
         //BindingResult에서 에러를 잡아서 폼으로 넘겨줌
         if(result.hasErrors()){
+            System.out.println("오류있음");
             return "/signUpForm";
         }
 
@@ -52,20 +59,36 @@ public class MemberController {
         return "redirect:/login";
     }
 
-    @PostMapping("/loginChk")//로그인 체크
-    public String loginChk(HttpSession session, Member member, Model model){
-        //입력된 아이디값을 받아서 회원 검색
-        Member findMember = memberService.findMemberById(member.getMemberId());
-        String findId = findMember.getMemberId();
-        String findPw = findMember.getMemberPw();
 
-        String sessionId = (String)session.getAttribute("sessionId");
+    /**
+     * 로그인 체크 로직
+     */
+    @PostMapping("/loginChk")
+    public String loginChk(HttpSession session, MemberForm form, Model model){
+        //입력된 아이디값을 받아서 회원 검색
+        Member findMember = memberService.findMemberById(form.getMemberId());
+        System.out.println("입력된 로그인 아이디 값:"+form.getMemberId());
+        String id = form.getMemberId();
+        System.out.println("일치하는 회원 id값:"+id);
+        String pw = form.getMemberPw();
+        System.out.println("일치하는 회원 pw값:"+pw);
+
+        String sessionId = "";  //세션값
         String resultCode = ""; //오류코드
-        if(member.getMemberId().equals(findId) && member.getMemberPw().equals(findPw) && sessionId == null){
+        
+        //예외처리
+        try{
+            sessionId = (String)session.getAttribute("sessionId");   //처음에 세션값이 null값일때는 null에서 변환시켜주는 (String)변환
+        }catch(ClassCastException e){
+            //e.printStackTrace();
+            sessionId = session.getAttribute("sessionId").toString();   //세션값에 값이 담겨있을땐 Object형에서 변환시켜주는 toString()
+        }
+
+        if(findMember == null){ //회원 null값 부터 체크 안하면 ERROR
+            resultCode = "실패1"; //회원정보x
+        }else if(findMember.getMemberId().equals(id) && findMember.getMemberPw().equals(pw) && sessionId == null){
             resultCode = "성공"; //성공
             session.setAttribute("sessionId", findMember.getMemberUid());//세션생성
-        }else if(member == null){
-            resultCode = "실패1"; //회원정보x
         }else if(sessionId != null){
             resultCode = "실패2";//이미 로그인중
         }else{
@@ -75,4 +98,12 @@ public class MemberController {
         return "/loginChk";
     }
 
+    /**
+     * 로그아웃
+     */
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("sessionId");//세션제거
+        return "/logout";
+    }
 }
