@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+
+<!-- br은 줄바꿈이라서 나중에 alt + 왼쪽마우스버튼으로 드래그 해서 한번에 지우시면됩니다 -->
+    <!-- 회원 가입 폼 -->
+    <form action="/signUp" method="post" th:object="${memberForm}">
+        <div th:for="memberId">UserID</div>
+        <input type="text" th:field="*{memberId}" class="form-control"
+            th:class="${#fields.hasErrors('memberId')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
+        Password                                                         <br>
+        <input type="password" name="memberPw" >                         <br>
+        Re-enter PassWord                                                <br>
+        <input type="password" name="memberPw2">                         <br>
+        Name                                                             <br>
+        <input type="text" name="memberName">                            <br>
+        Phone Number                                                     <br>
+        <input type="text" name="memberPhoneNum">                        <br>
+        E-mail                                                           <br>
+        <input type="text" name="memberEmail">                           <br>
+        <input type="radio" name="memberGender" value="남성">Male
+        <input type="radio" name="memberGender" value="여성">Female       <br>
+        <input type="submit" value="Create a Account">
+
+    </form>
+</body>
+</html>

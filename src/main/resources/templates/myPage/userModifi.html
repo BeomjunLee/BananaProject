@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="/css/myPageStyle.css">
 </head>
 <body>
-<nav>
-    <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+<th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
     <!-- 회원 수정 폼-->
     <form action="/member/memberUpdateOk" method="post">
         비밀번호 <input type="password" name="memberPw"><br>
