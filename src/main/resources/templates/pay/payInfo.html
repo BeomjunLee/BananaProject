@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="header.css">
     <style>
     .progress{
-    margin:50px;
+    margin:100px;
     text-align:center;
      }
 
@@ -25,7 +25,7 @@
     .payform{
     border:5px solid pink;
     width:500px;
-    height:1000px;
+    height:1050px;
     padding:10px;
     top:50%;
     left:50%;
@@ -83,20 +83,58 @@
     }
     </style>
 </head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //주소 api
+    function openDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = '';
+                var extraAddr = '';
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드로
+                    document.getElementById("extraAddress").value = extraAddr;
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+                // 우편번호와 주소 정보를 해당 필드
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                // 커서를 상세주소로
+                document.getElementById("detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 <body>
 <nav>
-    <a href = "home.html"><img src="BATHDAL_LOGO_2.png" class="logo"></img></a>
-    <a href = "shop.html"><img src="SHOPPINGMALL_LOGO_2.png" class = "shoppingmall"></img></a>
+    <a href = "../home.html"><img src="../image/BATHDAL_LOGO_2.png" class="logo"></img></a>
+    <div class = "shoppingmall">SHOPPING MALL</div>
     <ul>
-        <li><a href="/myPage.html">MY PAGE</a></li>
-        <li><a href="/login.html">LOGIN</a></li>
+        <li><a href="../myPage/myPage.html">MY PAGE</a></li>
+        <li><a href="../login.html">LOGIN</a></li>
     </ul>
-    <img src="Fade_Border.png" class = "border"></img>
+    <img src="../image/Fade_Border.png" class = "banner_border"></img>
 </nav>
 
 <div class="progress">
     <div id="type">type</div>
-    <div id="survey">survey</div>
     <div id="result">result</div>
     <div id="payment">payment</div>
 </div>
@@ -107,26 +145,28 @@
     <div class="name">NAME *</div>
     <input type="text">
     <div class="phonenum">Phone number *</div>
-    <input type="text" placeholder="- 없이 입력해주세요.">
-    <div class="zipcode">Zip code</div>
-    <input type="text" placeholder="Zip code"> <input type="button" value="SEARCH">
+    <input type="text" placeholder="please enter without '-'">
+    <div class="Postcode">Post code</div>
+    <input type="text" id="postcode" size="10" readonly="readonly" placeholder="Post code"> <input type="button" onclick="openDaumPostcode()" value="SEARCH">
     <div class="addr">Address *</div>
-    <input type="text" placeholder="Street name address">
+    <input type="text" id="address" readonly="readonly" size="30" placeholder="Street name address"> <input type="text" id="extraAddress" readonly="readonly" size="20" placeholder="Extra adress">
     <div class="detailaddr">Detailed address *</div>
-    <input type="text" placeholder="Detailed address">
+    <input type="text" id="detailAddress" size="56" placeholder="Detailed address">
     <div class="specifics">Delivery specifics</div>
     <input type="text" id="specificsIn" placeholder="Please write unusual details when shipping.">
     <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]</div>
     <input type="text" id="num1" placeholder="XXXX"><input type="text" id="num2" placeholder="XXXX"><input type="text" id="num3" placeholder="XXXX"><input type="text" id="num4" placeholder="XXXX">
     <div class="cardexpdate">Card expiration date</div>
     <input type="text" id="date1" placeholder="MM"><input type="text" id="date2" placeholder="YY">
+    <div class="cardcode">Security Code</div>
+    <input type="password" size="1">
     <div class="cardpw">First two digits of the card password</div>
-    <input type="text" placeholder="**">
+    <input type="password" placeholder="**">
     <br><br>
     <div id="deliveryabout">
         <h2>BATHDAL</h2>
-        <h4>첫 배달일은 00월 00일입니다.</h4>
-        <h3 style="color:#F65A79;">결제 금액 0000원</h3>
+        <h4>The first delivery date is the ___ of the month.</h4>
+        <h3 style="color:#F65A79;">Payment amount : ____won</h3>
         <h2><div class="paynext"><a href="payComplete.html">Pay</a></div></h2>
     </div>
 </div>

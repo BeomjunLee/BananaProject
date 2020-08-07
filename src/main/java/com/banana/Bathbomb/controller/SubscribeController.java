@@ -1,13 +1,12 @@
 package com.banana.Bathbomb.controller;
-import com.banana.Bathbomb.service.MemberService;
+import com.banana.Bathbomb.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
-
 @Controller
 @RequiredArgsConstructor
-public class MemberController {
-    private final MemberService memberService;
+public class SubscribeController {
+    private final SubscribeService subscribeService;
 
 
 }
