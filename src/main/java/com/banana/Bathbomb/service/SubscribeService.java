@@ -23,7 +23,7 @@ public class SubscribeService {
      * 구독 찾기 by member_uid
      */
     public Subscribe findSubscribe(int memberUid){
-        return subscribeRepository.selectOne(memberUid);
+        return subscribeRepository.selectByUid(memberUid);
     }
 
 }

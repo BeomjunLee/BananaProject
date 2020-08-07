@@ -69,6 +69,9 @@ public class MemberRepository {
         return null;
     }
 
+    /**
+     * 회원 아이디 찾기
+     */
 
     /**
      * 회원정보 select에 필요한 메서드

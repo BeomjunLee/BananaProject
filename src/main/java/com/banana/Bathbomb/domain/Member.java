@@ -8,7 +8,7 @@ import lombok.Setter;
 public class Member {
     private int memberUid;        //회원 uid
     private String memberId;      //회원 아이디
-    private String memberPw;      //회원 아이디
+    private String memberPw;      //회원 비밀번호
     private String memberName;    //회원 이름
     private String memberPhoneNum;//회원 전화번호
     private String memberEmail;   //회원 이메일

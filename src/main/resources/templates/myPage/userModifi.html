@@ -16,5 +16,16 @@
         <img src = "..\image\Fade_Border.png" class = "banner_border">
     </nav>
     <h1>My Page</h1>
+    <!-- 회원 수정 폼-->
+    <form action="/member/memberUpdateOk" method="post">
+        비밀번호 <input type="password" name="memberPw"><br>
+        비밀번호확인 <input type="password" name="memberPw2"><br>
+        이름 <input type="text" name="memberName"><br>
+        전화번호 <input type="text" name="memberPhoneNum"><br>
+        이메일 <input type="text" name="memberEmail"><br>
+        <input type="radio" name="memberGender" value="남성">Male
+        <input type="radio" name="memberGender" value="여성">Female<br>
+        <input type="submit" value="확인">
+    </form>
 </body>
 </html>
