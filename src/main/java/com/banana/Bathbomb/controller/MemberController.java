@@ -56,7 +56,9 @@ public class MemberController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//날짜 형태
         Date time = new Date();
         String memberRegDate = simpleDateFormat.format(time);
-        
+
+        Member findMember = memberService.findMemberById(form.getMemberId());
+
         Member member = new Member();
         member.setMemberId(form.getMemberId());
         member.setMemberPw(passwordEncoder.encode(form.getMemberPw())); //비밀번호암호화
@@ -169,4 +171,6 @@ public class MemberController {
         model.addAttribute("member", member);
         return "/myPage/myPage";
     }
+
+
 }

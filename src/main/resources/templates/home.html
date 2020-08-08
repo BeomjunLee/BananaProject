@@ -315,7 +315,7 @@
     
                             </p>
                         </div>  
-                        <button type = "button" class= "subscribe" onclick="return goSubscribe()">
+                        <button type = "button" class= "subscribe" onclick="return goSubscribe();">
                             SUBSCRIBE
                         </button>
                     </div>            
@@ -369,11 +369,11 @@
 
         <script th:inline="javascript">
             //구독구매창 눌렀을때 로그인 안하면 못가게
+            var session = [[${sessionChk}]];
             function goSubscribe(){
-                var session = [[${sessionChk}]];
                 if(session = 0){
                     alert("Please login first");
-                    return;
+                    return false;
                 }else{
                     location.href="/subscribe/subscribe";
                 }
