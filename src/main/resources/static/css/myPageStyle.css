@@ -1,3 +1,11 @@
+#myPage_banner {
+    text-align: center;
+    font-size: 50px;
+    color : white;
+    font-weight: bold;
+    word-break: keep-all;
+    text-shadow: 0 0 30px rgba(0,0,0,.3);
+}
 .info {
     display: inline;
 }
@@ -6,6 +14,9 @@
     text-align: center;
     margin-left: 300px;
     margin-right: 300px;
+}
+#customerInfo_banner {
+    color: #f26d7d;
 }
 #editInfo {
     margin-top: 50px;
