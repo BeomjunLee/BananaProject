@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ReviewBoardController {
     private final ReviewBoardService reviewBoardService;
 
-    @GetMapping("/myReview")//내가 쓴 리뷰로
+    @GetMapping("/myPage/myReview")//내가 쓴 리뷰로
     public String myReview(){
         return "/myPage/myReview";
     }
