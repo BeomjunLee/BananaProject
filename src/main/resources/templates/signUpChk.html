@@ -7,14 +7,14 @@
 <body>
     <th:block th:if="${resultCode == 1}">
         <script>
-            alert("Create a Account Successful");    //로그인성공
+            alert("Create a Account Successful");    //가입 성공
             location.replace("/login");
         </script>
     </th:block>
 
     <th:block th:if="${resultCode == 0}">
         <script>
-            alert("Member information does not exist");   //회원정보x
+            alert("Fail, If you keep failing, please contact me");   //가입 실패
             history.back();
         </script>
     </th:block>
