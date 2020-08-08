@@ -1,7 +1,11 @@
 package com.banana.Bathbomb.controller;
 import com.banana.Bathbomb.domain.Member;
 import com.banana.Bathbomb.service.MemberService;
+import com.banana.Bathbomb.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +22,13 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     /**
      * 회원가입 폼으로
@@ -34,7 +45,7 @@ public class MemberController {
      * 회원 가입 로직
      */
     @PostMapping("/signUp")
-    public String signUp(@Valid MemberForm form, BindingResult result){
+    public String signUp(@Valid MemberForm form, BindingResult result, Model model){
         //BindingResult에서 에러를 잡아서 폼으로 넘겨줌
         if(result.hasErrors()){
             System.out.println("오류있음");
@@ -48,16 +59,17 @@ public class MemberController {
         
         Member member = new Member();
         member.setMemberId(form.getMemberId());
-        member.setMemberPw(form.getMemberPw());
+        member.setMemberPw(passwordEncoder.encode(form.getMemberPw())); //비밀번호암호화
         member.setMemberName(form.getMemberName());
         member.setMemberPhoneNum(form.getMemberPhoneNum());
         member.setMemberEmail(form.getMemberEmail());
         member.setMemberGender(form.getMemberGender());
         member.setMemberRegDate(memberRegDate);
 
-        memberService.join(member);
-
-        return "redirect:/login";
+        System.out.println("비밀번호 암호화 한 값 : " + member.getMemberPw());
+        int resultCode = memberService.join(member);
+        model.addAttribute("resultCode", resultCode);
+        return "/signUpChk";
     }
 
 
@@ -68,23 +80,25 @@ public class MemberController {
     public String loginChk(HttpSession session, MemberForm form, Model model){
         //입력된 아이디값을 받아서 회원 검색
         Member findMember = memberService.findMemberById(form.getMemberId());
-        System.out.println("입력된 로그인 아이디 값:"+form.getMemberId());
         String id = form.getMemberId();
-        System.out.println("일치하는 회원 id값:"+id);
+        System.out.println("입력된 id값:"+id);
+
         String pw = form.getMemberPw();
-        System.out.println("일치하는 회원 pw값:"+pw);
+        System.out.println("입력된 pw값:"+pw);
 
         String resultCode = ""; //오류코드
 
         if(findMember == null){ //회원 null값 부터 체크 안하면 ERROR
             resultCode = "실패1"; //회원정보x
-        }else if(findMember.getMemberId().equals(id) && findMember.getMemberPw().equals(pw) && session.getAttribute("sessionId") == null){
-            resultCode = "성공"; //성공
-            session.setAttribute("sessionId", findMember.getMemberUid());//세션생성
+        }else if(findMember.getMemberId().equals(id) && session.getAttribute("sessionId") == null){
+            if(passwordEncoder.matches(pw, findMember.getMemberPw())) { //암호화한 비밀번호값 비교(사용자가 입력한값 먼저, 암호환된 pw)
+                resultCode = "성공"; //성공
+                session.setAttribute("sessionId", findMember.getMemberUid());//세션생성
+            }else{
+                resultCode = "실패3";//비밀번호 일치x
+            }
         }else if(session.getAttribute("sessionId")  != null){//세션값이 있으면
             resultCode = "실패2";//이미 로그인중
-        }else{
-            resultCode = "실패3";//비밀번호 일치x
         }
         model.addAttribute("resultCode", resultCode);
         return "/loginChk";
@@ -129,7 +143,7 @@ public class MemberController {
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
         Member member = new Member();
-        member.setMemberPw(form.getMemberPw());
+        member.setMemberPw(passwordEncoder.encode(form.getMemberPw())); //암호화
         member.setMemberName(form.getMemberName());
         member.setMemberPhoneNum(form.getMemberPhoneNum());
         member.setMemberEmail(form.getMemberEmail());
