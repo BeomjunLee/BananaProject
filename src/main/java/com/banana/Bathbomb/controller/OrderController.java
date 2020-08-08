@@ -11,7 +11,7 @@ public class OrderController {
         return "/shop/shop";
     }
 
-    @GetMapping("/myOrderList")//주문 목록으로
+    @GetMapping("/myPage/myOrderList")//주문 목록으로
     public String myOrderList(){
         return "/myPage/myOrderList";
     }
