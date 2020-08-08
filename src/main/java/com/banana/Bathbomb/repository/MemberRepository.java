@@ -51,7 +51,7 @@ public class MemberRepository {
      * 회원 수정 update
      */
     public int update(Member member){
-        return jdbcTemplate.update("update member set member_pw = ?, member_name = ?, member_phone_num = ?, member_email = ?" +
+        return jdbcTemplate.update("update member set member_pw = ?, member_name = ?, member_phone_num = ?, member_email = ?, " +
                 "member_gender = ? where member_uid = ?", member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
                 member.getMemberEmail(), member.getMemberGender(), member.getMemberUid());
     }

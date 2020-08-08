@@ -9,13 +9,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-public class MemberForm {
-    private int memberUid;                //회원 uid
-
-    @NotBlank(message = "Please enter your id")
-    @Size(min = 1, max =  20, message = "You can enter only 1 to 20 characters")
-    private String memberId;              //회원 아이디
-
+public class MemberModifiForm {
     @NotBlank(message = "Please enter your Password")
     @Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}", message = "Please use special characters and numbers 8 to 20 characters") //특수문자 + 숫자가 들어간 8~20문자
     private String memberPw;              //회원 비밀번호
@@ -39,6 +33,4 @@ public class MemberForm {
 
     @NotBlank(message = "Please choose your gender")
     private String memberGender;          //회원 성별: 남자, 여자
-
-    private String memberRegDate;         //회원 가입일자
 }
