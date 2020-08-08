@@ -19,7 +19,7 @@
     }
 
     #payment{
-    border:5px solid #F65A79;
+    border:5px solid #FF6699;
     }
 
     .payform{
@@ -72,14 +72,41 @@
     left:50%;
     margin:auto;
     }
-    .paynext{
-    text-align:center;
-    margin:10px;
+
+    button{
+    border : 3px solid  #f26d7d;
+    background-color : #f26d7d;
+    padding : 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 2px 2px;
+    cursor: pointer;
+    font-family: 'Bahnschrift';
+    border-radius: 4px;
+    transition-duration: 0.2s;
+    position : relative;
+    top : 3px;
+    color : white;
     }
 
-    .paynext a{
-    border:5px solid pink;
-    display:inline;
+    button::after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 7px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+    }
+
+    button:hover::after{
+    width: 60%;
+    left: 21%;
     }
     </style>
 </head>
@@ -121,7 +148,11 @@
         <h2>BATHDAL</h2>
         <h4>The first delivery date is the ___ of the month.</h4>
         <h3 style="color:#F65A79;">Payment amount : ____won</h3>
-        <h2><div class="paynext"><a href="">Pay</a></div></h2>
+        <div id="next">
+            <button type = "button" onclick="location.href='/subscribeInfo'">
+                PAY
+            </button>
+        </div>
     </div>
 </div>
 
