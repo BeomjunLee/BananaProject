@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+    글 제목 <input type="text" th:value="${board.getBoard_title()}" readonly="readonly"><br>
+    작성자 <a th:text="${board.getId()}"></a><br>
+    작성일 <a th:text="${board.getBoard_regDate()}"></a><br>
+    조회수 <a th:text="${board.getBoard_viewCnt()}"></a><br>
+    이미지 <img src="c:/img/1596585570512해쉬 답1.PNG">이미지</img><br>
+    파일명 <a th:text="${board.getFile_name()}"></a><br>
+</body>
+</html>

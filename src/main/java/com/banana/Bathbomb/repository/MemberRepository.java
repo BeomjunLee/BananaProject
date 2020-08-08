@@ -60,7 +60,7 @@ public class MemberRepository {
      * 회원 탈퇴 delete
      */
     public int delete(int memberUid){
-        return 0;
+        return jdbcTemplate.update(("delete from member where member_uid = ?"), memberUid);
     }
 
     /**
