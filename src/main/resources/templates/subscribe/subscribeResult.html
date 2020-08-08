@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="header.css">
     <style>
     .progress{
-    margin:100px;
+    margin:50px;
     text-align:center;
      }
 
     .progress div{
-    border:5px solid pink;
     display:inline;
     padding:5px;
     margin:40px;
     }
 
-    #result{
-    border:5px solid #F65A79;
+    .progress img{
+    width:150px;
+    height:150px;
     }
 
     #resultabout{
@@ -33,14 +33,47 @@
     margin:auto;
     }
 
-    .next{
+    #next{
     text-align:center;
-    margin:10px;
+    top:50%;
+    left:50%;
+    margin:auto;
     }
 
-    .next a{
-    border:5px solid pink;
-    display:inline;
+    button{
+    border : 3px solid  #f26d7d;
+    background-color : #f26d7d;
+    padding : 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 2px 2px;
+    cursor: pointer;
+    font-family: 'Bahnschrift';
+    border-radius: 4px;
+    transition-duration: 0.2s;
+    position : relative;
+    top : 3px;
+    color : white;
+    }
+
+    button::after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 7px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+    }
+
+    button:hover::after{
+    width: 60%;
+    left: 21%;
     }
 
     #resultabout h2{
@@ -52,9 +85,9 @@
 <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
 
 <div class="progress">
-    <div id="type">type</div>
-    <div id="result">result</div>
-    <div id="payment">payment</div>
+    <div id="type"><img src="/image/type.png"></img></div>
+    <div id="result"><img src="/image/resultSelect.png"></img></div>
+    <div id="payment"><img src="/image/payment.png"></img></div>
 </div>
 
 <h2 style="text-align:center">Please check your payment information.</h2>
@@ -65,7 +98,12 @@
     <h2>____won/month</h2>
 </div>
 
-<div class="next"><a href="/subscribe/subscribeInfo">NEXT</a></div>
+<div id="next">
+    <button type = "button" onclick="location.href='/subscribe/subscribeInfo'">
+        NEXT
+    </button>
+</div>
+
 
 </body>
 </html>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL :: A Special Day</title>
-    <th:block th:include="/fragments/header"></th:block> <!-- 헤더 -->
-
+    <th:block th:include="/fragments/header.html"></th:block> <!-- 헤더 -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
         body{
@@ -21,50 +21,6 @@
             background: white;
             font-family : 'Bahnschrift';
             overflow-x: hidden  ;
-        }
-        nav a img.logo{
-            position: fixed;
-            top: 20px;
-            left : 40px;
-            box-sizing : border-box;
-        }
-
-        nav div.shoppingmall{
-            display : block;
-            color : grey;
-            text-decoration: none;
-            font-size : 17px;
-            font-weight: bold;
-            position : absolute;
-            top : 40px;
-            left : 240px;
-        }
-
-        nav{
-            width : 100%;
-            height: 70px;
-            position: fixed;
-            top: 0px;
-            background : white;
-            border-bottom: 1px solid pink;
-            z-index : 8;
-        }
-        nav ul{
-            display : flex;
-            margin :0;
-            padding : 40px 100px;
-            float :right;
-        }
-        nav ul li{
-            list-style : none;
-        }
-        nav ul li a{
-            display : block;
-            color :grey;
-            padding : 0 20px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size : 12px;
         }
         img.banner_border{
             position : absolute;
@@ -293,7 +249,6 @@
     </style>
 </head>
 <body>
-
         <div class = "sec1">
             <div class = "sec1_text">
                 <h4 class = "banner" style = "text-decoration: underline;">BATH SUBSCRIPTION SERVICE</h4>
@@ -301,7 +256,7 @@
             </div>
             <div class = "video_container">
                 <video class = "banner_background_video" width = "125.7%" height = "auto" loop data-video="0" autoplay = "autoplay" muted = "muted">
-                    <source src = ".\image\banner_video.mp4" type = "video/mp4">
+                    <source src = "..\static\image\banner_video.mp4" type = "video/mp4">
                 </video>
             </div>
             <div class = "banner_text">
@@ -314,7 +269,7 @@
 
         <div class = "description">
             <div class = "sec2">
-                <div class = "block">
+                <div class = "block" data-aos="fade-up">
                     <img class = "sec2_png" src =".\image\bathbomb.png" width = "27%"></img>
                 </div>
                 <div class = "sec2_text">
@@ -326,7 +281,7 @@
             </div>
 
             <div class = "sec3">
-                <div class = "block">
+                <div class = "block" data-aos="fade-up">
                     <img class = "sec3_png" src =".\image\natural_soap_3.png" width = "32%">
                 </div>
                 <div class = "sec3_text">
@@ -339,7 +294,7 @@
         </div>
         
         <div class = "sec4">
-            <div class = "sec4_text">
+            <div class = "sec4_text" data-aos="fade-up">
                 WHAT'S FOR THIS MONTH?
             </div>
             <img class = "sec4_png" src = ".\image\question_box.png">
@@ -397,6 +352,13 @@
                 s1.setAttribute('crossorigin','*');
                 s0.parentNode.insertBefore(s1,s0);
             })();
+
+        </script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration:1500
+            });
         </script>
         <!--End of Tawk.to Script-->
     </body>

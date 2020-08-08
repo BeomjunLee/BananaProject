@@ -3,23 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
-    <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
+    <th:block th:replace="/fragments/header.html"></th:block> <!-- 헤더 -->
+    <style>
+        body{
+            display : grid;
+            grid-template-columns : repeat(3,1fr);
+            grid-template-rows: repeat(6,200px);
+            grid-template-areas:
+                "banner banner banner"
+                ". login ."
+                "footer footer footer";
+            gap : 0px;
+            font-family: 'Bahnschrift';
+            overflow-x: hidden;
+        }
+        div.banner{
+            grid-area: banner;
+        }
+        div.banner_text{
+            position :relative;
+            bottom: 30%;
+            text-align: center;
+            font-size: 50px;
+            color : white;
+            font-weight: bold;
+            word-break: keep-all;
+            text-shadow: 0 0 30px rgba(0,0,0,.3);
+        }
+        video.banner_video{
+            width : "300%";
+            height : "auto" ;
+            min-width: 100%;
+            object-fit:fill;
+        }
 
+        .login_form{
+            grid-area : login;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width : auto;
+            height : 500px;
+        }
+        .login_form_input{
+            position : relative;
+            right : 5px;
+        }
+        .login_input_area{
+            width : 300px;
+            height : 50px;
+        }
+        .login_input{
+            width : 100%;
+            padding :20px 10px 10px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-bottom : 1px solid rgba(0,0,0,0.3);
+            color : rgba(0,0,0,0.8)
+        }
+        .login_form label{
+            position : relative;
+            bottom : 25px;
+            left : 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color : rgba(0,0,0,.2);
+            transition: all 0.1s ease;
+        }
+        .login_form label.warning{
+            color : red !important;
+            animation : warning .3s ease;
+            animation-iteration-count: 3;
+        }
+        @keyframes warning{
+            0%{transform : translateX(-8px);}
+            25%{transform : translateX(8px);}
+            50%{transform : translateX(-8px);}
+            75%{transform : translateX(8px);}
+        }
+        .login_input:focus + label,
+        .login_input:valid + label{
+            position : relative;
+            bottom : 48px;
+            font-size: 13px;
+            color : #f26d7d
+        }
+
+        .login_submit_area{
+            margin-top : 30px;
+        }
+        .login_submit_area button{
+            width : 100%;
+            height : 50px;
+            background : #f26d7d;
+            color : white;
+            font-size : 20px;
+            border : none;
+            border-radius: 25px;
+        }
+
+        .login_function{
+            margin-top : 20px;
+            text-align: center;
+
+        }
+        .login_function a {
+            font-size : 15px;
+            color : #999;
+            text-decoration : underline;
+        }
+    </style>
 </head>
 <body>
-
-<!-- br은 줄바꿈이라서 나중에 alt + 왼쪽마우스버튼으로 드래그 해서 한번에 지우시면됩니다 -->
     <!-- 로그인 폼 -->
-                                                                    <br><br><br><br>
-    <form action="/loginChk" method="post">
-        <div>UserID</div>
-        <input type="text" name="memberId">                         <br>
-        <div>Password</div>
-        <input type="password" name="memberPw">                     <br>
-        <input type="submit" value="Login">
-    </form>
-        <a href="/signUp">Create an Account</a>                 <br>
-        <a href="">Find your Id</a>
-        <a href="">Find your Pw</a>
+    <div class = "banner">
+        <video class = "login_banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+            <source src = "login_banner_video.mp4" type = "video/mp4" >
+        </video>
+        <div class= "banner_text">LOGIN</div>
+    </div>
+
+    <div class = "login_form">
+        <form action="/loginChk" method="post">
+            <div class = "login_form_input">
+                <div class="login_input_area" id="input_area_id">
+                    <input class = "login_input" type="text" name="memberId" id="memberId" autocomplete="off" required>
+                    <label for="id">USER ID</label>
+                </div>
+
+                <div class = "login_input_area" id="input_area_pw">
+                    <input class = "login_input" type="password" name="memberPw" id = "memberPw" autocomplete="off" required>
+                    <label for="pw">PASSWORD</label>
+                </div>
+            </div>
+
+            <div class = "login_submit">
+                <div class = "login_submit_area">
+                    <button type="submit" value="Login" id = "submit">LOGIN</button>
+                </div>
+            </div>
+            <div class = "login_function">
+                <a href="/signUp" style="color : #f26d7d;">Create an Account<br></a>
+                <a href="">Forgot ID?<br></a>
+                <a href="">Forgot Password?<br></a>
+            </div>
+
+    </div>
+
+    <script>
+        let memberId = $('#memberId');
+        let memberPw = $('#memberPw');
+        let submit = $('#submit')
+        $(submit).on('click', function(){
+            if($(memberid).val() == ""){
+                $(memberId).next('label').addClass('warning');
+                setTimeout(function(){
+                    $('label').removeClass('Warning');
+                },1000);
+            }
+            else if($(memberPw).val() == ""){
+                $(memberPw).next('label').addClass('warning');
+                setTimeout(function(){
+                    $('label').removeClass('Warning');
+                },1000);
+            }
+        });
+
+    </script>
 </body>
 </html>
