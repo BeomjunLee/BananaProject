@@ -12,6 +12,6 @@ public class Member {
     private String memberName;    //회원 이름
     private String memberPhoneNum;//회원 전화번호
     private String memberEmail;   //회원 이메일
-    private String memberGender;  //회원 성별(남성, 여성)
+    private String memberGender;  //회원 성별 Male, Female
     private String memberRegDate; //회원 가입일자
 }

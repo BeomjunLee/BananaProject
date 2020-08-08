@@ -7,28 +7,28 @@
 <body>
     <th:block th:if="${resultCode.equals('성공')}">
         <script>
-            alert("로그인 성공");
+            alert("Login Successful");    //로그인성공
             location.replace("/");
         </script>
     </th:block>
 
     <th:block th:if="${resultCode.equals('실패1')}">
         <script>
-            alert("회원정보가 존재하지 않습니다");
+            alert("Member information does not exist");   //회원정보x
             location.replace("/login");
         </script>
     </th:block>
 
     <th:block th:if="${resultCode.equals('실패2')}">
         <script>
-            alert("이미 로그인 중입니다");
+            alert("You are already logged in");   //이미 로그인중
             location.replace("/login");
         </script>
     </th:block>
 
     <th:block th:if="${resultCode.equals('실패3')}">
         <script>
-            alert("비밀번호가 일치하지 않습니다");
+            alert("Passwords don't match");   //비밀번호 일치하지 않음
             location.replace("/login");
         </script>
     </th:block>

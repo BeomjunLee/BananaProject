@@ -38,9 +38,4 @@ public class HomeController {
         return "/login";
     }
 
-    @GetMapping("/myPage")//마이페이지
-    public String goMyPage(){
-        return "/myPage/myPage";
-    }
-
 }

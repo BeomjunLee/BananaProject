@@ -51,7 +51,7 @@ public class MemberRepository {
      * 회원 수정 update
      */
     public int update(Member member){
-        return jdbcTemplate.update("update member set member_pw = ?, member_name = ?, member_phone_num = ?, member_email = ?" +
+        return jdbcTemplate.update("update member set member_pw = ?, member_name = ?, member_phone_num = ?, member_email = ?, " +
                 "member_gender = ? where member_uid = ?", member.getMemberPw(), member.getMemberName(), member.getMemberPhoneNum(),
                 member.getMemberEmail(), member.getMemberGender(), member.getMemberUid());
     }
@@ -88,7 +88,7 @@ public class MemberRepository {
                 member.setMemberName(rs.getString("member_name"));
                 member.setMemberPhoneNum(rs.getString("member_phone_num"));
                 member.setMemberEmail(rs.getString("member_email"));
-                member.setMemberGender(rs.getString("member_gender")); //남성, 여성
+                member.setMemberGender(rs.getString("member_gender")); //Male, Female
                 member.setMemberRegDate(rs.getString("member_reg_date"));
                 return member;
             }

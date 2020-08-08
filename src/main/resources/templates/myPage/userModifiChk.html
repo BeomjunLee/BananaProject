@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+    <th:block th:if="${resultCode == 1}">
+        <script>
+            alert("Success");   //성공
+            location.replace("/");
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode == 0}">
+        <script>
+            alert("Fail, If you keep failing, please contact me"); //실패
+            location.replace("/login");
+        </script>
+    </th:block>
+</body>
+</html>

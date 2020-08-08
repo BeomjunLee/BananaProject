@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="/css/myPageStyle.css">
+    <link rel="stylesheet" href="../../static/css/myPageStyle.css">
 </head>
 <body>
     <h1>My Page</h1>
     <div class="info">
         <div class="customerInfo">
             <h2>Customer Information</h2>
-            <div id="customerName">Name</div>
-            <div id="customerTel">Phone</div>
-            <div id="customerEmail">E-mail</div>
-            <div id="customerGender">Gender</div>
+            <div id="customerName" th:text="${member.getMemberName()}">Name</div>
+            <div id="customerTel" th:text="${member.getMemberPhoneNum()}">Phone</div>
+            <div id="customerEmail" th:text="${member.getMemberEmail()}">E-mail</div>
+            <div id="customerGender" th:text="${member.getMemberGender()}">Gender</div>
             <div id="editInfo"><a href="/myPage/userModifi">Edit Your Info></a></div>
         </div>
 

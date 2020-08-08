@@ -17,25 +17,32 @@
 <!-- 회원 가입 폼 -->
     <form action="/signUp" method="post" th:object="${memberForm}">
         <div>User ID</div>
-        <input type="text" name="memberId" class="signupForm" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
+        <input type="text" th:field="*{memberId}" class="signupForm" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
         <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
+
         <div>Password</div>
-        <input type="password" name="memberPw" class="signupForm" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
+        <input type="password" th:field="*{memberPw}" class="signupForm" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
         <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
+
         <div>Re-enter password</div>
-        <input type="password" name="memberPw2">                         <br>
+        <input type="password" th:field="*{memberPw2}" class="signupForm" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
+        <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
+
         <div>Name</div>
-        <input type="text" name="memberName" class="signupForm" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
+        <input type="text" th:field="*{memberName}" class="signupForm" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
         <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+
         <div>Phone number</div>
-        <input type="text" name="memberPhoneNum" class="signupForm" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
+        <input type="text" th:field="*{memberPhoneNum}" class="signupForm" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
         <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+
         <div>E-mail</div>
-        <input type="text" name="memberEmail" class="signupForm" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
+        <input type="text" th:field="*{memberEmail}" class="signupForm" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
         <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
+
         <br>
-        <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="남성">Male
-        <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="여성">Female
+        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
+        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
         <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
         <br>
         <input type="submit" value="Create a Account">
