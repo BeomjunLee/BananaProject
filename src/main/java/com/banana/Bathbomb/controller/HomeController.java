@@ -8,23 +8,18 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    @GetMapping("/header")//헤더
-    public String header(HttpSession session, Model model){
-        String sessionId = "";
-        //세션 확인 예외처리
-        try{
-            sessionId = (String)session.getAttribute("sessionId");   //처음에 세션값이 null값일때는 null에서 변환시켜주는 (String)변환
-        }catch(ClassCastException e){
-           //e.printStackTrace();
-            sessionId = session.getAttribute("sessionId").toString();   //세션값에 값이 담겨있을땐 Object형에서 변환시켜주는 toString()
-        }
-        System.out.println("헤더 세션값:" + sessionId);
-        model.addAttribute("sessionId", sessionId);
-        return "/fragments/header";
-    }
     
     @GetMapping("/")//홈페이지
-    public String home(){
+    public String home(Model model, HttpSession session){
+        int sessionChk = 0;
+        //세션확인
+        if(session.getAttribute("sessionId") == null){
+            sessionChk = 0;
+        }else{
+            sessionChk = 1;
+        }
+
+        model.addAttribute("sessionChk", sessionChk);
         return "/home";
     }
 

@@ -16,7 +16,7 @@ public class SubscribeController {
 
     @GetMapping("/subscribe/subscribe")//구독하기 버튼
     public String subscribe(){
-        return "subscribe/subscribeType";
+        return "/subscribe/subscribeType";
     }
 
     @GetMapping("/subscribe/subscribeResult")//구독 결제 정보

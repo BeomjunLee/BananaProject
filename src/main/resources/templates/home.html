@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL :: A Special Day</title>
-    <th:block th:include="/fragments/header.html"></th:block> <!-- 헤더 -->
+    <th:block th:if="${sessionChk == 0}">
+    <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+    </th:block>
+    <th:block th:unless="${sessionChk == 0}">
+    <th:block th:insert="/fragments/header1"></th:block>
+    </th:block>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
@@ -310,7 +315,7 @@
     
                             </p>
                         </div>  
-                        <button type = "button" class= "subscribe" onclick="location.href='/subscribe/subscribe'">
+                        <button type = "button" class= "subscribe" onclick="return goSubscribe()">
                             SUBSCRIBE
                         </button>
                     </div>            
@@ -361,5 +366,18 @@
             });
         </script>
         <!--End of Tawk.to Script-->
+
+        <script th:inline="javascript">
+            //구독구매창 눌렀을때 로그인 안하면 못가게
+            function goSubscribe(){
+                var session = [[${sessionChk}]];
+                if(session = 0){
+                    alert("Please login first");
+                    return;
+                }else{
+                    location.href="/subscribe/subscribe";
+                }
+            }
+        </script>
     </body>
 </html>

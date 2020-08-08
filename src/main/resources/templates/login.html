@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
-    <th:block th:replace="/fragments/header.html"></th:block> <!-- 헤더 -->
+    <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
     <style>
         body{
             display : grid;
@@ -156,7 +156,7 @@
         let memberPw = $('#memberPw');
         let submit = $('#submit')
         $(submit).on('click', function(){
-            if($(memberid).val() == ""){
+            if($(memberId).val() == ""){
                 $(memberId).next('label').addClass('warning');
                 setTimeout(function(){
                     $('label').removeClass('Warning');
