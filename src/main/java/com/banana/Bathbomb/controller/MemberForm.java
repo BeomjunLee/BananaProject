@@ -13,7 +13,7 @@ public class MemberForm {
     private int memberUid;                //회원 uid
 
     @NotBlank(message = "Please enter your id")
-    @Size(min = 1, max =  20, message = "You can enter only 1 to 20 characters")
+    @Pattern(regexp = "[a-zA-z0-9]{4,20}", message = "You can enter only alphabet or alphabet and numbers 4 to 20 characters")
     private String memberId;              //회원 아이디
 
     @NotBlank(message = "Please enter your Password")
@@ -38,7 +38,7 @@ public class MemberForm {
     private String memberEmail;           // 회원 이메일
 
     @NotBlank(message = "Please choose your gender")
-    private String memberGender;          //회원 성별: 남자, 여자
+    private String memberGender;          //회원 성별: Male, Female
 
     private String memberRegDate;         //회원 가입일자
 }

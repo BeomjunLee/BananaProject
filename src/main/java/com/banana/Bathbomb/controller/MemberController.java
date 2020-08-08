@@ -125,7 +125,7 @@ public class MemberController {
             System.out.println("오류있음");
             return "/myPage/userModifi";
         }
-
+        //세션값
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
         Member member = new Member();
@@ -141,4 +141,18 @@ public class MemberController {
         return "/myPage/userModifiChk";
     }
 
+
+    /**
+     * 마이 페이지 회원정보
+     */
+    @GetMapping("/myPage")//마이페이지
+    public String myPage(Model model, HttpSession session){
+        //세션값
+        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
+
+        Member member = memberService.findMember(sessionId);
+        //찾은 멤버 객체 넘기기
+        model.addAttribute("member", member);
+        return "/myPage/myPage";
+    }
 }

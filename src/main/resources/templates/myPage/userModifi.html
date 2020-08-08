@@ -21,7 +21,9 @@
         <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
 
         <div>Re-enter password</div>
-        <input type="password" name="memberPw2" th:value="${member.getMemberPw()}"><br>
+        <input type="password" name="memberPw2" th:value="${member.getMemberPw()}" class="signupForm"
+               th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
+        <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
 
         <div>Name</div>
         <input type="text" name="memberName" class="signupForm" th:value="${member.getMemberName()}"
@@ -38,15 +40,15 @@
                th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
         <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p><br>
 
-        <th:block th:if="${member.getMemberGender().equals('남성')}">
-        <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="남성">Male
-        <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="여성">Female
+        <th:block th:if="${member.getMemberGender().equals('Male')}">
+        <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
+        <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
             <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
         </th:block>
 
-        <th:block th:if="${member.getMemberGender().equals('여성')}">
-            <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="남성">Male
-            <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="여성">Female
+        <th:block th:if="${member.getMemberGender().equals('Female')}">
+            <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
+            <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
             <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
         </th:block>
         <br>

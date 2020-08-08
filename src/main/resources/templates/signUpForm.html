@@ -41,8 +41,8 @@
         <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
 
         <br>
-        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="남성">Male
-        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="여성">Female
+        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
+        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
         <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
         <br>
         <input type="submit" value="Create a Account">
