@@ -135,12 +135,7 @@ public class MemberController {
      * 회원 수정
      */
     @PostMapping("/myPage/userModifi")
-    public String userModifi(@Valid MemberModifiForm form, BindingResult result, HttpSession session, Model model){
-        //BindingResult에서 에러를 잡아서 폼으로 넘겨줌
-        if(result.hasErrors()){
-            System.out.println("오류있음");
-            return "/myPage/userModifi";
-        }
+    public String userModifi(MemberForm form, HttpSession session, Model model){
         //세션값
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 

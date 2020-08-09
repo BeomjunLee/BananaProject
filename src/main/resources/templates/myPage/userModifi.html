@@ -14,40 +14,30 @@
 <body>
 <br><br><br><br><!-- 헤더때문에 가려서 -->
     <!-- 회원 수정 폼-->
-    <form action="/myPage/userModifi" method="post" th:object="${memberForm}">
+    <form action="/myPage/userModifi" method="post">
         <div>Password</div>
-        <input type="password" th:field="*{memberPw}" class="signupForm" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
-        <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
+        <input type="password" name="memberPw">
 
         <div>Re-enter password</div>
-        <input type="password" th:field="*{memberPw2}" class="signupForm" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
-        <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
+        <input type="password">
 
         <div>Name</div>
-        <input type="text" name="memberName" class="signupForm" th:value="${member.getMemberName()}"
-               th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+        <input type="text" name="memberName" th:value="${member.getMemberName()}">
 
         <div>Phone number</div>
-        <input type="text" name="memberPhoneNum" class="signupForm" th:value="${member.getMemberPhoneNum()}"
-               th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+        <input type="text" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
 
         <div>E-mail</div>
-        <input type="text" name="memberEmail" class="signupForm" th:value="${member.getMemberEmail()}"
-               th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p><br>
+        <input type="text" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
 
         <th:block th:if="${member.getMemberGender().equals('Male')}">
-        <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
-        <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
-            <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
+        <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
+        <input type="radio" name="memberGender" class="signupForm" value="Female">Female
         </th:block>
 
         <th:block th:if="${member.getMemberGender().equals('Female')}">
-            <input type="radio" name="memberGender" class="signupForm" checked="checked" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
-            <input type="radio" name="memberGender" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
-            <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
+            <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
+            <input type="radio" name="memberGender" class="signupForm" value="Female">Female
         </th:block>
         <br>
         <input type="submit" value="Confirm">

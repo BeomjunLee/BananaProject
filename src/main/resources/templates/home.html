@@ -315,7 +315,7 @@
     
                             </p>
                         </div>  
-                        <button type = "button" class= "subscribe" onclick="return goSubscribe();">
+                        <button type = "button" class= "subscribe" id="subscribeBtn">
                             SUBSCRIBE
                         </button>
                     </div>            
@@ -364,16 +364,16 @@
             AOS.init({
                 duration:1500
             });
-        </script>
+
         <!--End of Tawk.to Script-->
 
-        <script th:inline="javascript">
+
             //구독구매창 눌렀을때 로그인 안하면 못가게
-            var session = [[${sessionChk}]];
-            function goSubscribe(){
-                if(session = 0){
+            session = [[${sessionId}]];
+
+            document.getElementById('subscribeBtn').onclick = function (){
+                if(session == null){
                     alert("Please login first");
-                    return false;
                 }else{
                     location.href="/subscribe/subscribe";
                 }

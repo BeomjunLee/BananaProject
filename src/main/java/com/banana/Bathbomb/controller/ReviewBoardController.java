@@ -11,8 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -70,15 +74,25 @@ public class ReviewBoardController {
 
         System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
+        int sessionId = 0;
+        try {
+            if(session.getAttribute("sessionId") != null) {
+                sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
+            }else {
+                sessionId = Integer.parseInt((String)session.getAttribute("sessionId"));
+            }
+        }catch(Exception e){
+            //e.printStackTrace();
+        }
+        System.out.println("세션 값 : " + sessionId);
 
-        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
-
-        if(board.getMemberUid() == sessionId) {
-            model.addAttribute("sessionId", sessionId);
+        if(sessionId == board.getMemberUid()){
+            model.addAttribute("sessionChk", sessionId);
         }else{
-            model.addAttribute("sessionId", null);
+            model.addAttribute("sessionChk", null);
         }
 
+        model.addAttribute("sessionId", sessionId);
         model.addAttribute("rvBoardUid", board.getRvBoardUid());
         model.addAttribute("board", board);
         return "/board/reviewRead";
@@ -96,7 +110,7 @@ public class ReviewBoardController {
      * 리뷰 글 쓰기
      */
     @PostMapping("/board/reviewWriteChk")
-    public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session){
+    public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session, @RequestPart("file") MultipartFile file){
 
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
         
@@ -108,13 +122,24 @@ public class ReviewBoardController {
         Date time = new Date();
         String boardRegDate = simpleDateFormat.format(time);
 
+        //업로드파일
+        //String uploadPath = request.getSession().getServletContext().getRealPath("/img/");
+        String uploadPath = "c:/img/";
+        System.out.println(uploadPath);
+        String fileName = System.currentTimeMillis() + file.getOriginalFilename(); //동일한 파일명 처리를 위해
+        try{
+            file.transferTo(new File(uploadPath + fileName));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
         ReviewBoard reviewBoard = new ReviewBoard();
         reviewBoard.setMemberUid(sessionId);
         reviewBoard.setRvBoardWriter(member.getMemberName());
         reviewBoard.setRvBoardItem(board.getRvBoardItem());
         reviewBoard.setRvBoardTitle(board.getRvBoardTitle());
         reviewBoard.setRvBoardContent(board.getRvBoardContent());
-        reviewBoard.setRvBoardFile(board.getRvBoardFile());
+        reviewBoard.setRvBoardFile(fileName);
         reviewBoard.setRvBoardViewCount(0);
         reviewBoard.setRvBoardRegDate(boardRegDate);
 

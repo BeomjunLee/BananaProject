@@ -19,9 +19,9 @@
     조회수 : <a th:text="${board.getRvBoardViewCount()}"></a><br>
     <textarea th:text="${board.getRvBoardContent()}" readonly="readonly" cols=85 rows=15></textarea><br>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-mGojrC1NFOSeih2zCKGIPzn8Gsg2xT9lJw&usqp=CAU" alt="이미지"><br>
-    <th:block th:if="${sessionId == null}"> <!-- 로그인 안했을때 -->
+    <th:block th:if="${sessionChk == null}"> <!-- 로그인 안했을때 -->
     </th:block>
-    <th:block th:unless="${sessionId == null}"><!-- 로그인 했을때 -->
+    <th:block th:unless="${sessionChk == null}"><!-- 로그인 했을때 -->
         <button type="button" onclick="sendBoardUidUpdate();">Modification</button>
         <button type="button" onclick="sendBoardUidDelete();">Delete</button>
     </th:block>
