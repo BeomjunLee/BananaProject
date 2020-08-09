@@ -77,6 +77,7 @@ public class ReviewBoardController {
 
         System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
+        System.out.println("파일명 : " + board.getRvBoardFile());
         int sessionId = 0;
         try {
             if(session.getAttribute("sessionId") != null) {
@@ -95,7 +96,7 @@ public class ReviewBoardController {
             model.addAttribute("sessionChk", null);
         }
 
-        model.addAttribute("sessionId", sessionId);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         model.addAttribute("rvBoardUid", board.getRvBoardUid());
         model.addAttribute("board", board);
         return "/board/reviewRead";

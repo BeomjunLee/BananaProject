@@ -106,6 +106,7 @@ public class ReviewBoardRepository {
                 board.setRvBoardItem(rs.getString("rv_board_item"));
                 board.setRvBoardTitle(rs.getString("rv_board_title"));
                 board.setRvBoardContent(rs.getString("rv_board_content"));
+                board.setRvBoardFile(rs.getString("rv_board_file"));
                 board.setRvBoardViewCount(rs.getInt("rv_board_view_count"));
                 board.setRvBoardRegDate(rs.getString("rv_board_reg_date"));
                 return board;
