@@ -32,29 +32,30 @@
     }
     .submit {background-color: white; border:1px solid #dddddd;font-size:15px;}
 </style>
+<form action="/board/reviewWriteChk" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <th>Title </th>
+            <td><input type="text" name="rvBoardTitle"></td>
+        </tr>
+        <tr>
+            <th>Item </th>
+            <td><input type="radio" value="BathBomb" name="rvBoardItem">Bath Bomb
+                <input type="radio" value="NaturalSoup" name="rvBoardItem">Natural Soup
+            </td>
+        </tr>
+        <tr>
+            <th>Image </th>
+            <td><input type="file"  name="file" accept="image/*"></td>
+        </tr>
+        <tr>
+            <th>Contents </th>
+            <td><textarea name="rvBoardContent" cols=85 rows=15></textarea></td>
+        </tr>
+    </table>
+    <div align="center"><br>
+        <input type = "submit" value="SUBMIT" class="submit"></div>
+</form>
 
-<table>
-    <tr>
-        <th>Title </th>
-        <td><input type="text"></td>
-    </tr>
-    <tr>
-        <th>Name </th>
-        <td><input type="text"></td>
-    </tr>
-    <tr>
-        <th>Item </th>
-        <td><input type="radio" value="BathBomb">Bath Bomb <input type="radio" value="NaturalSoup">Natural Soup</td>
-    </tr>
-    <tr>
-        <th>Image </th>
-        <td><input type="file"  accept="image/*"></td>
-    </tr>
-    <tr>
-        <th>Contents </th>
-        <td><textarea cols=85 rows=15></textarea></td>
-    </tr>
-</table>
-<div align="center"><br><input type = "submit" value="SUBMIT" class="submit"></div>
 </body>
 </html>

@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
+    <th:block th:if="${sessionId == null}">
+        <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+    </th:block>
+    <th:block th:unless="${sessionId == null}">
+        <th:block th:insert="/fragments/header1"></th:block>
+    </th:block>
 </head>
 <body>
-    글 제목 <input type="text" th:value="${board.getBoard_title()}" readonly="readonly"><br>
-    작성자 <a th:text="${board.getId()}"></a><br>
-    작성일 <a th:text="${board.getBoard_regDate()}"></a><br>
-    조회수 <a th:text="${board.getBoard_viewCnt()}"></a><br>
-    이미지 <img src="c:/img/1596585570512해쉬 답1.PNG">이미지</img><br>
-    파일명 <a th:text="${board.getFile_name()}"></a><br>
+<br><br><br> <!--헤더 때매 가려서 나중에 작업필요 -->
+    글 제목 <input type="text" th:value="${board.getRvBoardTitle()}" readonly="readonly"><br>
+    작성자 : <a th:text="${member.getMemberName()}"></a><br>
+    작성일 : <a th:text="${board.getRvBoardRegDate()}"></a><br>
+    조회수 : <a th:text="${board.getRvBoardViewCount()}"></a><br>
+    <textarea th:text="${board.getRvBoardContent()}" readonly="readonly" cols=85 rows=15></textarea><br>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-mGojrC1NFOSeih2zCKGIPzn8Gsg2xT9lJw&usqp=CAU" alt="이미지"></img><br>
 </body>
 </html>

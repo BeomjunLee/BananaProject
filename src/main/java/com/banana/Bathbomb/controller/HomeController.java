@@ -11,15 +11,8 @@ public class HomeController {
     
     @GetMapping("/")//홈페이지
     public String home(Model model, HttpSession session){
-        int sessionChk = 0;
-        //세션확인
-        if(session.getAttribute("sessionId") == null){
-            sessionChk = 0;
-        }else{
-            sessionChk = 1;
-        }
 
-        model.addAttribute("sessionChk", sessionChk);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "/home";
     }
 

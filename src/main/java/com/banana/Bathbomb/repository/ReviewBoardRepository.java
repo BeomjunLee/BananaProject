@@ -25,7 +25,7 @@ public class ReviewBoardRepository {
      */
     public int insert(ReviewBoard board){
         return jdbcTemplate.update("insert into review_board(rv_board_uid, member_uid, rv_board_item, rv_board_title," +
-                "rv_board_content, rv_board_file, rv_board_view_count, rv_board_reg_date) values(rv_board_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
+                "rv_board_content, rv_board_file, rv_board_view_count, rv_board_reg_date) values(review_board_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
                 board.getMemberUid(), board.getRvBoardItem(), board.getRvBoardTitle(), board.getRvBoardContent(), board.getRvBoardFile(),
                 board.getRvBoardViewCount(), board.getRvBoardRegDate());
     }
@@ -34,7 +34,7 @@ public class ReviewBoardRepository {
      * 리뷰게시판 글 리스트 찾기 select 페이징
      */
     public List<ReviewBoard> selectAll(int startIndex, int pageSize){
-        return jdbcTemplate.query("select * from review_board ORDER BY rv_board_uid DESC DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(),
+        return jdbcTemplate.query("select * from review_board ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(),
                 startIndex, pageSize);
     }
 
@@ -84,7 +84,7 @@ public class ReviewBoardRepository {
      * 조회수 증가
      */
     public int updateViewCount(int rvBoardUid){
-        return jdbcTemplate.update("update board set board_viewCnt = board_viewCnt + 1 where board_uid = ?", rvBoardUid);
+        return jdbcTemplate.update("update review_board set rv_board_view_count = rv_board_view_count + 1 where rv_board_uid = ?", rvBoardUid);
     }
 
     /**

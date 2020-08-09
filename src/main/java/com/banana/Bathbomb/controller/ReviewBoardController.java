@@ -9,9 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -62,14 +65,55 @@ public class ReviewBoardController {
      */
     @GetMapping("/board/reviewRead")
     public String reviewRead(Model model, ReviewBoard board, HttpSession session){
-
-        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
-        Member member = memberService.findMember(sessionId);
+        //조회수증가
         reviewBoardService.updateViewCount(board.getRvBoardUid());
+
+        System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
 
+        Member member = memberService.findMember(board.getMemberUid());
+
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         model.addAttribute("member", member);
         model.addAttribute("board", board);
         return "/board/reviewRead";
     }
+
+    /**
+     * 리뷰 글 쓰기 폼
+     */
+    @GetMapping("/board/reviewWrite")
+    public String reviewWrite(){
+        return "/board/reviewWrite";
+    }
+
+    /**
+     * 리뷰 글 쓰기
+     */
+    @PostMapping("/board/reviewWriteChk")
+    public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session){
+
+        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
+
+
+        //현재 날짜 담기
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//날짜 형태
+        Date time = new Date();
+        String boardRegDate = simpleDateFormat.format(time);
+
+        ReviewBoard reviewBoard = new ReviewBoard();
+        reviewBoard.setMemberUid(sessionId);
+        reviewBoard.setRvBoardItem(board.getRvBoardItem());
+        reviewBoard.setRvBoardTitle(board.getRvBoardTitle());
+        reviewBoard.setRvBoardContent(board.getRvBoardContent());
+        reviewBoard.setRvBoardFile(board.getRvBoardFile());
+        reviewBoard.setRvBoardViewCount(0);
+        reviewBoard.setRvBoardRegDate(boardRegDate);
+
+        int result = reviewBoardService.insertBoard(reviewBoard);
+
+        model.addAttribute("resultCode", result);
+        return "/board/reviewWriteChk";
+    }
+
 }
