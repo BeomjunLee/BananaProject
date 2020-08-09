@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+    <th:block th:if="${resultCode == 1}">
+        <script>
+            rvBoardUid = [[${rvBoardUid}]];
+            alert("Modification Successful");    //수정 성공
+            location.replace("/board/reviewRead?rvBoardUid="+rvBoardUid);
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode == 0}">
+        <script>
+            alert("Fail, If you keep failing, please contact me");   //수정 실패
+            history.back();
+        </script>
+    </th:block>
+
+    <th:block th:if="${resultCode == 2}">
+        <script>
+            alert("Abnormal approach");   //아이디가 다름 (주소로 접근했을시에)
+            location.replace("/board/review");
+        </script>
+    </th:block>
+</body>
+</html>

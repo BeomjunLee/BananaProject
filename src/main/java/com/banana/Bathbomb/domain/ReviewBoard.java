@@ -8,6 +8,7 @@ import lombok.Setter;
 public class ReviewBoard {
     private int rvBoardUid;         //리뷰 게시판 uid
     private int memberUid;          //회원 멤버 uid
+    private String rvBoardWriter;   //작성자 이름
     private String rvBoardItem;        //리뷰 게시판 글 상품
     private String rvBoardTitle;    //리뷰 게시판 제목
     private String rvBoardContent;  //리뷰 게시판 내용

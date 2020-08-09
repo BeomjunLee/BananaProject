@@ -24,9 +24,9 @@ public class ReviewBoardRepository {
      * 리뷰게시판 글 쓰기 insert
      */
     public int insert(ReviewBoard board){
-        return jdbcTemplate.update("insert into review_board(rv_board_uid, member_uid, rv_board_item, rv_board_title," +
-                "rv_board_content, rv_board_file, rv_board_view_count, rv_board_reg_date) values(review_board_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)",
-                board.getMemberUid(), board.getRvBoardItem(), board.getRvBoardTitle(), board.getRvBoardContent(), board.getRvBoardFile(),
+        return jdbcTemplate.update("insert into review_board(rv_board_uid, member_uid, rv_board_writer, rv_board_item, rv_board_title," +
+                "rv_board_content, rv_board_file, rv_board_view_count, rv_board_reg_date) values(review_board_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)",
+                board.getMemberUid(), board.getRvBoardWriter(), board.getRvBoardItem(), board.getRvBoardTitle(), board.getRvBoardContent(), board.getRvBoardFile(),
                 board.getRvBoardViewCount(), board.getRvBoardRegDate());
     }
 
@@ -102,6 +102,7 @@ public class ReviewBoardRepository {
                 ReviewBoard board = new ReviewBoard();
                 board.setRvBoardUid(rs.getInt("rv_board_uid"));
                 board.setMemberUid(rs.getInt("member_uid"));
+                board.setRvBoardWriter(rs.getString("rv_board_writer"));
                 board.setRvBoardItem(rs.getString("rv_board_item"));
                 board.setRvBoardTitle(rs.getString("rv_board_title"));
                 board.setRvBoardContent(rs.getString("rv_board_content"));

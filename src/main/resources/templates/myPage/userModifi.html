@@ -16,13 +16,11 @@
     <!-- 회원 수정 폼-->
     <form action="/myPage/userModifi" method="post" th:object="${memberForm}">
         <div>Password</div>
-        <input type="password" name="memberPw" th:value="${member.getMemberPw()}" class="signupForm"
-               th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
+        <input type="password" th:field="*{memberPw}" class="signupForm" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
         <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
 
         <div>Re-enter password</div>
-        <input type="password" name="memberPw2" th:value="${member.getMemberPw()}" class="signupForm"
-               th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
+        <input type="password" th:field="*{memberPw2}" class="signupForm" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
         <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
 
         <div>Name</div>

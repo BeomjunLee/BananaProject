@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:if="${sessionId == null}">
+        <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+    </th:block>
+    <th:block th:unless="${sessionId == null}">
+        <th:block th:insert="/fragments/header1"></th:block>
+    </th:block>
+</head>
+<body>
+<br><br><br><br><br><br>
+    <form action="/board/reviewModifiChk" method="post" enctype="multipart/form-data">
+        글 제목 <input type="text" name ="rvBoardTitle" th:value="${board.getRvBoardTitle()}"> <br>
+        작성자 : <a th:text="${board.getRvBoardWriter()}"></a><br>
+        종류 :
+        <th:block th:if="${board.getRvBoardItem().equals('BathBomb')}">
+        <input type="radio" th:value="${board.getRvBoardItem()}" checked="checked" name="rvBoardItem">Bath Bomb
+            <input type="radio" th:value="${board.getRvBoardItem()}" name="rvBoardItem"> NaturalSoup
+        </th:block>
+        <th:block th:if="${board.getRvBoardItem().equals('NaturalSoup')}">
+            <input type="radio" th:value="${board.getRvBoardItem()}" name="rvBoardItem">Bath Bomb
+            <input type="radio" th:value="${board.getRvBoardItem()}" checked="checked" name="rvBoardItem"> NaturalSoup
+        </th:block>
+        <br>
+        작성일 : <a th:text="${board.getRvBoardRegDate()}"></a><br>
+        조회수 : <a th:text="${board.getRvBoardViewCount()}" name="rvBoardViewCount"></a><br>
+        <textarea th:text="${board.getRvBoardContent()}" cols=85 rows=15 name="rvBoardContent"></textarea><br>
+        <input type="file"  name="file" accept="image/*"><br>
+        <input type="hidden" name="rvBoardUid" th:value="${board.getRvBoardUid()}">   <!--히든으로 rv_board_uid전달-->
+        <input type="submit" value="SUBMIT">
+    </form>
+</body>
+</html>

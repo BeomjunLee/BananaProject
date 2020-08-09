@@ -71,16 +71,21 @@ public class ReviewBoardController {
         System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
 
-        Member member = memberService.findMember(board.getMemberUid());
+        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
-        model.addAttribute("sessionId", session.getAttribute("sessionId"));
-        model.addAttribute("member", member);
+        if(board.getMemberUid() == sessionId) {
+            model.addAttribute("sessionId", sessionId);
+        }else{
+            model.addAttribute("sessionId", null);
+        }
+
+        model.addAttribute("rvBoardUid", board.getRvBoardUid());
         model.addAttribute("board", board);
         return "/board/reviewRead";
     }
 
     /**
-     * 리뷰 글 쓰기 폼
+     * 리뷰 글 쓰기 폼으로
      */
     @GetMapping("/board/reviewWrite")
     public String reviewWrite(){
@@ -94,8 +99,10 @@ public class ReviewBoardController {
     public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session){
 
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
-
-
+        
+        //회원찾기
+        Member member = memberService.findMember(sessionId);
+        
         //현재 날짜 담기
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//날짜 형태
         Date time = new Date();
@@ -103,6 +110,7 @@ public class ReviewBoardController {
 
         ReviewBoard reviewBoard = new ReviewBoard();
         reviewBoard.setMemberUid(sessionId);
+        reviewBoard.setRvBoardWriter(member.getMemberName());
         reviewBoard.setRvBoardItem(board.getRvBoardItem());
         reviewBoard.setRvBoardTitle(board.getRvBoardTitle());
         reviewBoard.setRvBoardContent(board.getRvBoardContent());
@@ -116,4 +124,65 @@ public class ReviewBoardController {
         return "/board/reviewWriteChk";
     }
 
+    /**
+     * 리뷰 글 수정 폼으로
+     */
+    @GetMapping("/board/reviewModifi")
+    public String reviewModifi(HttpSession session, Model model, ReviewBoard board){
+
+        int rvBoardUid = board.getRvBoardUid();
+
+        board = reviewBoardService.readBoard(board.getRvBoardUid());
+
+        Member member = memberService.findMember(board.getMemberUid());
+
+        model.addAttribute("rvBoardUid", rvBoardUid);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+        model.addAttribute("member", member);
+        model.addAttribute("board", board);
+        return"/board/reviewModifi";
+    }
+
+    /**
+     * 리뷰 글 수정
+     */
+    @PostMapping("/board/reviewModifiChk")
+    public String reviewModifiChk(Model model, ReviewBoard board, HttpSession session){
+        int resultCode = 0;
+        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
+
+        ReviewBoard findBoard = reviewBoardService.readBoard(board.getRvBoardUid());
+
+        //주소 도용방지
+        if(sessionId == findBoard.getMemberUid()) {
+            resultCode = reviewBoardService.updateBoard(board);
+        }else{
+            resultCode = 2;
+        }
+        
+        model.addAttribute("rvBoardUid", board.getRvBoardUid());
+        model.addAttribute("resultCode", resultCode);
+        return "/board/reviewModifiChk";
+    }
+
+    /**
+     * 리뷰 글 삭제
+     */
+    @GetMapping("/board/reviewDelete")
+    public String reviewDelete(Model model, ReviewBoard board, HttpSession session){
+        int resultCode = 0;
+        int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
+
+        ReviewBoard findBoard = reviewBoardService.readBoard(board.getRvBoardUid());
+
+        //주소 도용방지
+        if(sessionId == findBoard.getMemberUid()) {
+            resultCode = reviewBoardService.deleteBoard(board.getRvBoardUid());
+        }else{
+            resultCode = 2;
+        }
+
+        model.addAttribute("resultCode", resultCode);
+        return "/board/reviewDelete";
+    }
 }
