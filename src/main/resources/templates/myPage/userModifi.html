@@ -5,6 +5,11 @@
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
     <link rel="stylesheet" href="../../static/css/myPageStyle.css">
+    <style>
+        .editLabel {
+            color: #f26d7d;
+        }
+    </style>
 </head>
 <style>
     .inputError {
@@ -12,35 +17,55 @@
     }
 </style>
 <body>
-<br><br><br><br><!-- 헤더때문에 가려서 -->
-    <!-- 회원 수정 폼-->
-    <form action="/myPage/userModifi" method="post">
-        <div>Password</div>
-        <input type="password" name="memberPw">
+    <h1 id="myPage_banner">My Page</h1>
+    <div class="customerInfo">
+        <!-- 회원 수정 폼-->
+        <form action="/myPage/userModifi" method="post" th:object="${memberForm}">
+            <div>
+                <span class="editLabel">Password</span>
+                <span>
+                   <input type="password" name="memberPw">
+                </span>
+            </div>
+            <div>
+                <span class="editLabel">Re-enter password</span>
+                <span>
+                    <input type="password">
+                </span>
+            </div>
+            <div>
+                <span class="editLabel">Name</span>
+                <span>
+                    <input type="text" name="memberName" th:value="${member.getMemberName()}">
+                </span>
+            </div>
+            <div>
+                <span class="editLabel">Phone number</span>
+                <span>
+                    <input type="text" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
+                </span>
+            </div>
+            <div>
+                <span class="editLabel">E-mail</span>
+                <span>
+                    <input type="text" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
+                </span>
+            </div>
+            <div>
+                <th:block th:if="${member.getMemberGender().equals('Male')}">
+                    <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
+                    <input type="radio" name="memberGender" class="signupForm" value="Female">Female
+                </th:block>
 
-        <div>Re-enter password</div>
-        <input type="password">
-
-        <div>Name</div>
-        <input type="text" name="memberName" th:value="${member.getMemberName()}">
-
-        <div>Phone number</div>
-        <input type="text" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
-
-        <div>E-mail</div>
-        <input type="text" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
-
-        <th:block th:if="${member.getMemberGender().equals('Male')}">
-        <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
-        <input type="radio" name="memberGender" class="signupForm" value="Female">Female
-        </th:block>
-
-        <th:block th:if="${member.getMemberGender().equals('Female')}">
-            <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
-            <input type="radio" name="memberGender" class="signupForm" value="Female">Female
-        </th:block>
-        <br>
-        <input type="submit" value="Confirm">
-    </form>
+                <th:block th:if="${member.getMemberGender().equals('Female')}">
+                    <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
+                    <input type="radio" name="memberGender" class="signupForm" value="Female">Female
+                </th:block>
+                <br>
+            </div>
+            <br>
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
 </body>
 </html>
