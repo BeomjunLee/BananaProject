@@ -9,6 +9,64 @@
         .editLabel {
             color: #f26d7d;
         }
+        #message {
+            display:none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "✔";
+        }
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+        #confirm_btn {
+            width : 50px;
+            height : 50px;
+            background : #f26d7d;
+            color : white;
+            font-size : 10px;
+            border : none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .editPW1 {
+            margin-top: 15px;
+        }
+        .editPW2 {
+            margin-top: 15px;
+        }
+        .editName {
+            margin-top: 15px;
+        }
+        .editPhoneNum {
+            margin-top: 15px;
+        }
+        .editEmail {
+            margin-top: 15px;
+        }
+        .editGender {
+            margin-top: 15px;
+        }
     </style>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -22,40 +80,50 @@
     <div class="customerInfo">
         <!-- 회원 수정 폼-->
         <form action="/myPage/userModifi" method="post" th:object="${memberForm}">
-            <div>
+            <div class="editPW1">
                 <span class="editLabel">Password</span>
                 <span>
-                   <input type="password" class="pw" id="password_1" name="memberPw">
-                    <span>8~15자리의 영문, 숫자, 특수문자의 입력이 가능합니다.</span>
+                   <input type="password" class="pw" id="password_1" name="memberPw" pattern="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,20}" required>
+                    <span id="alert-pwValiCheck" style="display: none; color: #d92742; font-weight: bold; ">Please use special characters and numbers 8 to 20 characters.</span>
                 </span>
             </div>
-            <div>
+            <div class="message">
+                <h3>Password Condition</h3>
+                <p id="letter" class="invalid">An <b>alphabet</b> </p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="specialCh" class="invalid">A <b>special character</b></p>
+                <p id="length" class="invalid"><b>8~20 </b>characters</p>
+            </div>
+            <div class="editPW2">
                 <span class="editLabel">Re-enter password</span>
                 <span>
                     <input type="password" class="pw" id="password_2">
-                    <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-                    <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+                    <span id="alert-success" style="display: none;">Your passwords match.</span>
+                    <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">Your passwords do not match. Check again!</span>
                 </span>
             </div>
-            <div>
+            <div class="editName">
                 <span class="editLabel">Name</span>
                 <span>
-                    <input type="text" name="memberName" th:value="${member.getMemberName()}">
+                    <input type="text" id="inName" name="memberName" th:value="${member.getMemberName()}">
+                    <span id="alert-name" class="invalid">You can enter only 1 to 20 characters</span>
                 </span>
             </div>
-            <div>
+            <div class="editPhoneNum">
                 <span class="editLabel">Phone number</span>
                 <span>
-                    <input type="text" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
+                    <input type="text" id="inPhoneNum" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
+                    <span id="alert-phoneNum" class="invalid">You can enter only 6 to 20 numbers</span>
                 </span>
             </div>
-            <div>
+            <div class="editEmail">
                 <span class="editLabel">E-mail</span>
                 <span>
-                    <input type="text" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
+                    <input type="text" id="inEmail" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
+                    <span id="alert-eMail" class="invalid">Please check the E-mail form</span>
                 </span>
             </div>
-            <div>
+            <div class="editGender">
                 <th:block th:if="${member.getMemberGender().equals('Male')}">
                     <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
                     <input type="radio" name="memberGender" class="signupForm" value="Female">Female
@@ -68,10 +136,112 @@
                 <br>
             </div>
             <br>
-            <input type="submit" value="Confirm">
+            <button id="confirm_btn" type="submit">Confirm</button>
         </form>
     </div>
 
+    <script>
+        var inPwd = document.getElementById("password_1");
+        var letter = document.getElementById("letter");
+        var number = document.getElementById("number");
+        var special_ch = document.getElementById("specialCh")
+        var length = document.getElementById("length");
+        var inName = document.getElementById("inName");
+        var alert_name = document.getElementById("alert-name");
+        var inPhoneNum = document.getElementById("inPhoneNum");
+        var alert_phoneNum = document.getElementById("alert-phoneNum");
+        var inEmail = document.getElementById("inEmail");
+        var alert_eMail = document.getElementById("alert-eMail");
+
+        inPwd.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        }
+        inPwd.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        }
+        inPwd.onkeyup = function() {
+            // Validate lowercase letters
+            var regexp_letter = /[a-zA-Z]/g;
+            if (inPwd.value.match(regexp_letter)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+            // Validate numbers
+            var regexp_number = /[0-9]/g;
+            if (inPwd.value.match(regexp_number)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            var regexp_specialCh = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+            if (inPwd.value.match(regexp_specialCh)) {
+                special_ch.classList.remove("invalid");
+                special_ch.classList.add("valid");
+            } else {
+                special_ch.classList.remove("valid");
+                special_ch.classList.add("invalid");
+            }
+            // Validate length
+            if (inPwd.value.length >= 8 && inPwd.value.length <= 20) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+
+            inName.onfocus = function(){
+                document.getElementById("alert-name").style.display = "inline-block"
+            }
+            inName.onblur = function() {
+                document.getElementById("alert-name").style.display = "none";
+            }
+            if(inName.value.length<1 || inName.value.length>20) {
+                alert_name.classList.add("invalid");
+                alert_name.classList.remove("valid");
+            }
+            else {
+                alert_name.classList.remove("invalid");
+                alert_name.classList.add("valid");
+            }
+
+            inPhoneNum.onfocus = function(){
+                document.getElementById("alert-phoneNum").style.display = "inline-block"
+            }
+            inPhoneNum.onblur = function() {
+                document.getElementById("alert-phoneNum").style.display = "none";
+            }
+            if(inPhoneNum.value.length<6 || inPhoneNum.value.length>20) {
+                alert_phoneNum.classList.add("invalid");
+                alert_phoneNum.classList.remove("valid");
+            }
+            else {
+                alert_phoneNum.classList.remove("invalid");
+                alert_phoneNum.classList.add("valid");
+            }
+
+            inEmail.onfocus = function(){
+                document.getElementById("alert-eMail").style.display = "inline-block"
+            }
+            inEmail.onblur = function() {
+                document.getElementById("alert-eMail").style.display = "none";
+            }
+            var regexp_eMail = /[a-zA-z0-9]+@[a-zA-z]+[.]+[a-zA-z.]+/g;
+            if(inEmail.value.match(regexp_eMail)) {
+                alert_eMail.classList.remove("invalid");
+                alert_eMail.classList.add("valid");
+            }
+            else {
+                alert_eMail.classList.add("invalid");
+                alert_eMail.classList.remove("valid");
+            }
+        }
+    </script>
     <script>
         $('.pw').focusout(function () {
             var pwd1 = $("#password_1").val();
