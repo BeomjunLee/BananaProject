@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -74,6 +77,7 @@ public class ReviewBoardController {
 
         System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
+        System.out.println("파일명 : " + board.getRvBoardFile());
         int sessionId = 0;
         try {
             if(session.getAttribute("sessionId") != null) {
@@ -92,7 +96,7 @@ public class ReviewBoardController {
             model.addAttribute("sessionChk", null);
         }
 
-        model.addAttribute("sessionId", sessionId);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         model.addAttribute("rvBoardUid", board.getRvBoardUid());
         model.addAttribute("board", board);
         return "/board/reviewRead";
@@ -110,7 +114,7 @@ public class ReviewBoardController {
      * 리뷰 글 쓰기
      */
     @PostMapping("/board/reviewWriteChk")
-    public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session, @RequestPart("file") MultipartFile file){
+    public String reviewWriteChk(Model model, ReviewBoard board, HttpSession session, @RequestPart("file") MultipartFile file, HttpServletRequest request){
 
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
         
@@ -123,16 +127,16 @@ public class ReviewBoardController {
         String boardRegDate = simpleDateFormat.format(time);
 
         //업로드파일
-        //String uploadPath = request.getSession().getServletContext().getRealPath("/img/");
-        String uploadPath = "c:/img/";
-        System.out.println(uploadPath);
+        String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+        //String uploadPath = "/file/";
+        System.out.println("업로드 Path: " + uploadPath);
         String fileName = System.currentTimeMillis() + file.getOriginalFilename(); //동일한 파일명 처리를 위해
         try{
             file.transferTo(new File(uploadPath + fileName));
         }catch(IOException e){
             e.printStackTrace();
         }
-
+        System.out.println("파일 이름명 : "+ fileName);
         ReviewBoard reviewBoard = new ReviewBoard();
         reviewBoard.setMemberUid(sessionId);
         reviewBoard.setRvBoardWriter(member.getMemberName());
