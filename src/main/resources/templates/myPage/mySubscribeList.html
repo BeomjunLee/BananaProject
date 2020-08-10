@@ -31,19 +31,32 @@
             <a href="/myPage/myCart" id="cart">Cart</a>
         </div>
         <div id="subscription">
-            Subscripted.
+            <th:block th:if="${subscribe.getSbUid() == null}">
+                <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
+            </th:block>
+            <th:block th:unless="${subscribe.getSbUid() == null}">
+                BATHDAL 구독중
+            </th:block>
         </div>
     </div>
 
     <div class="subDetails">
         <span>Category</span>
-        <span>Number Of Times</span>
-        <span>Next Payment</span>
-        <span>Next Delivery</span>
-        <span>Subscription Cancelation</span>
+        <span>Delivery Address</span>
+        <span>Delivery Status</span>
+        <span>Charge</span>
+        <span>Subscribe Start Date</span>
+
+        <th:block th:if="${subscribe.getSbUid() != null}">
+            BATHDAL
+        </th:block>
+        <a th:text="${subscribe.getSbDeliveryAddress()}"></a>
+        <a th:text="${subscribe.getSbDeliveryStatus()}"></a>
+        <a th:text="${subscribe.getSbPrice()}"></a>
+        <a th:text="${subscribe.getSbRegDate()}"></a>
     </div>
     <div style="text-align: center; margin-top: 50px">
-        구독정보
+            <!-- 여기다가 넣으면 이상하게돼서 위에다가 넣었습니다 -->
     </div>
 </body>
 </html>

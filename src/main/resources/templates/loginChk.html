@@ -22,14 +22,14 @@
     <th:block th:if="${resultCode.equals('실패2')}">
         <script>
             alert("You are already logged in");   //이미 로그인중
-            location.replace("/login");
+            location.replace("/");
         </script>
     </th:block>
 
     <th:block th:if="${resultCode.equals('실패3')}">
         <script>
             alert("Passwords don't match");   //비밀번호 일치하지 않음
-            location.replace("/login");
+            history.back();
         </script>
     </th:block>
 </body>

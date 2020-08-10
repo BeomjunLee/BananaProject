@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th=http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="header.css">
     <style>
     h1{
     text-align:center;
@@ -72,10 +71,10 @@
 <h3>Thank you for using BATHDAL.</h3>
 <br><br><br>
 <div class="next">
-    <button type = "button" onclick="location.href='/subscribeInfo'">
+    <button type = "button" onclick="location.replace('/')">
         HOME
     </button>
-    <button type = "button" onclick="location.href='/subscribeInfo'">
+    <button type = "button" onclick="location.replace('/myPage/mySubscribeList')">
         ORDER HISTORY
     </button>
 </div>

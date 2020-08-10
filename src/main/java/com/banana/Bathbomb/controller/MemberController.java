@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -69,7 +70,13 @@ public class MemberController {
         member.setMemberRegDate(memberRegDate);
 
         System.out.println("비밀번호 암호화 한 값 : " + member.getMemberPw());
-        int resultCode = memberService.join(member);
+        int resultCode = 0;
+        try {
+            resultCode = memberService.join(member);
+        }catch(IllegalStateException e){
+            resultCode = 2;
+            System.out.println("아이디 중복 오류");
+        }
         model.addAttribute("resultCode", resultCode);
         return "/signUpChk";
     }
@@ -167,5 +174,13 @@ public class MemberController {
         return "/myPage/myPage";
     }
 
+    /**
+     * 아이디 중복 오류
+     */
+    @ExceptionHandler(IllegalStateException.class)
+    public String illegalStateExceptionHandler(Model model, Exception e){
+        e.printStackTrace();
+        return "/signUpForm";
+    }
 
 }

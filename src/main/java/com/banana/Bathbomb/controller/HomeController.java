@@ -8,22 +8,38 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    
-    @GetMapping("/")//홈페이지
+    /**
+     * 홈페이지로 
+     */
+    @GetMapping("/")
     public String home(Model model, HttpSession session){
 
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "/home";
     }
 
-    @GetMapping("/goHome")//BATHDAL 로고 클릭시 홈으로
+    /**
+     * BATHDAL 로고 클릭시 홈으로
+     */
+    @GetMapping("/goHome")
     public String goHome(){
         return "redirect:/";
     }
 
-    @GetMapping("/login")//로그인 페이지
+    /**
+     * 로그인 페이지
+     */
+    @GetMapping("/login")
     public String goLogin(){
         return "/login";
     }
+
+    /**
+     * 에러 페이지
+     */
+//    @GetMapping("/error")
+//    public String error() throws Exception {
+//        throw new Exception("error");
+//    }
 
 }

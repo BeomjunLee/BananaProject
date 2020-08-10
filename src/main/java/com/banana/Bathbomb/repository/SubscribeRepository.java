@@ -23,11 +23,11 @@ public class SubscribeRepository {
      * 구독 완료 insert
      */
     public int insert(Subscribe subscribe){
-       return jdbcTemplate.update("insert into subscribe(sb_uid, member_uid, sb_delivery_address, sb_delivery_memo, sb_price" +
-                       "sb_reg_date, sb_repeat_cnt, sb_delevery_status, sb_cancel_status, sb_cancel_date) " +
-                       "values(subscribe_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+       return jdbcTemplate.update("insert into subscribe(sb_uid, member_uid, sb_delivery_address, sb_delivery_memo, sb_price, " +
+                       "sb_reg_date, sb_delivery_status, sb_cancel_status, sb_cancel_date) " +
+                       "values(subscribe_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)",
                subscribe.getMemberUid(), subscribe.getSbDeliveryAddress(), subscribe.getSbDeliveryMemo(), subscribe.getSbPrice(),
-               subscribe.getSbRegDate(), subscribe.getSbMonthChk(), subscribe.getSbDeliveryStatus(), subscribe.getSbCancelStatus(), subscribe.getSbCancelDate());
+               subscribe.getSbRegDate(), subscribe.getSbDeliveryStatus(), subscribe.getSbCancelStatus(), subscribe.getSbCancelDate());
     }
 
      /**
@@ -38,6 +38,7 @@ public class SubscribeRepository {
         if (result.isEmpty()) return null;
         else return result.get(0);
     }
+
 
     /**
      * 구독 취소 delete
@@ -62,7 +63,15 @@ public class SubscribeRepository {
             @Override
             public Subscribe mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Subscribe subscribe = new Subscribe();
+                subscribe.setSbUid(rs.getInt("sb_uid"));
                 subscribe.setMemberUid(rs.getInt("member_uid"));
+                subscribe.setSbDeliveryAddress(rs.getString("sb_delivery_address"));
+                subscribe.setSbDeliveryMemo(rs.getString("sb_delivery_memo"));
+                subscribe.setSbPrice(rs.getInt("sb_price"));
+                subscribe.setSbRegDate(rs.getString("sb_reg_date"));
+                subscribe.setSbDeliveryStatus(rs.getString("sb_delivery_status"));
+                subscribe.setSbCancelStatus(rs.getString("sb_cancel_status"));
+                subscribe.setSbCancelDate(rs.getString("sb_cancel_date"));
                 return subscribe;
             }
         };

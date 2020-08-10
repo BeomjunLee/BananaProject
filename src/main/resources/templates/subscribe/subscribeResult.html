@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="header.css">
     <style>
     .progress{
     margin:50px;
@@ -95,7 +94,7 @@
 <div id="resultabout">
     <h2>Monthly payment</h2>
     <h3>Subscription fees are automatically charged on the 1st of each month.</h3>
-    <h2>____won/month</h2>
+    <h2 th:text="|${charge} won/month|"></h2>
 </div>
 
 <div id="next">
