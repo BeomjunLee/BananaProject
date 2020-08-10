@@ -59,8 +59,8 @@ public class ReviewBoardRepository {
     /**
      * 내가 쓴 리뷰 글 리스트
      */
-    public List<ReviewBoard> selectByMemberUid(int memberUid){
-        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board where member_uid = ?", reviewBoardRowMapper(), memberUid);
+    public List<ReviewBoard> selectByMemberUid(int memberUid, int startIndex, int pageSize){
+        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board where member_uid = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), memberUid, startIndex, pageSize);
         return result;
     }
 
@@ -92,6 +92,13 @@ public class ReviewBoardRepository {
      */
     public int totalListCount() {
         return jdbcTemplate.queryForObject("select count(*) from review_board", Integer.class);
+    }
+
+    /**
+     * 내가 쓴 리뷰글 총 글수
+     */
+    public int totalMyListCount(int memberUid){
+        return jdbcTemplate.queryForObject("select count(*) from review_board where member_uid = ?", Integer.class, memberUid);
     }
 
 
