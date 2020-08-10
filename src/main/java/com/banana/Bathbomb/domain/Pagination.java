@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Pagination {
     // 페이지 당 보여지는 게시글의 최대 개수
-    private int pageSize = 10;
+    private int pageSize = 0;
     //페이징된 버튼의 블럭당 최대 개수
     private int blockSize = 10;
     //현재 페이지
@@ -31,7 +31,9 @@ public class Pagination {
     //다음 블럭의 시작 페이지
     private int nextBlock;
 
-    public Pagination(int totalListCnt, int page){
+    public Pagination(int totalListCnt, int page, int writePageSize){
+        setPageSize(writePageSize); //페이지 사이즈 설정
+        
         //현재 페이지 세팅
         setPage(page);
         //총 계시글 수 세팅

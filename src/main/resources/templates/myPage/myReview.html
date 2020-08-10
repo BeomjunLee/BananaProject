@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="../../static/css/myPageStyle.css">
+    <link rel="stylesheet" href="/webapp/css/myPageStyle.css">
     <style>
+        .img {width:100px; height:100px;}
         .info .orderInfo #myReview {
             text-decoration-line: underline;
             text-underline-color: #f26d7d;
@@ -36,7 +37,43 @@
     </div>
 
     <div style="text-align: center; margin-top: 50px">
-        리뷰정보
+        <table>
+            <tbody>
+            <tr>
+                <th>사진</th>
+                <th>종류</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+            <tr th:each="board: ${boardList}">
+                <td><img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}" class="img"></td>
+                <td th:text="${board.getRvBoardItem()}"></td>
+                <td><a th:href="@{/board/reviewRead(rvBoardUid=${board.getRvBoardUid()})}" th:text="${board.getRvBoardTitle()}"></a></td>
+                <td th:text="${board.getRvBoardWriter()}"></td>
+                <td th:text="${board.getRvBoardRegDate()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div align="center">
+        <ul class="pagination" >
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+                <th:block th:if="${pagination.getPage() != 1}">
+                    <a th:href="@{/myPage/myReview(page=1)}">맨앞</a>
+                    <a th:href="@{/myPage/myReview(page=${pagination.getPreBlock()})}">&laquo;</a>
+                </th:block>
+            </th:block>
+            <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
+                <a th:text="${page}" th:href="@{/myPage/myReview(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
+            </a>
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+                <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
+                    <a th:href="@{/myPage/myReview(page=${pagination.getNextBlock()})}">&raquo;</a>
+                    <a th:href="@{/myPage/myRevieww(page=${pagination.getTotalPageCnt()})}">맨뒤</a>
+                </th:block>
+            </th:block>
+        </ul>
     </div>
 </body>
 </html>
