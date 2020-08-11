@@ -11,15 +11,20 @@
         }
         #message {
             display:none;
-            background: #f1f1f1;
+            background: lightpink;
             color: #000;
             position: relative;
             padding: 20px;
-            margin-top: 10px;
+            margin-top: 5px;
         }
-        #message p {
-            padding: 10px 35px;
-            font-size: 18px;
+        #message #pwCondbanner {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #message div {
+            padding: 5px 15px;
+            font-size: 15px;
         }
         /* Add a green text color and a checkmark when the requirements are right */
         .valid {
@@ -87,12 +92,12 @@
                     <span id="alert-pwValiCheck" style="display: none; color: #d92742; font-weight: bold; ">Please use special characters and numbers 8 to 20 characters.</span>
                 </span>
             </div>
-            <div class="message">
-                <h3>Password Condition</h3>
-                <p id="letter" class="invalid">An <b>alphabet</b> </p>
-                <p id="number" class="invalid">A <b>number</b></p>
-                <p id="specialCh" class="invalid">A <b>special character</b></p>
-                <p id="length" class="invalid"><b>8~20 </b>characters</p>
+            <div id="message">
+                <div id="pwCondbanner">Password Condition</div>
+                <div id="letter" class="invalid">An <b>alphabet</b> </div>
+                <div id="number" class="invalid">A <b>number</b></div>
+                <div id="specialCh" class="invalid">A <b>special character</b></div>
+                <div id="length" class="invalid"><b>8~20 </b>characters</div>
             </div>
             <div class="editPW2">
                 <span class="editLabel">Re-enter password</span>
@@ -106,24 +111,25 @@
                 <span class="editLabel">Name</span>
                 <span>
                     <input type="text" id="inName" name="memberName" th:value="${member.getMemberName()}">
-                    <span id="alert-name" class="invalid">You can enter only 1 to 20 characters</span>
+                    <span id="alert-name" class="valid">You can enter only 1 to 20 characters</span>
                 </span>
             </div>
             <div class="editPhoneNum">
                 <span class="editLabel">Phone number</span>
                 <span>
                     <input type="text" id="inPhoneNum" name="memberPhoneNum" th:value="${member.getMemberPhoneNum()}">
-                    <span id="alert-phoneNum" class="invalid">You can enter only 6 to 20 numbers</span>
+                    <span id="alert-phoneNum" class="valid">You can enter only 6 to 20 numbers</span>
                 </span>
             </div>
             <div class="editEmail">
                 <span class="editLabel">E-mail</span>
                 <span>
                     <input type="text" id="inEmail" name="memberEmail" th:value="${member.getMemberEmail()}"><br>
-                    <span id="alert-eMail" class="invalid">Please check the E-mail form</span>
+                    <span id="alert-eMail" class="valid">Please check the E-mail form</span>
                 </span>
             </div>
             <div class="editGender">
+                <span class="editLabel">Gender</span>
                 <th:block th:if="${member.getMemberGender().equals('Male')}">
                     <input type="radio" name="memberGender" class="signupForm" checked="checked"  value="Male">Male
                     <input type="radio" name="memberGender" class="signupForm" value="Female">Female
@@ -194,13 +200,15 @@
                 length.classList.remove("valid");
                 length.classList.add("invalid");
             }
+        }
 
-            inName.onfocus = function(){
-                document.getElementById("alert-name").style.display = "inline-block"
-            }
-            inName.onblur = function() {
-                document.getElementById("alert-name").style.display = "none";
-            }
+        inName.onfocus = function(){
+            document.getElementById("alert-name").style.display = "inline-block"
+        }
+        inName.onblur = function() {
+            document.getElementById("alert-name").style.display = "none";
+        }
+        inName.onkeyup = function() {
             if(inName.value.length<1 || inName.value.length>20) {
                 alert_name.classList.add("invalid");
                 alert_name.classList.remove("valid");
@@ -209,13 +217,15 @@
                 alert_name.classList.remove("invalid");
                 alert_name.classList.add("valid");
             }
+        }
 
-            inPhoneNum.onfocus = function(){
-                document.getElementById("alert-phoneNum").style.display = "inline-block"
-            }
-            inPhoneNum.onblur = function() {
-                document.getElementById("alert-phoneNum").style.display = "none";
-            }
+        inPhoneNum.onfocus = function(){
+            document.getElementById("alert-phoneNum").style.display = "inline-block"
+        }
+        inPhoneNum.onblur = function() {
+            document.getElementById("alert-phoneNum").style.display = "none";
+        }
+        inPhoneNum.onkeyup = function() {
             if(inPhoneNum.value.length<6 || inPhoneNum.value.length>20) {
                 alert_phoneNum.classList.add("invalid");
                 alert_phoneNum.classList.remove("valid");
@@ -224,13 +234,15 @@
                 alert_phoneNum.classList.remove("invalid");
                 alert_phoneNum.classList.add("valid");
             }
+        }
 
-            inEmail.onfocus = function(){
-                document.getElementById("alert-eMail").style.display = "inline-block"
-            }
-            inEmail.onblur = function() {
-                document.getElementById("alert-eMail").style.display = "none";
-            }
+        inEmail.onfocus = function(){
+            document.getElementById("alert-eMail").style.display = "inline-block"
+        }
+        inEmail.onblur = function() {
+            document.getElementById("alert-eMail").style.display = "none";
+        }
+        inEmail.onkeyup = function() {
             var regexp_eMail = /[a-zA-z0-9]+@[a-zA-z]+[.]+[a-zA-z.]+/g;
             if(inEmail.value.match(regexp_eMail)) {
                 alert_eMail.classList.remove("invalid");
@@ -242,6 +254,7 @@
             }
         }
     </script>
+
     <script>
         $('.pw').focusout(function () {
             var pwd1 = $("#password_1").val();
