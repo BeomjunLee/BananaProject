@@ -8,6 +8,8 @@
     <style>
     .progress{
     margin:50px;
+    margin-top:80px;
+    margin-bottom:20px;
     text-align:center;
      }
 
@@ -18,8 +20,8 @@
     }
 
     .progress img{
-    width:150px;
-    height:150px;
+    width:80px;
+    height:80px;
     }
 
     #resultabout{
@@ -33,6 +35,15 @@
     margin:auto;
     }
 
+    #resultabout h2{
+    color:#F65A79;
+    }
+
+    #resultabout h3
+    {
+    color:gray;
+    }
+
     #next{
     text-align:center;
     top:50%;
@@ -41,43 +52,39 @@
     }
 
     button{
-    border : 3px solid  #f26d7d;
-    background-color : #f26d7d;
-    padding : 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 2px 2px;
-    cursor: pointer;
-    font-family: 'Bahnschrift';
-    border-radius: 4px;
-    transition-duration: 0.2s;
-    position : relative;
-    top : 3px;
-    color : white;
+    border:3px solid #f26d7d;
+    background-color:#f26d7d;
+    padding:8px 15px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:18px;
+    margin:2px 2px;
+    cursor:pointer;
+    font-family:'Bahnschrift';
+    border-radius:4px;
+    transition-duration:0.2s;
+    position:relative;
+    top:3px;
+    color:white;
     }
 
     button::after{
-    background: none repeat scroll 0 0 transparent;
-    bottom: 7px;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #fff;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
+    background:none repeat scroll 0 0 transparent;
+    bottom:7px;
+    content:"";
+    display:block;
+    height:2px;
+    left:50%;
+    position:absolute;
+    background:#fff;
+    transition:width 0.3s ease 0s, left 0.3s ease 0s;
+    width:0;
     }
 
     button:hover::after{
-    width: 60%;
-    left: 21%;
-    }
-
-    #resultabout h2{
-    color:#F65A79;
+    width:60%;
+    left:21%;
     }
     </style>
 </head>
