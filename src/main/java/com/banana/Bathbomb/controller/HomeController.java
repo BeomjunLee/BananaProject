@@ -37,9 +37,9 @@ public class HomeController {
     /**
      * 에러 페이지
      */
-//    @GetMapping("/error")
-//    public String error() throws Exception {
-//        throw new Exception("error");
-//    }
+    @GetMapping("/error")
+    public String error() throws Exception {
+        throw new Exception("error");
+    }
 
 }

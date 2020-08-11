@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="header.css">
 </head>
 <body>
 
@@ -56,72 +55,15 @@
         </td>
     </tr>
 </table>
+<button type="Button" class="menu" onclick="location.href='/shop/addItem'">상품등록</button>
 
 <table class="table2">
     <tr>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://res.cloudinary.com/lush/image/upload/v1547132600/lush_content/products/main/2019/01/web_groovy_-kind_of_love_bath_bomb_harajuku_shop_2018.jpg" class="img">
-                <br>BathBomb1<br>$8</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSfx9vn4W_y6eIxs6KL7Vcl-XVFrnJrBND49Q&usqp=CAU" class="img">
-                <br>BathBomb2<br>$6</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.lushusa.com/dw/image/v2/BDMQ_PRD/on/demandware.static/-/Sites-lushcosmetics-export/default/dw791479bc/images/product/60028-dinosaur-egg-bath-bomb-pdp.jpg?sw=800&sh=800" class="img">
-                <br>BathBomb3<br>$10</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.cbdmd.com/media/catalog/product/cache/15db6745dd0be9bc1f2387eecd6ab3e7/b/a/bathbombs_6pack_bundle_1200x1200_1.png" class="img">
-                <br>BathBomb4<br>$7</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://sapphiregreenearth.com/image/cache/catalog/Main_Image_1500x500-500x500.jpg" class="img">
-                <br>Natural Soap1<br>$9</button>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.terracetera.com/assets/images/aloe-lavender-6.jpg" class="img">
-                <br>Natural Soap2<br>$8</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.chanel.com/images///w_0.51,h_0.51,c_crop/q_auto,f_jpg,fl_lossy,dpr_2/w_1920/coco-mademoiselle-eau-de-parfum-intense-spray-3-4fl-oz--packshot-default-116660-8831021678622.jpg" class="img">
-                <br>Perfume1<br>$18</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://i5.walmartimages.com/asr/b8a1e0f8-7154-4a69-af22-f53b9970f291_3.600ef75af25b4fadb9aca2a6f96454a0.jpeg" class="img">
-                <br>Perfume2<br>$10</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://touchwarmer.com/web/product/big/201904/8e722bf8a28229c03c73ef6a510c2606.jpg" class="img">
-                <br>Candle1<br>$8</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://thumbnail.10x10.co.kr/webimage/image/add1_600/163/A001630899_01.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false" class="img">
-                <br>Candle2<br>$15</button>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.lushusa.com/dw/image/v2/BDMQ_PRD/on/demandware.static/-/Sites-lushcosmetics-export/default/dw791479bc/images/product/60028-dinosaur-egg-bath-bomb-pdp.jpg?sw=800&sh=800" class="img">
-                <br>BathBomb3<br>$10</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://res.cloudinary.com/lush/image/upload/v1547132600/lush_content/products/main/2019/01/web_groovy_-kind_of_love_bath_bomb_harajuku_shop_2018.jpg" class="img">
-                <br>BathBomb1<br>$8</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://sapphiregreenearth.com/image/cache/catalog/Main_Image_1500x500-500x500.jpg" class="img">
-                <br>Natural Soap1<br>$9</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://www.terracetera.com/assets/images/aloe-lavender-6.jpg" class="img">
-                <br>Natural Soap2<br>$8</button>
-        </td>
-        <td>
-            <button type="button" class="imgbutton" ><img src="https://image.hnsmall.com/images/goods/142/12553142_g.jpg" class="img">
-                <br>Candle3<br>$19</button>
+        <td th:each="item : ${itemList}">
+            <button type="button" class="imgbutton" ><img th:src="@{/webapp/file/} + ${item.getItemImage()}" class="img">
+                <a th:text="${item.getItemName()}">dwdw</a><br>
+                <a th:text="${item.getItemPrice()}">2000</a>
+            </button>
         </td>
     </tr>
 </table>

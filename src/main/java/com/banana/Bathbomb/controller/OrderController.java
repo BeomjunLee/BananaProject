@@ -14,11 +14,6 @@ import javax.servlet.http.HttpSession;
 public class OrderController {
     private final MemberService memberService;
 
-    @GetMapping("/shop")//쇼핑몰으로
-    public String shop(){
-        return "/shop/shop";
-    }
-
     @GetMapping("/myPage/myOrderList")//주문 목록으로
     public String myOrderList(Model model, HttpSession session){
         //세션값
