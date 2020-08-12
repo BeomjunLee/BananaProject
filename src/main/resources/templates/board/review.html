@@ -3,6 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
+    <style>
+        body{
+            font-family: 'Bahnschrift';
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+
+        }
+        td{
+            font-family: 'Bahnschrift';
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            padding: 8px;
+        }
+        td:nth-child(1){width:200px;text-align: center;}
+        td:nth-child(2){width:200px;text-align: center;}
+        td:nth-child(3){width:600px;text-align: center;}
+        td:nth-child(4){width:100px;text-align: center;}
+        td:nth-child(5){width:100px;text-align: center;}
+        .img {width:100px; height:100px;}
+        .button1 {font-family: 'Bahnschrift'; margin-left:10%; background-color: white; border:1px solid #dddddd;font-size:15px;}
+        .button2 {font-family: 'Bahnschrift'; ackground-color: white; border:1px solid #dddddd;font-size:15px;}
+        .button3 {font-family: 'Bahnschrift'; margin-right:10%; background-color: white; border:none; font-size:20px;}
+        a { text-decoration:none !important } a:hover { text-decoration:none !important }
+        .pagination {
+            display: inline-block;
+            text-align: center;
+        }
+        .pagination a {
+            color: black;
+            float: none;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
     <th:block th:if="${sessionId == null}">
         <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
     </th:block>
@@ -12,45 +51,9 @@
 </head>
 <body>
 
-<div align="center" style="color:hotpink; font-family:Georgia;" >
-<h1>REVIEWS</h1>
+<div align="center" style="color:#f26d7d;" >
+<h1>REVIEW</h1>
 </div>
-
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 80%;
-        margin: auto;
-
-    }
-    td{
-        border-bottom: 1px solid #dddddd;
-        border-top: 1px solid #dddddd;
-        padding: 8px;
-    }
-    td:nth-child(1){width:200px;text-align: center;}
-    td:nth-child(2){width:200px;text-align: center;}
-    td:nth-child(3){width:600px;text-align: center;}
-    td:nth-child(4){width:100px;text-align: center;}
-    td:nth-child(5){width:100px;text-align: center;}
-    .img {width:100px; height:100px;}
-    .button1 {margin-left:10%; background-color: white; border:1px solid #dddddd;font-size:15px;}
-    .button2 {background-color: white; border:1px solid #dddddd;font-size:15px;}
-    .button3 {margin-right:10%; background-color: white; border:none; font-size:20px;}
-    a { text-decoration:none !important } a:hover { text-decoration:none !important }
-    .pagination {
-        display: inline-block;
-        text-align: center;
-    }
-    .pagination a {
-        color: black;
-        float: none;
-        padding: 8px 16px;
-        text-decoration: none;
-    }
-    .pagination a:hover:not(.active) {background-color: #ddd;}
-</style>
 
 <button type="Button" class="button1">Bath Bomb</button>
 <button type="Button" class="button2">Natural Soap</button>
@@ -64,11 +67,11 @@
     <table>
         <tbody>
         <tr>
-            <th>사진</th>
-            <th>종류</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
+            <th>Image</th>
+            <th>Sort</th>
+            <th>Subject</th>
+            <th>Written By</th>
+            <th>Reporting date</th>
         </tr>
         <tr th:each="board: ${boardList}">
             <td><img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}" class="img"></td>
@@ -84,7 +87,7 @@
     <ul class="pagination" >
         <th:block th:if="${pagination.getTotalListCnt() != 0}">
             <th:block th:if="${pagination.getPage() != 1}">
-                <a th:href="@{/board/review(page=1)}">맨앞</a>
+                <a th:href="@{/board/review(page=1)}">FIRST</a>
                 <a th:href="@{/board/review(page=${pagination.getPreBlock()})}">&laquo;</a>
             </th:block>
         </th:block>
@@ -94,7 +97,7 @@
         <th:block th:if="${pagination.getTotalListCnt() != 0}">
             <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
                 <a th:href="@{/board/review(page=${pagination.getNextBlock()})}">&raquo;</a>
-                <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">맨뒤</a>
+                <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">LAST</a>
             </th:block>
         </th:block>
     </ul>
