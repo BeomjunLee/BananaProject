@@ -27,17 +27,12 @@
     .payform{
     border:5px solid pink;
     width:500px;
-    height:950px;
-    padding:10px;
+    height:1000px;
+    padding:15px;
     top:50%;
     left:50%;
     margin:auto;
      }
-
-    .payform div{
-    padding:3px;
-    margin:5px;
-    }
 
     #num1{
     width:70px;
@@ -60,6 +55,10 @@
     }
 
     #security{
+    width:50px;
+    }
+
+    #cardpassword{
     width:50px;
     }
 
@@ -189,7 +188,7 @@
     }
     #id_pw {
         position : relative;
-        top : 40px;}
+    }
 
     .radio_button_area{
         margin-top: 50px;
@@ -263,8 +262,11 @@
                             <input type="password" class="signupForm" id="security" size="1">
                         </div>
 
-                        <div class="cardpw">First two digits of the card password</div>
-                        <input type="password" placeholder="**">
+                        <div class="cardpw">First two digits of the card password
+                            <br>
+                            <input type="password" class="signupForm" id="cardpassword" placeholder="**">
+                        </div>
+
                         <br><br>
                         <div id="deliveryabout">
                             <h2>BATHDAL</h2>
