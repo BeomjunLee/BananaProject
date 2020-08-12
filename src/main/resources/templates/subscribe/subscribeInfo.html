@@ -20,8 +20,8 @@
     }
 
     .progress img{
-    width:80px;
-    height:80px;
+    width:100px;
+    height:100px;
     }
 
     .payform{
@@ -39,29 +39,28 @@
     margin:5px;
     }
 
-    #specificsIn{
-    width:400px;
-    height:100px;
-    }
-
     #num1{
-    width:100px;
+    width:70px;
     }
     #num2{
-    width:100px;
+    width:70px;
     }
     #num3{
-    width:100px;
+    width:70px;
     }
     #num4{
-    width:100px;
+    width:70px;
     }
 
     #date1{
-    width:208px;
+    width:70px;
     }
     #date2{
-    width:208px;
+    width:70px;
+    }
+
+    #security{
+    width:50px;
     }
 
     #deliveryabout{
@@ -114,6 +113,94 @@
     width:60%;
     left:21%;
     }
+
+    footer{
+            position: relative;
+            top : 800px;
+        }
+
+
+    .signup_form_area{
+        grid-area: signup;
+        display: flex;
+        position :relative;
+    }
+
+
+    .signupForm{
+        width : 100%;
+        padding :20px 10px 10px;
+        background-color: transparent;
+        border: 1px solid rgba(0,0,0,.3);
+        color : rgba(0,0,0,0.8);
+        border-radius: 6px;
+    }
+
+    .signup_form_user{
+        width : 250px;
+    }
+
+    .Postcode{
+        width:100px;
+    }
+    .addr{
+        width:200px;
+    }
+    .detailaddr{
+        width:250px;
+    }
+
+    .signup_form label{
+        position : relative;
+        bottom : 30px;
+        left : 10px;
+        font-size: 15px;
+        color : rgba(0,0,0,.2);
+        transition: all 0.1s ease;
+    }
+    .signup_form_user.warning{
+        color : red !important;
+        animation : warning .3s ease;
+        animation-iteration-count: 3;
+    }
+    @keyframes warning{
+        0%{transform : translateX(-8px);}
+        25%{transform : translateX(8px);}
+        50%{transform : translateX(-8px);}
+        75%{transform : translateX(8px);}
+    }
+    .signupForm:focus + label,
+    .signupForm:valid + label{
+        position : relative;
+        bottom : 48px;
+        font-size: 13px;
+        color : #f26d7d
+    }
+    .signupForm:focus{
+        box-shadow: 0 0 8px  #f26d7d;
+        border: 2px solid #f26d7d;
+    }
+    .signup_line{
+        width : 300px;
+        color : rgba(0,0,0,.3);
+        position : relative;
+        top : 15px;
+        right : 15px;
+    }
+    #id_pw {
+        position : relative;
+        top : 40px;}
+
+    .radio_button_area{
+        margin-top: 50px;
+    }
+    .signupForm_radio{
+        margin-left: 0px;
+    }
+    .signup_submit_area {
+        position: relative;
+        top: 70px;
+    }
     </style>
 </head>
 <body>
@@ -128,48 +215,72 @@
 <h2 style="text-align:center">Please fill in the delivery information.</h2>
 
 <div class="payform">
-    <form action="/subscribe/subscribeChk" method="post">
-        <div class="name">NAME *</div>
-        <a th:text="${member.getMemberName()}"></a>
+    <div class="signup_form_area">
+        <div class="signup_form">
+            <div class="signup_form_input">
+                <form action="/subscribe/subscribeChk" method="post">
+                    <div id = "id_pw">
+                        <div class="name">NAME *</div>
+                        <a th:text="${member.getMemberName()}"></a>
 
-        <div class="phonenum">Phone number *</div>
-        <a th:text="${member.getMemberPhoneNum()}"></a>
+                        <div class="phonenum">Phone number *</div>
+                        <a th:text="${member.getMemberPhoneNum()}"></a>
 
-        <div class="Postcode">Post code</div>
-        <input type="text" id="postcode" size="10" readonly="readonly" placeholder="Post code"> <input type="button" onclick="openDaumPostcode()" value="SEARCH">
+                        <div class="Postcode">
+                            <input type="text" class="signupForm" id="postcode" size="10">
+                            <label for="postcode">Post code</label><input type="button" onclick="openDaumPostcode()" value="SEARCH">
+                        </div>
 
-        <div class="addr">Address *</div>
-        <input type="text" id="address" name="addressA" readonly="readonly" size="30" placeholder="Street name address"> <input type="text" id="extraAddress" readonly="readonly" size="20" placeholder="Extra adress">
+                        <div class="addr">
+                            <input type="text" class="signupForm" id="address" name="addressA" size="30">
+                            <label for="address">Street name address</label>
+                            <input type="text" class="signupForm" id="extraAddress" size="20">
+                            <label for="extraAddress">Extra address</label>
+                        </div>
 
-        <div class="detailaddr">Detailed address *</div>
-        <input type="text" id="detailAddress" name="addressB" size="56" placeholder="Detailed address">
+                        <div class="detailaddr">
+                            <input type="text" class="signupForm" id="detailAddress" name="addressB" size="56">
+                            <label for="detailAddress">Detailed address</label>
+                        </div>
 
-        <div class="specifics">Delivery specifics</div>
-        <input type="text" id="specificsIn" name="sbDeliveryMemo" placeholder="Please write unusual details when shipping.">
+                        <div class="specifics">
+                            <input type="text" class="signupForm" id="specificsIn" name="sbDeliveryMemo">
+                            <label for="specificsIn">Please write unusual details when shipping</label>
+                        </div>
 
-        <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]</div>
-        <input type="text" id="num1" placeholder="XXXX"><input type="text" id="num2" placeholder="XXXX"><input type="text" id="num3" placeholder="XXXX"><input type="text" id="num4" placeholder="XXXX">
+                        <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]
+                            <br>
+                            <input type="text" class="signupForm" id="num1" placeholder="XXXX"><input type="text" class="signupForm" id="num2" placeholder="XXXX"><input type="text" class="signupForm" id="num3" placeholder="XXXX"><input type="text" class="signupForm" id="num4" placeholder="XXXX">
+                        </div>
 
-        <div class="cardexpdate">Card expiration date</div>
-        <input type="text" id="date1" placeholder="MM"><input type="text" id="date2" placeholder="YY">
+                        <div class="cardexpdate">Card expiration date
+                            <br>
+                            <input type="text" class="signupForm" id="date1" placeholder="MM"><input type="text" class="signupForm" id="date2" placeholder="YY">
+                        </div>
 
-        <div class="cardcode">Security Code</div>
-        <input type="password" size="1">
+                        <div class="cardcode">Security Code
+                            <br>
+                            <input type="password" class="signupForm" id="security" size="1">
+                        </div>
 
-        <div class="cardpw">First two digits of the card password</div>
-        <input type="password" placeholder="**">
-        <br><br>
-        <div id="deliveryabout">
-            <h2>BATHDAL</h2>
-            <h4>The first delivery date is the ___ of the month.</h4>
-            <h3 style="color:#F65A79;" th:text="|Charge : ${charege} won|"></h3>
-            <div id="next">
-                <button type="submit">
-                    PAY
-                </button>
+                        <div class="cardpw">First two digits of the card password</div>
+                        <input type="password" placeholder="**">
+                        <br><br>
+                        <div id="deliveryabout">
+                            <h2>BATHDAL</h2>
+                            <h4>The first delivery date is the ___ of the month.</h4>
+                            <h3 style="color:#F65A79;" th:text="|Charge : ${charege} won|"></h3>
+                            <div id="next">
+                                <button type="submit">
+                                    PAY
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 
@@ -212,5 +323,11 @@
         }).open();
     }
 </script> <!-- 주소 API -->
+
+
+<footer>
+    <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
+</footer>
+
 </body>
 </html>
