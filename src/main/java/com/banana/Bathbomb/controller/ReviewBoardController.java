@@ -188,11 +188,24 @@ public class ReviewBoardController {
      * 리뷰 글 수정
      */
     @PostMapping("/board/reviewModifiChk")
-    public String reviewModifiChk(Model model, ReviewBoard board, HttpSession session){
+    public String reviewModifiChk(Model model, ReviewBoard board, HttpSession session, HttpServletRequest request, @RequestPart("file") MultipartFile file){
         int resultCode = 0;
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
+
         ReviewBoard findBoard = reviewBoardService.readBoard(board.getRvBoardUid());
+        //업로드파일
+        String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
+        //String uploadPath = "/file/";
+        System.out.println("업로드 Path: " + uploadPath);
+        String fileName = System.currentTimeMillis() + file.getOriginalFilename(); //동일한 파일명 처리를 위해
+        try{
+            file.transferTo(new File(uploadPath + fileName));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        board.setRvBoardFile(fileName);
 
         //주소 도용방지
         if(sessionId == findBoard.getMemberUid()) {

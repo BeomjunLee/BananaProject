@@ -31,6 +31,10 @@
             position : absolute;
             top : 70px;
         }
+        div.sec1_text{
+            float : left;
+        }
+
         div.sec1{
             height: 671px;
             margin-top: 0;
@@ -76,7 +80,7 @@
             vertical-align:middle;
             line-height:150px;
             position: relative;
-            top : 300px;
+            top : 600px;
             left : 400px;
         }
         
@@ -99,7 +103,7 @@
         div.video_container{
             position : absolute;
             top : 70px;
-            left : 750px;
+            left : 1135px;
             z-index: 2;
         }
 
@@ -135,7 +139,7 @@
         img.sec3_png{
             position: absolute;
             top : 350px;
-            left : 850px;
+            left : 1170px;
         }
 
 
@@ -266,7 +270,7 @@
             </div>
             <div class = "banner_text">
                 To Bring<br> a <span id ="stress">Friendly</span> & <span id ="stress">Luxurious</span> Experience<br> To Your <span id ="stress">Bathroom</span> !
-            </div>    
+            </div>
             <div class = "circle">
             </div>
             
@@ -315,7 +319,7 @@
     
                             </p>
                         </div>  
-                        <button type = "button" class= "subscribe" id="subscribeBtn">
+                        <button type = "button" class= "subscribe" id="subscribeBtn" onclick="location.href='/subscribe/subscribe'">
                             SUBSCRIBE
                         </button>
                     </div>            
@@ -368,16 +372,16 @@
         <!--End of Tawk.to Script-->
 
 
-            //구독구매창 눌렀을때 로그인 안하면 못가게
-            session = [[${sessionId}]];
-
-            document.getElementById('subscribeBtn').onclick = function (){
-                if(session == null){
-                    alert("Please login first");
-                }else{
-                    location.href="/subscribe/subscribe";
-                }
-            }
+            // //구독구매창 눌렀을때 로그인 안하면 못가게
+            // session = [[${sessionId}]];
+            //
+            // document.getElementById('subscribeBtn').onclick = function (){
+            //     if(session == null){
+            //         alert("Please login first");
+            //     }else{
+            //         location.href="/subscribe/subscribe";
+            //     }
+            // }
         </script>
     </body>
 </html>

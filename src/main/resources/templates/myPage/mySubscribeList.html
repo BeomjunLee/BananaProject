@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
-    <link rel="stylesheet" href="../../static/css/myPageStyle.css">
+    <link rel="stylesheet" href="/webapp/css/myPageStyle.css">
     <style>
         .info .orderInfo #subscribeList {
             text-decoration-line: underline;
@@ -31,10 +31,10 @@
             <a href="/myPage/myCart" id="cart">Cart</a>
         </div>
         <div id="subscription">
-            <th:block th:if="${subscribe.getSbUid() == null}">
+            <th:block th:if="${subscribe == null}">
                 <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
             </th:block>
-            <th:block th:unless="${subscribe.getSbUid() == null}">
+            <th:block th:unless="${subscribe == null}">
                 BATHDAL 구독중
             </th:block>
         </div>
@@ -47,13 +47,13 @@
         <span>Charge</span>
         <span>Subscribe Start Date</span>
 
-        <th:block th:if="${subscribe.getSbUid() != null}">
+        <th:block th:if="${subscribe != null}">
             BATHDAL
+            <a th:text="${subscribe.getSbDeliveryAddress()}"></a>
+            <a th:text="${subscribe.getSbDeliveryStatus()}"></a>
+            <a th:text="${subscribe.getSbPrice()}"></a>
+            <a th:text="${subscribe.getSbRegDate()}"></a>
         </th:block>
-        <a th:text="${subscribe.getSbDeliveryAddress()}"></a>
-        <a th:text="${subscribe.getSbDeliveryStatus()}"></a>
-        <a th:text="${subscribe.getSbPrice()}"></a>
-        <a th:text="${subscribe.getSbRegDate()}"></a>
     </div>
     <div style="text-align: center; margin-top: 50px">
             <!-- 여기다가 넣으면 이상하게돼서 위에다가 넣었습니다 -->

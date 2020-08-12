@@ -27,7 +27,7 @@
     }
     div.banner_text{
         position :relative;
-        bottom: 60%;
+        bottom: 75%;
         text-align: center;
         font-size: 50px;
         color : white;
@@ -36,8 +36,8 @@
         text-shadow: 0 0 30px rgba(0,0,0,.6);
     }
     video.banner_video{
-        width : 300%;
-        height : auto ;
+        width : "300%";
+        height : "auto";
         min-width: 100%;
         object-fit:fill;
     }
@@ -130,7 +130,7 @@
 <body>
 <div class = "banner">
     <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
-        <source src = "login_banner_video2.mp4" type = "video/mp4" >
+        <source src = "/webapp/image/signup_banner_video.mp4" type = "video/mp4" >
     </video>
     <div class= "banner_text">SIGN UP</div>
 </div>
@@ -140,43 +140,37 @@
     <div class = "signup_form">
         <div class = "signup_form_input">
             <form action="/signUp" method="post" th:object="${memberForm}">
-                <div class = "signup_form_user">
-                    <input type="text" th:field="*{memberName}" class="signupForm" id = "form_name" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
-                    <label for = "form_name">NAME</label>
-                    <!--<p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>-->
-
-                    <input type="text" th:field="*{memberPhoneNum}" class="signupForm" id = "form_phonenum" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
-                    <label for = "form_phonenum">PHONE NUMBER</label>
-                    <!--<p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>-->
-
-                    <input type="text" th:field="*{memberEmail}" class="signupForm" id = "form_email" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
-                    <label for = "form_email" id = "form_email_text">EMAIL</label>
-                    <!--<p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>-->
-
-                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">MALE
-                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">FEMALE
-                    <!--<p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>-->
-
-                    <hr class = "signup_line">
-                </div>
-
                 <div class = "signup_form_user" id = "id_pw">
                     <input type="text" th:field="*{memberId}" class="signupForm" id = "form_id" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
                     <label for = "form_id">ID</label>
-                    <!--<p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>-->
+                    <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
 
                     <input type="password" th:field="*{memberPw}" class="signupForm" id = "form_pw" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
                     <label for = "form_pw">PASSWORD</label>
-                    <!--<p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>-->
+                    <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
 
                     <input type="password" th:field="*{memberPw2}" class="signupForm" id = "form_pw2" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
                     <label for = "form_pw2">PASSWORD DOUBLE-CHECK</label>
-                    <!--<p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>-->
+                    <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
 
-                    <hr class = "signup_line">
-                </div>
-        </div>
+<!--                    <hr class = "signup_line">-->
 
+                    <input type="text" th:field="*{memberName}" class="signupForm" id = "form_name" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_name">NAME</label>
+                    <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+
+                    <input type="text" th:field="*{memberPhoneNum}" class="signupForm" id = "form_phonenum" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_phonenum">PHONE NUMBER</label>
+                    <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+
+                    <input type="text" th:field="*{memberEmail}" class="signupForm" id = "form_email" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_email" id = "form_email_text">EMAIL</label>
+                    <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
+
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">MALE
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">FEMALE
+                    <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
+                    </div>
         <div class ="signup_submit">
             <div class ="signup_submit_area">
                 <button type="submit" value="Create a Account">JOIN BATHDAL</button>
