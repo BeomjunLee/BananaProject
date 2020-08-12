@@ -45,11 +45,11 @@
             content: "✖";
         }
         #confirm_btn {
-            width : 50px;
-            height : 50px;
+            width : 90px;
+            height : 80px;
             background : #f26d7d;
             color : white;
-            font-size : 10px;
+            font-size : 20px;
             border : none;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -87,7 +87,8 @@
         </video>
         <div class= "myPage_banner_text">My Page</div>
     </div>
-    <div class="customerInfo">
+    <div class="customerEditInfo">
+        <h2 id="customerInfo_banner" style="text-align: center">Customer Information Modification</h2>
         <!-- 회원 수정 폼-->
         <form action="/myPage/userModifi" method="post" th:object="${memberForm}">
             <div class="editPW1">
@@ -146,8 +147,9 @@
                 </th:block>
                 <br>
             </div>
-            <br>
-            <button id="confirm_btn" type="submit">Confirm</button>
+            <div style="text-align: center">
+                <button id="confirm_btn" type="submit">Confirm</button>
+            </div>
         </form>
     </div>
 

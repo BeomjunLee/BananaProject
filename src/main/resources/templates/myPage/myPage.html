@@ -44,15 +44,17 @@
         </div>
 
         <div class="subscriptionBtn">
-            <div id="subscribeHiddenBtn">
-                <th:block th:if="${subscribe == null}">
-                    <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
+            <th:block th:if="${subscribe == null}">
+                <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
+                <div id="subscribeHiddenBtn">
                     <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
-                </th:block>
-                <th:block th:unless="${subscribe == null}">
-                    BATHDAL 구독중
-                </th:block>
-            </div>
+                </div>
+            </th:block>
+            <th:block th:unless="${subscribe == null}">
+                <div id="subscriber">
+                    You are BATHDAL subscriber!
+                </div>
+            </th:block>
         </div>
     </div>
 
