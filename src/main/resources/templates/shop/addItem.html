@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
+</head>
+<body>
+    <br><br><br><br><br><br><br><br>
+    <form action="/shop/addItemChk" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <th>Item Name </th>
+                <td><input type="text" name="itemName"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td><input type="radio" value="BathBomb" name="categorySort">Bath Bomb
+                    <input type="radio" value="NaturalSoup" name="categorySort">Natural Soup<br>
+                    <select name="categoryName">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Image </th>
+                <td><input type="file"  name="file" accept="image/*"></td>
+            </tr>
+            <tr>
+                <th>Contents </th>
+                <td><textarea name="itemContent" cols=85 rows=15></textarea></td>
+            </tr>
+            <tr>
+                <th>Price </th>
+                <td><input type="text" name="itemPrice"></td>
+            </tr>
+            <tr>
+                <th>Stock </th>
+                <td><input type="text" name="itemStock"></td>
+            </tr>
+        </table>
+        <div><br>
+            <input type = "submit" value="Add a Product"></div>
+    </form>
+</body>
+</html>

@@ -9,7 +9,6 @@
     <th:block th:unless="${sessionId == null}">
         <th:block th:insert="/fragments/header1"></th:block>
     </th:block>
-    <link rel="stylesheet" href="header.css">
 </head>
 <body>
 
@@ -72,7 +71,7 @@
             <th>작성일</th>
         </tr>
         <tr th:each="board: ${boardList}">
-            <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS-mGojrC1NFOSeih2zCKGIPzn8Gsg2xT9lJw&usqp=CAU" class="img"></td>
+            <td><img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}" class="img"></td>
             <td th:text="${board.getRvBoardItem()}"></td>
             <td><a th:href="@{/board/reviewRead(rvBoardUid=${board.getRvBoardUid()})}" th:text="${board.getRvBoardTitle()}"></a></td>
             <td th:text="${board.getRvBoardWriter()}"></td>
@@ -98,7 +97,7 @@
                 <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">맨뒤</a>
             </th:block>
         </th:block>
-</ul>
+    </ul>
 </div>
 </body>
 </html>

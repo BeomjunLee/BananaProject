@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,13 +32,27 @@ public class ReviewBoardController {
      * 내가 쓴 리뷰로 
      */
     @GetMapping("/myPage/myReview")
-    public String myOrderList(Model model, HttpSession session){
+    public String myOrderList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page){
         //세션값
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
         Member member = memberService.findMember(sessionId);
+
+
+        int totalListCnt = reviewBoardService.totalMyListCount(sessionId);
+        Pagination pagination = new Pagination(totalListCnt, page, 5); //Pagination객체 생성후 전체 글수랑 page수를 입력
+
+        int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
+        int pageSize = pagination.getPageSize();        //페이지 수(10)
+        System.out.println("전체글수: " + pagination.getTotalListCnt() + " | 현재 페이지: " + pagination.getPage() + " | 시작페이지:" +
+                pagination.getStartPage() + " | 끝페이지:" + pagination.getEndPage() + "");//확인용
+
+        List<ReviewBoard> boardList = reviewBoardService.myBoardList(sessionId, startIndex, pageSize);
         //찾은 멤버 객체 넘기기
         model.addAttribute("member", member);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("pagination", pagination);
         return "/myPage/myReview";
     }
     
@@ -53,7 +65,7 @@ public class ReviewBoardController {
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
 
         int totalListCnt = reviewBoardService.totalListCount(); //전체 글 수
-        Pagination pagination = new Pagination(totalListCnt, page); //Pagination객체 생성후 전체 글수랑 page수를 입력
+        Pagination pagination = new Pagination(totalListCnt, page, 10); //Pagination객체 생성후 전체 글수랑 page수를 입력
 
         int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
         int pageSize = pagination.getPageSize();        //페이지 수(10)
@@ -77,6 +89,7 @@ public class ReviewBoardController {
 
         System.out.println("게시판 uid : " + board.getRvBoardUid());
         board = reviewBoardService.readBoard(board.getRvBoardUid());
+        System.out.println("파일명 : " + board.getRvBoardFile());
         int sessionId = 0;
         try {
             if(session.getAttribute("sessionId") != null) {
@@ -95,7 +108,7 @@ public class ReviewBoardController {
             model.addAttribute("sessionChk", null);
         }
 
-        model.addAttribute("sessionId", sessionId);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         model.addAttribute("rvBoardUid", board.getRvBoardUid());
         model.addAttribute("board", board);
         return "/board/reviewRead";

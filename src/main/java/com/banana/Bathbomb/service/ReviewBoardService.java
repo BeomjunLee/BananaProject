@@ -45,9 +45,11 @@ public class ReviewBoardService {
     /**
      * 내가 쓴 리뷰 글 리스트
      */
-    public List<ReviewBoard> myBoardList(int memberUid){
-        return reviewBoardRepository.selectByMemberUid(memberUid);
+    public List<ReviewBoard> myBoardList(int memberUid, int startIndex, int pageSize){
+        return reviewBoardRepository.selectByMemberUid(memberUid, startIndex, pageSize);
     }
+
+
 
     /**
      * 리뷰 글 수정 update
@@ -78,4 +80,10 @@ public class ReviewBoardService {
         return reviewBoardRepository.totalListCount();
     }
 
+    /**
+     * 내그 쓴 리뷰 총 글수
+     */
+    public int totalMyListCount(int memberUid){
+        return reviewBoardRepository.totalMyListCount(memberUid);
+    }
 }
