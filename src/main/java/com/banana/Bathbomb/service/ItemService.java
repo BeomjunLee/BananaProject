@@ -53,8 +53,8 @@ public class ItemService {
     /**
      * 상품 전체 검색
      */
-    public List<Item> findAll(){
-        return itemRepository.selectAll();
+    public List<Item> findAll(int startIndex, int pageSize){
+        return itemRepository.selectAll(startIndex, pageSize);
     }
 
     /**
@@ -77,5 +77,12 @@ public class ItemService {
      */
     public List<Integer> findItemByCategory(String name, String sort){
         return itemRepository.selectByCategory(name, sort);
+    }
+
+    /**
+     * 총 글수
+     */
+    public int totalListCount(){
+        return itemRepository.totalListCount();
     }
 }

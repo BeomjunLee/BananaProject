@@ -1,5 +1,6 @@
 package com.banana.Bathbomb.controller;
 import com.banana.Bathbomb.domain.Member;
+import com.banana.Bathbomb.domain.Subscribe;
 import com.banana.Bathbomb.service.MemberService;
 import com.banana.Bathbomb.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,8 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+    private final SubscribeService subscribeService;
+
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
@@ -169,8 +172,11 @@ public class MemberController {
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
 
         Member member = memberService.findMember(sessionId);
+        Subscribe subscribe = subscribeService.findSubscribe(sessionId);
+        
         //찾은 멤버 객체 넘기기
         model.addAttribute("member", member);
+        model.addAttribute("subscribe", subscribe);
         return "/myPage/myPage";
     }
 

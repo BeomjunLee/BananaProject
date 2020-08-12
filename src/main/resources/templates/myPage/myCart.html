@@ -50,9 +50,9 @@
             <a href="/myPage/myCart" id="cart">Cart</a>
         </div>
         <div class="subscriptionBtn">
-            <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
             <div id="subscribeHiddenBtn">
                 <th:block th:if="${subscribe == null}">
+                    <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
                     <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
                 </th:block>
                 <th:block th:unless="${subscribe == null}">

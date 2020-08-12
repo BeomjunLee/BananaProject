@@ -3,8 +3,10 @@ package com.banana.Bathbomb.controller;
 import com.banana.Bathbomb.domain.Member;
 import com.banana.Bathbomb.domain.Pagination;
 import com.banana.Bathbomb.domain.ReviewBoard;
+import com.banana.Bathbomb.domain.Subscribe;
 import com.banana.Bathbomb.service.MemberService;
 import com.banana.Bathbomb.service.ReviewBoardService;
+import com.banana.Bathbomb.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ import java.util.List;
 public class ReviewBoardController {
     private final ReviewBoardService reviewBoardService;
     private final MemberService memberService;
+    private final SubscribeService subscribeService;
 
     /**
      * 내가 쓴 리뷰로 
@@ -48,11 +51,13 @@ public class ReviewBoardController {
                 pagination.getStartPage() + " | 끝페이지:" + pagination.getEndPage() + "");//확인용
 
         List<ReviewBoard> boardList = reviewBoardService.myBoardList(sessionId, startIndex, pageSize);
+        Subscribe subscribe = subscribeService.findSubscribe(sessionId);
         //찾은 멤버 객체 넘기기
         model.addAttribute("member", member);
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("subscribe", subscribe);
         return "/myPage/myReview";
     }
     

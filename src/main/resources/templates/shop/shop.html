@@ -1,76 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>BATHDAL :: A Special Day</title>
-    <th:block th:replace="/fragments/header"></th:block> <!-- 헤더 -->
-    <style>
-        body{
-            font-family: 'Bahnschrift';
-        }
 
-        .table1 {
-            border-collapse: collapse;
-            width: 100%;
-            height:60px;
-            background-color: #f26d7d;
-        }
-        .table2{
-            width: 80%;
-            margin: auto;
-        }
-        td {
-            border-bottom: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-            word-break: break-all;
-        }
-        .img {width:180px; height:150px;}
-        .menu {font-family: 'Bahnschrift';
-            background-color: #f26d7d; border: none; color:whitesmoke; font-weight:normal; font-size:30px; margin-left: 80px; margin-right: 80px; }
-        .imgbutton{background-color:white;border:none; width:200px; height:200px; }
-        a { text-decoration:none !important } a:hover { text-decoration:none !important }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
+  <title>BATHDAL :: A Special Day</title>
+  <th:block th:if="${sessionId == null}">
+    <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+  </th:block>
+  <th:block th:unless="${sessionId == null}">
+    <th:block th:insert="/fragments/header1"></th:block>
+  </th:block>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/webapp/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/webapp/css/shop-homepage.css" rel="stylesheet">
+  <style>
+    a{
+      font-family: 'Bahnschrift';
+      color : #f26d7d;
+    }
+  </style>
 </head>
+
 <body>
 
-<a href = "shop.html">
-    <div align="center"style="color:#f26d7d;">
-        <h1>SHOPPING-MALL</h1>
+
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3">
+
+        <h1 class="my-4"></h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">VIEW ALL</a>
+          <a href="#" class="list-group-item">BATH BOMB</a>
+          <a href="#" class="list-group-item">NATURAL SOUP</a>
+          <a href="#" class="list-group-item">PERFUME</a>
+          <a href="#" class="list-group-item">CANDLE</a>
+          <a href="/shop/addItem" class="list-group-item">ADD A PRODUCT</a>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" th:src="@{/webapp/image/shop_banner1.png}" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" th:src="@{/webapp/image/shop_banner2.png}" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" th:src="@{/webapp/image/shop_banner3.png}" alt="Third slide"> <!-- 900 X 350 -->
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${itemList}">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" style="width: auto; height: auto; max-width: 252px;" th:src="@{/webapp/file/} + ${item.getItemImage()}" alt=""></a> <!-- 700 X 400 -->
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#" th:text="${item.getItemName()}">상품이름</a>
+                </h4>
+                <h5 th:text="${item.getItemPrice()}+won"></h5>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 페이징 -->
+        <div align="center">
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+              <th:block th:if="${pagination.getPage() != 1}">
+                <a th:href="@{/shop(page=1)}">FIRST</a>
+                <a th:href="@{/shop(page=${pagination.getPreBlock()})}">&laquo;</a>
+              </th:block>
+            </th:block>
+
+            <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
+              <a th:text="${page}" th:href="@{/shop(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
+            </a>
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+              <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
+                <a th:href="@{/shop(page=${pagination.getNextBlock()})}">&raquo;</a>
+                <a th:href="@{/shop(page=${pagination.getTotalPageCnt()})}">LAST</a>
+              </th:block>
+            </th:block>
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
     </div>
-</a>
+    <!-- /.row -->
 
+  </div>
+  <!-- /.container -->
 
-<table class="table1">
-    <tr>
-        <td>
-            <button type="Button" class="menu"  >
-                Bath Bomb
-            </button>
-            <button type="Button"class="menu" >
-                Natural Soap
-            </button>
-            <button type="Button" class="menu" >
-                Perfume
-            </button>
-            <button type="Button"class="menu" >
-                Candle
-            </button>
-        </td>
-    </tr>
-</table>
-<button type="Button" class="menu" onclick="location.href='/shop/addItem'">상품등록</button>
+  <!-- Footer -->
+  <footer>
+    <img src="/webapp/image/footer.png" width = "100%" height = "70%">
+  </footer>
 
-<table class="table2">
-    <tr>
-        <td th:each="item : ${itemList}">
-            <button type="button" class="imgbutton" ><img th:src="@{/webapp/file/} + ${item.getItemImage()}" class="img">
-                <a th:text="${item.getItemName()}">dwdw</a><br>
-                <a th:text="${item.getItemPrice()}">2000</a>
-            </button>
-        </td>
-    </tr>
-</table>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/webapp/vendor/jquery/jquery.min.js"></script>
+  <script src="/webapp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

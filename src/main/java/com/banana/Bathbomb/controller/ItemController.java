@@ -2,12 +2,14 @@ package com.banana.Bathbomb.controller;
 
 import com.banana.Bathbomb.domain.Category;
 import com.banana.Bathbomb.domain.Item;
+import com.banana.Bathbomb.domain.Pagination;
 import com.banana.Bathbomb.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,10 +24,20 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/shop")
-    public String shop(Model model, Item item){
-        List<Item> result = itemService.findAll();
+    public String shop(Model model, Item item,  @RequestParam(defaultValue = "1") int page){
+
+        int totalListCnt = itemService.totalListCount(); //전체 글 수
+        Pagination pagination = new Pagination(totalListCnt, page, 9); //Pagination객체 생성후 전체 글수랑 page수를 입력
+
+        int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
+        int pageSize = pagination.getPageSize();        //페이지 수(10)
+        System.out.println("전체글수: " + pagination.getTotalListCnt() + " | 현재 페이지: " + pagination.getPage() + " | 시작페이지:" +
+                pagination.getStartPage() + " | 끝페이지:" + pagination.getEndPage() + "");//확인용
+
+        List<Item> result = itemService.findAll(startIndex, pageSize);
 
         model.addAttribute("itemList", result);
+        model.addAttribute("pagination", pagination);
         return "/shop/shop";
     }
 
@@ -61,4 +73,5 @@ public class ItemController {
         model.addAttribute("resultCode", resultCode);
         return "/shop/addItemChk";
     }
+
 }

@@ -57,8 +57,8 @@ public class ItemRepository {
      * 전체 상품 검색
      */
 
-    public List<Item> selectAll(){
-        List<Item> result = jdbcTemplate.query("select * from item", itemRowMapper());
+    public List<Item> selectAll(int startIndex, int pageSize){
+        List<Item> result = jdbcTemplate.query("select * from item ORDER BY item_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", itemRowMapper(), startIndex, pageSize);
         return result;
     }
 
@@ -80,6 +80,13 @@ public class ItemRepository {
         return result;
     }
 
+
+    /**
+     * 쇼핑몰 총 글수
+     */
+    public int totalListCount() {
+        return jdbcTemplate.queryForObject("select count(*) from item", Integer.class);
+    }
 
     /**
      * 상품정보에 필요한 메서드
