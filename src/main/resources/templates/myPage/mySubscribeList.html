@@ -13,19 +13,31 @@
     </style>
 </head>
 <body>
-    <div class = "banner">
-        <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+    <div class = "myPage_banner">
+        <video class = "myPage_banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
             <source src = "/webapp/image/mypage_banner_video.mp4" type = "video/mp4" >
         </video>
-        <div class= "banner_text">My Page</div>
+        <div class= "myPage_banner_text">My Page</div>
     </div>
     <div class="info">
         <div class="customerInfo">
             <h2 id="customerInfo_banner">Customer Information</h2>
-            <div id="customerName" th:text="${member.getMemberName()}">Name</div>
-            <div id="customerTel" th:text="${member.getMemberPhoneNum()}">Phone</div>
-            <div id="customerEmail" th:text="${member.getMemberEmail()}">E-mail</div>
-            <div id="customerGender" th:text="${member.getMemberGender()}">Gender</div>
+            <div id="customerName">
+                <span class="customerInfoTag">Name : </span>
+                <span th:text="${member.getMemberName()}">>Name</span>
+            </div>
+            <div id="customerPhone">
+                <span class="customerInfoTag">Phone Number : </span>
+                <span th:text="${member.getMemberPhoneNum()}">Phone</span>
+            </div>
+            <div id="customerEmail">
+                <span class="customerInfoTag">Email : </span>
+                <span th:text="${member.getMemberEmail()}">E-mail</span>
+            </div>
+            <div id="customerGender">
+                <span class="customerInfoTag">Gender : </span>
+                <span th:text="${member.getMemberGender()}">Gender</span>
+            </div>
             <div id="editInfo"><a href="/myPage/userModifi">Edit Your Info></a></div>
         </div>
 
@@ -35,13 +47,16 @@
             <a href="/myPage/myReview" id="myReview">Review</a>
             <a href="/myPage/myCart" id="cart">Cart</a>
         </div>
-        <div id="subscription">
-            <th:block th:if="${subscribe == null}">
-                <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
-            </th:block>
-            <th:block th:unless="${subscribe == null}">
-                BATHDAL 구독중
-            </th:block>
+        <div class="subscriptionBtn">
+            <div id="subscribeHiddenBtn">
+                <th:block th:if="${subscribe == null}">
+                    <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
+                    <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
+                </th:block>
+                <th:block th:unless="${subscribe == null}">
+                    BATHDAL 구독중
+                </th:block>
+            </div>
         </div>
     </div>
 
@@ -51,13 +66,14 @@
         <span>Delivery Status</span>
         <span>Charge</span>
         <span>Subscribe Start Date</span>
-
+    </div>
+    <div id="userSubInfo">
         <th:block th:if="${subscribe != null}">
-            BATHDAL
-            <a th:text="${subscribe.getSbDeliveryAddress()}"></a>
-            <a th:text="${subscribe.getSbDeliveryStatus()}"></a>
-            <a th:text="${subscribe.getSbPrice()}"></a>
-            <a th:text="${subscribe.getSbRegDate()}"></a>
+            <span style="color: #f26d7d">BATHDAL</span>
+            <span th:text="${subscribe.getSbDeliveryAddress()}"></span>
+            <span th:text="${subscribe.getSbDeliveryStatus()}"></span>
+            <span th:text="${subscribe.getSbPrice()}"></span>
+            <span th:text="${subscribe.getSbRegDate()}"></span>
         </th:block>
     </div>
     <div style="text-align: center; margin-top: 50px">
