@@ -8,11 +8,29 @@
             font-family: 'Bahnschrift';
         }
         table {
-            font-family: arial, sans-serif;
+            font-family: 'Bahnschrift';
             border-collapse: collapse;
             width: 80%;
             margin: auto;
-
+            color : rgba(0,0,0,0.7);
+        }
+        .border_1{
+            width : 80%;
+            position : relative;
+            border: thin solid rgba(0,0,0,0.2);
+        }
+        .border_2{
+            width : 80%;
+            position : relative;
+            top : 42px;
+            border: thin solid rgba(0,0,0,0.1);
+        }
+        tr{
+            background : border: thin solid rgba(0,0,0,0.05);
+        }
+        .review_area{
+            position: relative;
+            top : 20px;
         }
         td{
             font-family: 'Bahnschrift';
@@ -26,10 +44,25 @@
         td:nth-child(4){width:100px;text-align: center;}
         td:nth-child(5){width:100px;text-align: center;}
         .img {width:100px; height:100px;}
-        .button1 {font-family: 'Bahnschrift'; margin-left:10%; background-color: white; border:1px solid #dddddd;font-size:15px;}
-        .button2 {font-family: 'Bahnschrift'; background-color: white; border:1px solid #dddddd;font-size:15px;}
-        .button3 {font-family: 'Bahnschrift'; margin-right:10%; background-color: white; border:none; font-size:20px;}
-        a { text-decoration:none !important } a:hover { text-decoration:none !important }
+        .button1 {
+            font-family: 'Bahnschrift';
+            margin-left:10%;
+            background-color: white;
+            border:1px solid grey;
+            font-size:15px;
+        }
+        .button2 {
+            font-family: 'Bahnschrift';
+            background-color: white;
+            border:1px solid #dddddd;
+            font-size:15px;
+        }
+        .button3 {
+            font-family: 'Bahnschrift';
+            background-color: white;
+            border:1px solid #dddddd;
+            font-size:15px;
+        }a { text-decoration:none !important } a:hover { text-decoration:none !important }
         .pagination {
             display: inline-block;
             text-align: center;
@@ -50,58 +83,65 @@
     </th:block>
 </head>
 <body>
+    <div class = "banner">
+        <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+            <source src = "/webapp/image/review_banner_video.mp4" type = "video/mp4" >
+        </video>
+        <div class= "banner_text">REVIEW</div>
+    </div>
 
-<div align="center" style="color:#f26d7d;" >
-    <h1>REVIEW</h1>
-</div>
+    <button type="Button" class="button1" onclick="location.href='/board/reviewBathBomb'">Bath Bomb</button>
+    <button type="Button" class="button2" onclick="location.href='/board/reviewNaturalSoup'">Natural Soap</button>
+    <button type="Button" class="button2" onclick="location.href='/board/review'">Total</button>
+    <th:block th:if="${sessionId == null}"></th:block>
+    <th:block th:unless="${sessionId == null}">
+        <div align="right"><button type="Button" class="button4" onclick="location.href='/board/reviewWrite'">Write Review</button></div>
+    </th:block>
 
-<button type="Button" class="button1" onclick="location.href='/board/reviewBathBomb'">Bath Bomb</button>
-<button type="Button" class="button2" onclick="location.href='/board/reviewNaturalSoup'">Natural Soap</button>
-<button type="Button" class="button2" onclick="location.href='/board/review'">Total</button>
-<th:block th:if="${sessionId == null}"></th:block>
-<th:block th:unless="${sessionId == null}">
-    <div align="right"><button type="Button" class="button3" onclick="location.href='/board/reviewWrite'">Write Review</button></div>
-</th:block>
-
-
-<div>
-    <table>
-        <tbody>
-        <tr>
-            <th>Image</th>
-            <th>Sort</th>
-            <th>Subject</th>
-            <th>Written By</th>
-            <th>Reporting date</th>
-        </tr>
-        <tr th:each="board: ${boardList}">
-            <td><img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}" class="img"></td>
-            <td th:text="${board.getRvBoardItem()}"></td>
-            <td><a th:href="@{/board/reviewRead(rvBoardUid=${board.getRvBoardUid()})}" th:text="${board.getRvBoardTitle()}"></a></td>
-            <td th:text="${board.getRvBoardWriter()}"></td>
-            <td th:text="${board.getRvBoardRegDate()}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div align="center">
-    <ul class="pagination" >
-        <th:block th:if="${pagination.getTotalListCnt() != 0}">
-            <th:block th:if="${pagination.getPage() != 1}">
-                <a th:href="@{/board/review(page=1)}">FIRST</a>
-                <a th:href="@{/board/review(page=${pagination.getPreBlock()})}">&laquo;</a>
+    <div class = "review_area">
+        <hr class = "border_1">
+        <table>
+            <tbody>
+            <tr>
+                <th>Image</th>
+                <th>Sort</th>
+                <th>Subject</th>
+                <th>Written By</th>
+                <th>Reporting date</th>
+            </tr>
+            <hr class = "border_2">
+            <tr th:each="board: ${boardList}">
+                <td><img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}" class="img"></td>
+                <td th:text="${board.getRvBoardItem()}"></td>
+                <td><a th:href="@{/board/reviewRead(rvBoardUid=${board.getRvBoardUid()})}" th:text="${board.getRvBoardTitle()}"></a></td>
+                <td th:text="${board.getRvBoardWriter()}"></td>
+                <td th:text="${board.getRvBoardRegDate()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div align="center">
+        <ul class="pagination" >
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+                <th:block th:if="${pagination.getPage() != 1}">
+                    <a th:href="@{/board/review(page=1)}">FIRST</a>
+                    <a th:href="@{/board/review(page=${pagination.getPreBlock()})}">&laquo;</a>
+                </th:block>
             </th:block>
-        </th:block>
-        <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
-            <a th:text="${page}" th:href="@{/board/review(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
-        </a>
-        <th:block th:if="${pagination.getTotalListCnt() != 0}">
-            <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
-                <a th:href="@{/board/review(page=${pagination.getNextBlock()})}">&raquo;</a>
-                <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">LAST</a>
+        </ul>
+    </div>
+    <div align = "center">
+        <ul>
+            <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
+                <a th:text="${page}" th:href="@{/board/review(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
+            </a>
+            <th:block th:if="${pagination.getTotalListCnt() != 0}">
+                <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
+                    <a th:href="@{/board/review(page=${pagination.getNextBlock()})}">&raquo;</a>
+                    <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">LAST</a>
+                </th:block>
             </th:block>
-        </th:block>
-    </ul>
-</div>
+        </ul>
+    </div>
 </body>
 </html>
