@@ -167,8 +167,8 @@
                     <label for = "form_email" id = "form_email_text">EMAIL</label>
                     <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
 
-                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">MALE
-                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">FEMALE
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio"  th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">MALE
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio"  th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">FEMALE
                     <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
                     </div>
         <div class ="signup_submit">
