@@ -3,50 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <title>BATHDAL :: A Special Day</title>
-    <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+    <th:block th:include="/fragments/header"></th:block> <!-- 헤더 -->
 </head>
 <style>
     .inputError {
         border-color: #bd2130;
     }
+
+    body{
+        display : grid;
+        grid-template-columns : repeat(3,1fr);
+        grid-template-rows: repeat(6,200px);
+        grid-template-areas:
+            "banner banner banner"
+            ". signup ."
+            ". signup .";
+        gap : 0px;
+        font-family: 'Bahnschrift';
+        overflow-x: hidden;
+    }
+    div.banner{
+        grid-area: banner;
+    }
+    div.banner_text{
+        position :relative;
+        bottom: 60%;
+        text-align: center;
+        font-size: 50px;
+        color : white;
+        font-weight: bold;
+        word-break: keep-all;
+        text-shadow: 0 0 30px rgba(0,0,0,.6);
+    }
+    video.banner_video{
+        width : "300%";
+        height : "auto" ;
+        min-width: 100%;
+        object-fit:fill;
+    }
+
+    .signup_form_area{
+        grid-area: signup;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position :relative;
+        top : 200px;
+    }
+
+
+    .signupForm{
+        width : 100%;
+        padding :20px 10px 10px;
+        background-color: transparent;
+        border: 1px solid rgba(0,0,0,.3);
+        color : rgba(0,0,0,0.8);
+        border-radius: 6px;
+    }
+
+    .signup_form_user{
+        width : 250px;
+    }
+    .signup_form label{
+        position : relative;
+        bottom : 30px;
+        left : 10px;
+        font-size: 15px;
+        color : rgba(0,0,0,.2);
+        transition: all 0.1s ease;
+    }
+    #form_email_text{
+        position : relative;
+        bottom : 65px;
+    }
+    .signup_form_user.warning{
+        color : red !important;
+        animation : warning .3s ease;
+        animation-iteration-count: 3;
+    }
+    @keyframes warning{
+        0%{transform : translateX(-8px);}
+        25%{transform : translateX(8px);}
+        50%{transform : translateX(-8px);}
+        75%{transform : translateX(8px);}
+    }
+    .signupForm:focus + label,
+    .signupForm:valid + label{
+        position : relative;
+        bottom : 48px;
+        font-size: 13px;
+        color : #f26d7d
+    }
+    .signupForm:focus{
+        box-shadow: 0 0 8px  #f26d7d;
+        border: 2px sol #f26d7d;
+    }
+    .signup_line{
+        width : 300px;
+        color : rgba(0,0,0,.3);
+        position : relative;
+        top : 15px;
+        right : 15px;
+    }
+    #id_pw {
+        position : relative;
+        top : 40px;}
+
+    .signupForm_radio{
+        margin-top: 20px;
+    }
+    .signup_submit_area{
+        position : relative;
+        top : 70px;
+    }
+    button{
+        width : 100%;
+        height : 50px;
+        background : #f26d7d;
+        color : white;
+        font-size : 20px;
+        border : none;
+        border-radius: 25px;
+    }
+
 </style>
 <body>
-
-<br><br><br><br><!-- 헤더때문에 가려서 -->
+<div class = "banner">
+    <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+        <source src = "login_banner_video2.mp4" type = "video/mp4" >
+    </video>
+    <div class= "banner_text">SIGN UP</div>
+</div>
 
 <!-- 회원 가입 폼 -->
-    <form action="/signUp" method="post" th:object="${memberForm}">
-        <div>User ID</div>
-        <input type="text" th:field="*{memberId}" class="signupForm" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
+<div class = "signup_form_area">
+    <div class = "signup_form">
+        <div class = "signup_form_input">
+            <form action="/signUp" method="post" th:object="${memberForm}">
+                <div class = "signup_form_user">
+                    <input type="text" th:field="*{memberName}" class="signupForm" id = "form_name" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_name">NAME</label>
+                    <!--<p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>-->
 
-        <div>Password</div>
-        <input type="password" th:field="*{memberPw}" class="signupForm" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
-        <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
+                    <input type="text" th:field="*{memberPhoneNum}" class="signupForm" id = "form_phonenum" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_phonenum">PHONE NUMBER</label>
+                    <!--<p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>-->
 
-        <div>Re-enter password</div>
-        <input type="password" th:field="*{memberPw2}" class="signupForm" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
-        <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
+                    <input type="text" th:field="*{memberEmail}" class="signupForm" id = "form_email" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_email" id = "form_email_text">EMAIL</label>
+                    <!--<p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>-->
 
-        <div>Name</div>
-        <input type="text" th:field="*{memberName}" class="signupForm" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">MALE
+                    <input type="radio" th:field="*{memberGender}" class="signupForm_radio" name = "form_gender" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">FEMALE
+                    <!--<p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>-->
 
-        <div>Phone number</div>
-        <input type="text" th:field="*{memberPhoneNum}" class="signupForm" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+                    <hr class = "signup_line">
+                </div>
 
-        <div>E-mail</div>
-        <input type="text" th:field="*{memberEmail}" class="signupForm" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
-        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
+                <div class = "signup_form_user" id = "id_pw">
+                    <input type="text" th:field="*{memberId}" class="signupForm" id = "form_id" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
+                    <label for = "form_id">ID</label>
+                    <!--<p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>-->
 
-        <br>
-        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Male">Male
-        <input type="radio" th:field="*{memberGender}" class="signupForm" th:class="${#fields.hasErrors('memberGender') ? 'signupForm inputError' : 'signupForm'}" value="Female">Female
-        <p th:if="${#fields.hasErrors('memberGender')}" th:errors="*{memberGender}">성별미선택 오류</p>
-        <br>
-        <input type="submit" value="Create a Account">
-    </form>
+                    <input type="password" th:field="*{memberPw}" class="signupForm" id = "form_pw" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
+                    <label for = "form_pw">PASSWORD</label>
+                    <!--<p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>-->
+
+                    <input type="password" th:field="*{memberPw2}" class="signupForm" id = "form_pw2" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
+                    <label for = "form_pw2">PASSWORD DOUBLE-CHECK</label>
+                    <!--<p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>-->
+
+                    <hr class = "signup_line">
+                </div>
+        </div>
+
+        <div class ="signup_submit">
+            <div class ="signup_submit_area">
+                <button type="submit" value="Create a Account">JOIN BATHDAL</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
 
 </body>
 </html>
