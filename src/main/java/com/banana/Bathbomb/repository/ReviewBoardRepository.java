@@ -39,14 +39,14 @@ public class ReviewBoardRepository {
     }
 
     /**
-     * 리뷰게시판 글 리스트 (베스밤)
+     * 리뷰게시판 글 리스트 (베스밤, 천연비누 카테고리)
      */
+    public List<ReviewBoard> selectItem(String item, int startIndex, int pageSize){
+        return jdbcTemplate.query("select * from review_board where rv_board_item = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(),
+                item, startIndex, pageSize);
+    }
 
-
-    /**
-     * 리뷰게시판 글 리스트 (천연비누)
-     */
-
+ 
     /**
      * 리뷰게시판 글 읽기 select by uid
      */

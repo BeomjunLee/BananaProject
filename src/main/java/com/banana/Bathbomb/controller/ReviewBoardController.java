@@ -80,6 +80,52 @@ public class ReviewBoardController {
     }
 
     /**
+     * 리뷰게시판 베스밤 카테고리
+     */
+    @GetMapping("/board/reviewBathBomb")
+    public String bathBomb(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page){
+        //세션넘기기
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+
+        int totalListCnt = reviewBoardService.totalListCount(); //전체 글 수
+        Pagination pagination = new Pagination(totalListCnt, page, 10); //Pagination객체 생성후 전체 글수랑 page수를 입력
+
+        int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
+        int pageSize = pagination.getPageSize();        //페이지 수(10)
+        System.out.println("전체글수: " + pagination.getTotalListCnt() + " | 현재 페이지: " + pagination.getPage() + " | 시작페이지:" +
+                pagination.getStartPage() + " | 끝페이지:" + pagination.getEndPage() + "");//확인용
+
+        List<ReviewBoard> boardList = reviewBoardService.findCategoryBoardList("BathBomb", startIndex, pageSize);
+
+        model.addAttribute("boardList", boardList); //List형 board를 html에 보냄
+        model.addAttribute("pagination", pagination);
+        return "/board/reviewBathBomb";
+    }
+
+    /**
+     * 리뷰게시판 천연비누 카테고리
+     */
+    @GetMapping("/board/reviewNaturalSoup")
+    public String naturalSoup(Model model, HttpSession session, @RequestParam(defaultValue = "1") int page){
+        //세션넘기기
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+
+        int totalListCnt = reviewBoardService.totalListCount(); //전체 글 수
+        Pagination pagination = new Pagination(totalListCnt, page, 10); //Pagination객체 생성후 전체 글수랑 page수를 입력
+
+        int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
+        int pageSize = pagination.getPageSize();        //페이지 수(10)
+        System.out.println("전체글수: " + pagination.getTotalListCnt() + " | 현재 페이지: " + pagination.getPage() + " | 시작페이지:" +
+                pagination.getStartPage() + " | 끝페이지:" + pagination.getEndPage() + "");//확인용
+
+        List<ReviewBoard> boardList = reviewBoardService.findCategoryBoardList("NaturalSoup", startIndex, pageSize);
+
+        model.addAttribute("boardList", boardList); //List형 board를 html에 보냄
+        model.addAttribute("pagination", pagination);
+        return "/board/reviewNaturalSoup";
+    }
+
+    /**
      * 리뷰 글 읽기
      */
     @GetMapping("/board/reviewRead")
