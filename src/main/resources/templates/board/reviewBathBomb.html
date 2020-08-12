@@ -52,7 +52,7 @@
 <body>
 
 <div align="center" style="color:#f26d7d;" >
-<h1>REVIEW</h1>
+    <h1>REVIEW</h1>
 </div>
 
 <button type="Button" class="button1" onclick="location.href='/board/reviewBathBomb'">Bath Bomb</button>
@@ -60,7 +60,7 @@
 <button type="Button" class="button2" onclick="location.href='/board/review'">Total</button>
 <th:block th:if="${sessionId == null}"></th:block>
 <th:block th:unless="${sessionId == null}">
-<div align="right"><button type="Button" class="button3" onclick="location.href='/board/reviewWrite'">Write Review</button></div>
+    <div align="right"><button type="Button" class="button3" onclick="location.href='/board/reviewWrite'">Write Review</button></div>
 </th:block>
 
 

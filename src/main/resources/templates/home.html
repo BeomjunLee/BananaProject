@@ -319,7 +319,7 @@
     
                             </p>
                         </div>  
-                        <button type = "button" class= "subscribe" id="subscribeBtn" onclick="location.href='/subscribe/subscribe'">
+                        <button type = "button" class= "subscribe" id="subscribeBtn" onclick="subscribeClick()">
                             SUBSCRIBE
                         </button>
                     </div>            
@@ -364,7 +364,7 @@
 
         </script>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
+        <script th:inline="javascript">
             AOS.init({
                 duration:1500
             });
@@ -372,16 +372,15 @@
         <!--End of Tawk.to Script-->
 
 
-            // //구독구매창 눌렀을때 로그인 안하면 못가게
-            // session = [[${sessionId}]];
-            //
-            // document.getElementById('subscribeBtn').onclick = function (){
-            //     if(session == null){
-            //         alert("Please login first");
-            //     }else{
-            //         location.href="/subscribe/subscribe";
-            //     }
-            // }
+            //구독구매창 눌렀을때 로그인 안하면 못가게
+            session = [[${sessionId}]];
+            function subscribeClick(){
+                if(session == null){
+                    alert("Please login first");
+                }else{
+                    location.href="/subscribe/subscribe";
+                }
+            }
         </script>
     </body>
 </html>

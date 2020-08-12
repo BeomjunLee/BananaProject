@@ -2,22 +2,37 @@ body{
     font-family: 'Bahnschrift';
 }
 
-#myPage_banner {
+div.banner{
+    grid-area: banner;
+    margin-bottom: 150px;
+}
+div.banner_text{
+    position :relative;
+    bottom: 75%;
     text-align: center;
     font-size: 50px;
     color : white;
     font-weight: bold;
     word-break: keep-all;
     text-shadow: 0 0 30px rgba(0,0,0,.3);
+    margin-top: -150px;
+}
+video.banner_video{
+    width : "300%";
+    height : "auto" ;
+    min-width: 100%;
+    object-fit:fill;
 }
 .info {
     display: inline;
 }
 .customerInfo {
+    display: grid;
+    grid-template-columns: 1fr;
     border: 3px lightpink solid;
     text-align: center;
-    margin-left: 300px;
-    margin-right: 300px;
+    margin-left: 800px;
+    margin-right: 800px;
 }
 #customerInfo_banner {
     color: #f26d7d;
@@ -84,4 +99,7 @@ h1 {
     margin-top: 100px;
     margin-bottom: 50px;
     font-size: 40px;
+}
+footer{
+    margin-top: 400px;
 }

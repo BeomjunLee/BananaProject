@@ -27,13 +27,11 @@ public class ReviewBoardService {
     }
 
     /**
-     * 리뷰게시판 글 리스트 (베스밤)
+     * 리뷰게시판 글 리스트 (베스밤), (천연비누)
      */
-
-
-    /**
-     * 리뷰게시판 글 리스트 (천연비누)
-     */
+    public List<ReviewBoard> findCategoryBoardList(String name, int startIndex, int pageSize){
+        return reviewBoardRepository.selectItem(name, startIndex, pageSize);
+    }
 
     /**
      * 리뷰게시판 글 읽기 select by uid

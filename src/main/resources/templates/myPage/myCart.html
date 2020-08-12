@@ -14,7 +14,13 @@
     </style>
 </head>
 <body>
-    <h1 id="myPage_banner">My Page</h1>
+    <div class = "banner">
+        <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+            <source src = "/webapp/image/mypage_banner_video.mp4" type = "video/mp4" >
+        </video>
+        <div class= "banner_text">My Page</div>
+    </div>
+
     <div class="info">
         <div class="customerInfo">
             <h2 id="customerInfo_banner">Customer Information</h2>
@@ -64,5 +70,9 @@
         <button type="submit">BUY SELECTED</button>
         <button type="submit">DELETE SELECTED</button>
     </div>
+
+    <footer>
+        <img src="/webapp/image/footer.png" width = "100%" height = "70%">
+    </footer>
 </body>
 </html>
