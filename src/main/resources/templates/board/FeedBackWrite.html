@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
+    <link rel="stylesheet" href="header.css">
+    <style>
+        div.banner_text{
+            position :relative;
+            bottom: 140px;
+            text-align: center;
+            font-size: 50px;
+            color : white;
+            font-weight: bold;
+            word-break: keep-all;
+            text-shadow: 0 0 30px rgba(0,0,0,.6);
+        }
+        video.banner_video{
+            width : "300%";
+            height : "auto" ;
+            min-width: 100%;
+            object-fit:fill;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+        }
+        td{
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+            width: 60%
+        }
+        th{width: 40%;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+        }
+        .submit {background-color: white; border:1px solid #dddddd;font-size:15px;}
+    </style>
+</head>
+
+<body>
+<div class = "banner">
+    <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+        <source src = "/webapp/image/review_banner_video.mp4" type = "video/mp4" >
+    </video>
+    <div class= "banner_text">FEED BACK WRITING</div>
+</div>
+
+    <table>
+        <tr>
+            <th>ID </th>
+            <td><input type="text" name="fbID"></td>
+        </tr>
+        <tr>
+            <th>Satisfaction </th>
+            <td><input type="radio" value="1" name="fbSatisfaction">1/5
+                <input type="radio" value="2" name="fbSatisfaction">2/5
+                <input type="radio" value="3" name="fbSatisfaction">3/5
+                <input type="radio" value="4" name="fbSatisfaction">4/5
+                <input type="radio" value="5" name="fbSatisfaction">5/5
+            </td>
+        </tr>
+        <tr>
+            <th>Item </th>
+            <td><input type="text"  name="fbItem"></td>
+        </tr>
+        <tr>
+            <th>Do you think the price is reasonable? </th>
+            <td><input type="radio" value="yes" name="fbPriceSatis">Yes
+                <input type="radio" value="no" name="fbPriceSatis">No (if you answered 'No', please answer the following question!)
+            </td>
+        </tr>
+        <tr>
+            <th>What's the reasonable price you think? </th>
+            <td><input type="radio" value="$10under" name="fbPrice">10 dollars or less
+            <input type="radio" value="$15under" name="fbPrice">15 dollars or less
+            </td>
+        </tr>
+        <tr>
+            <th>Do you like the color of the item? </th>
+            <td><input type="radio" value="yes" name="fbColorSatis">Yes
+                <input type="radio" value="no" name="fbColorSatis">No (if you answered 'No', please answer the following question!)
+            </td>
+        </tr>
+        <tr>
+            <th>What color do you like? </th>
+            <td><input type="text" name="fbColor"></td>
+        </tr>
+        <tr>
+            <th>Do you like the scent of the item? </th>
+            <td><input type="radio" value="yes" name="fdScentSatis">Yes
+                <input type="radio" value="no" name="fdScentSatis">No (if you answered 'No', please answer the following question!)
+            </td>
+        </tr>
+        <tr>
+            <th>What scent do you like? </th>
+            <td><input type="text" name="fdScent"></td>
+        </tr>
+        <tr>
+            <th>Is the item suitable for the season? </th>
+            <td><input type="radio" value="yes" name="fbSeasonSatis">Yes
+                <input type="radio" value="no" name="fbSeasonSatis">No
+            </td>
+        </tr>
+        <tr>
+            <th>Is the item suitable for the weather? </th>
+            <td><input type="radio" value="yes" name="fbWeatherSatis">Yes
+                <input type="radio" value="no" name="fbWeatherSatis">No
+            </td>
+        </tr>
+        <tr>
+            <th>How was the weather? </th>
+            <td><input type="radio" value="Sunny" name="fbWeather">Sunny
+                <input type="radio" value="Cloudy" name="fbWeather">Cloudy
+                <input type="radio" value="Rainy" name="fbWeather">Rainy
+                <input type="radio" value="Snowy" name="fbWeather">Snowy
+                <input type="radio" value="Cold" name="fbWeather">Cold
+            </td>
+        </tr>
+        <tr>
+            <th>Was it suitable for your skin type? </th>
+            <td><input type="radio" value="yes" name="fdSkinTypeSatis">Yes
+                <input type="radio" value="no" name="fdSkinTypeSatis">No (if you answered 'No', please answer the following question!)
+            </td>
+        </tr>
+        <tr>
+            <th>Please let me know your skin type. </th>
+            <td><input type="text" name="fdSkinType"></td>
+        </tr>
+        <tr>
+            <th>Comments</th>
+            <td><textarea name="fdComments" cols=85 rows=15></textarea></td>
+        </tr>
+    </table>
+    <div align="center"><br>
+        <input type = "submit" value="SUBMIT" class="submit"></div>
+
+
+</body>
+</html>
