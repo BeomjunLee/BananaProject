@@ -5,57 +5,76 @@
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
     <link rel="stylesheet" href="header.css">
+    <style>
+        div.banner_text{
+            position :relative;
+            bottom: 140px;
+            text-align: center;
+            font-size: 50px;
+            color : white;
+            font-weight: bold;
+            word-break: keep-all;
+            text-shadow: 0 0 30px rgba(0,0,0,.6);
+        }
+        video.banner_video{
+            width : "300%";
+            height : "auto" ;
+            min-width: 100%;
+            object-fit:fill;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 60%;
+            margin: auto;
+        }
+        td{
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+            width: 70%
+        }
+        th{width: 30%;
+            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+        }
+        .submit {background-color: white; border:1px solid #dddddd;font-size:15px;}
+    </style>
 </head>
+
 <body>
+    <div class = "banner">
+        <video class = "banner_video" loop data-video="0" autoplay = "autoplay" muted = "muted">
+            <source src = "/webapp/image/review_banner_video.mp4" type = "video/mp4" >
+        </video>
+        <div class= "banner_text">REVIEW WRITING</div>
+    </div>
 
-<div align="center" style="color:#f26d7d; font-family: 'Bahnschrift';" >
-    <h1>REVIEW WRITING</h1>
-</div>
-
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 60%;
-        margin: auto;
-    }
-    td{
-        border-bottom: 1px solid #dddddd;
-        border-top: 1px solid #dddddd;
-        padding: 8px;
-        text-align: left;
-        width: 70%
-    }
-    th{width: 30%;
-        border-bottom: 1px solid #dddddd;
-        border-top: 1px solid #dddddd;
-    }
-    .submit {background-color: white; border:1px solid #dddddd;font-size:15px;}
-</style>
-<form action="/board/reviewWriteChk" method="post" enctype="multipart/form-data">
-    <table>
-        <tr>
-            <th>Subject </th>
-            <td><input type="text" name="rvBoardTitle"></td>
-        </tr>
-        <tr>
-            <th>Item </th>
-            <td><input type="radio" value="BathBomb" name="rvBoardItem">Bath Bomb
-                <input type="radio" value="NaturalSoup" name="rvBoardItem">Natural Soup
-            </td>
-        </tr>
-        <tr>
-            <th>Image </th>
-            <td><input type="file"  name="file" accept="image/*"></td>
-        </tr>
-        <tr>
-            <th>Contents </th>
-            <td><textarea name="rvBoardContent" cols=85 rows=15></textarea></td>
-        </tr>
-    </table>
-    <div align="center"><br>
-        <input type = "submit" value="SUBMIT" class="submit"></div>
-</form>
+    <form action="/board/reviewWriteChk" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <th>Subject </th>
+                <td><input type="text" name="rvBoardTitle"></td>
+            </tr>
+            <tr>
+                <th>Item </th>
+                <td><input type="radio" value="BathBomb" name="rvBoardItem">Bath Bomb
+                    <input type="radio" value="NaturalSoup" name="rvBoardItem">Natural Soup
+                </td>
+            </tr>
+            <tr>
+                <th>Image </th>
+                <td><input type="file"  name="file" accept="image/*"></td>
+            </tr>
+            <tr>
+                <th>Contents </th>
+                <td><textarea name="rvBoardContent" cols=85 rows=15></textarea></td>
+            </tr>
+        </table>
+        <div align="center"><br>
+            <input type = "submit" value="SUBMIT" class="submit"></div>
+    </form>
 
 </body>
 </html>
