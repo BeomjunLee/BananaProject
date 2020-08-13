@@ -92,7 +92,7 @@ public class ReviewBoardController {
         //세션넘기기
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
 
-        int totalListCnt = reviewBoardService.totalListCount(); //전체 글 수
+        int totalListCnt = reviewBoardService.totalListCount("BathBomb"); //전체 글 수
         Pagination pagination = new Pagination(totalListCnt, page, 10); //Pagination객체 생성후 전체 글수랑 page수를 입력
 
         int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)
@@ -115,7 +115,7 @@ public class ReviewBoardController {
         //세션넘기기
         model.addAttribute("sessionId", session.getAttribute("sessionId"));
 
-        int totalListCnt = reviewBoardService.totalListCount(); //전체 글 수
+        int totalListCnt = reviewBoardService.totalListCount("NaturalSoup"); //전체 글 수
         Pagination pagination = new Pagination(totalListCnt, page, 10); //Pagination객체 생성후 전체 글수랑 page수를 입력
 
         int startIndex = pagination.getStartIndex();    //sql검색 처음시작 인덱스 0, 10, 20, 30 순으로 가야됨(페이지 수를 10개로 했으니)

@@ -79,6 +79,13 @@ public class ReviewBoardService {
     }
 
     /**
+     * 특정카테고리 총 글수
+     */
+    public int totalListCount(String item){
+        return reviewBoardRepository.totalListCount(item);
+    }
+
+    /**
      * 내그 쓴 리뷰 총 글수
      */
     public int totalMyListCount(int memberUid){

@@ -22,7 +22,7 @@
         .border_2{
             width : 80%;
             position : relative;
-            top : 42px;
+            top : 30px;
             border: thin solid rgba(0,0,0,0.1);
         }
         tr{
@@ -31,6 +31,22 @@
         .review_area{
             position: relative;
             top : 20px;
+        }
+        div.banner_text{
+            position :relative;
+            bottom: 140px;
+            text-align: center;
+            font-size: 50px;
+            color : white;
+            font-weight: bold;
+            word-break: keep-all;
+            text-shadow: 0 0 30px rgba(0,0,0,.6);
+        }
+        video.banner_video{
+            width : "300%";
+            height : "auto" ;
+            min-width: 100%;
+            object-fit:fill;
         }
         td{
             font-family: 'Bahnschrift';
@@ -60,9 +76,10 @@
         .button3 {
             font-family: 'Bahnschrift';
             background-color: white;
-            border:1px solid #dddddd;
+            border:1px solid grey;
             font-size:15px;
-        }a { text-decoration:none !important } a:hover { text-decoration:none !important }
+        }
+        a { text-decoration:none !important } a:hover { text-decoration:none !important }
         .pagination {
             display: inline-block;
             text-align: center;
@@ -72,6 +89,13 @@
             float: none;
             padding: 8px 16px;
             text-decoration: none;
+        }
+        .button4 {
+            font-family: 'Bahnschrift';
+            background-color: white;
+            border:1px solid #dddddd;
+            font-size:15px;
+            margin-right: 190px;
         }
         .pagination a:hover:not(.active) {background-color: #ddd;}
     </style>
@@ -120,28 +144,26 @@
             </tbody>
         </table>
     </div>
+    <br><br>
     <div align="center">
-        <ul class="pagination" >
-            <th:block th:if="${pagination.getTotalListCnt() != 0}">
-                <th:block th:if="${pagination.getPage() != 1}">
-                    <a th:href="@{/board/review(page=1)}">FIRST</a>
-                    <a th:href="@{/board/review(page=${pagination.getPreBlock()})}">&laquo;</a>
-                </th:block>
+        <th:block th:if="${pagination.getTotalListCnt() != 0}">
+            <th:block th:if="${pagination.getPage() != 1}">
+                <a th:href="@{/board/reviewBathBomb(page=1)}">FIRST</a>
+                <a th:href="@{/board/reviewBathBomb(page=${pagination.getPreBlock()})}">&laquo;</a>
             </th:block>
-        </ul>
-    </div>
-    <div align = "center">
-        <ul>
-            <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
-                <a th:text="${page}" th:href="@{/board/review(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
-            </a>
-            <th:block th:if="${pagination.getTotalListCnt() != 0}">
-                <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
-                    <a th:href="@{/board/review(page=${pagination.getNextBlock()})}">&raquo;</a>
-                    <a th:href="@{/board/review(page=${pagination.getTotalPageCnt()})}">LAST</a>
-                </th:block>
+        </th:block>
+        <a th:each="page:${#numbers.sequence(pagination.getStartPage(), pagination.getEndPage())}">
+            <a th:text="${page}" th:href="@{/board/reviewBathBomb(page=${page})}" th:class="${page == pagination.getPage()} ? 'active'"></a>
+        </a>
+        <th:block th:if="${pagination.getTotalListCnt() != 0}">
+            <th:block th:if="${pagination.getPage() != pagination.totalPageCnt}">
+                <a th:href="@{/board/reviewBathBomb(page=${pagination.getNextBlock()})}">&raquo;</a>
+                <a th:href="@{/board/reviewBathBomb(page=${pagination.getTotalPageCnt()})}">LAST</a>
             </th:block>
-        </ul>
+        </th:block>
     </div>
 </body>
+<footer>
+    <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
+</footer>
 </html>

@@ -93,6 +93,13 @@ public class ReviewBoardRepository {
     public int totalListCount() {
         return jdbcTemplate.queryForObject("select count(*) from review_board", Integer.class);
     }
+    /**
+     * 리뷰 게시판 특정 카테고리 총 글수
+     */
+    public int totalListCount(String item) {
+        return jdbcTemplate.queryForObject("select count(*) from review_board where rv_board_item = ?", Integer.class, item);
+    }
+
 
     /**
      * 내가 쓴 리뷰글 총 글수

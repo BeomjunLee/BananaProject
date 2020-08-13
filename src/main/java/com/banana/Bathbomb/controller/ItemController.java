@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/shop")
-    public String shop(Model model, Item item,  @RequestParam(defaultValue = "1") int page){
+    public String shop(Model model, Item item, @RequestParam(defaultValue = "1") int page, HttpSession session){
 
         int totalListCnt = itemService.totalListCount(); //전체 글 수
         Pagination pagination = new Pagination(totalListCnt, page, 9); //Pagination객체 생성후 전체 글수랑 page수를 입력
@@ -38,6 +39,7 @@ public class ItemController {
 
         model.addAttribute("itemList", result);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
         return "/shop/shop";
     }
 
