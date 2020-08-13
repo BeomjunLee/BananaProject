@@ -114,4 +114,13 @@ public class SubscribeController {
     public String subscribeComplete(){
         return "/subscribe/subscribeComplete";
     }
+
+//    /**
+//     * 구독 취소
+//     */
+//    @GetMapping("/subscribe/unSubscribe")
+//    public String unSubscribe(){
+//
+//        return "/subscribe/unSubscribe";
+//    }
 }

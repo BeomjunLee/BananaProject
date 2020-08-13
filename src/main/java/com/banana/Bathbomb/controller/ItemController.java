@@ -3,7 +3,9 @@ package com.banana.Bathbomb.controller;
 import com.banana.Bathbomb.domain.Category;
 import com.banana.Bathbomb.domain.Item;
 import com.banana.Bathbomb.domain.Pagination;
+import com.banana.Bathbomb.domain.Subscribe;
 import com.banana.Bathbomb.service.ItemService;
+import com.banana.Bathbomb.service.SubscribeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +76,16 @@ public class ItemController {
 
         model.addAttribute("resultCode", resultCode);
         return "/shop/addItemChk";
+    }
+
+    @GetMapping("/shopItem")
+    public String shopItem(@RequestParam("itemUid") int itemUid, HttpSession session, Model model){
+
+        Item item = itemService.findItemByUid(itemUid);
+
+        model.addAttribute("item", item);
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+        return "/shop/shopItem";
     }
 
 }

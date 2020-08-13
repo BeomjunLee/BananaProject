@@ -48,9 +48,10 @@ public class ItemRepository {
     /**
      * 상품 검색 by uid
      */
-    public List<Item> selectByUid(int itemUid){
+    public Item selectByUid(int itemUid){
         List<Item> result = jdbcTemplate.query("select * from item where item_uid = ?", itemRowMapper(), itemUid);
-        return result;
+        if(result.isEmpty()) return null;
+        else return result.get(0);
     }
 
     /**

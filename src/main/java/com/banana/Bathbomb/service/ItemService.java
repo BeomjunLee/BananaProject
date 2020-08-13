@@ -60,7 +60,7 @@ public class ItemService {
     /**
      * 상품 검색 by uid
      */
-    public List<Item> findItemByUid(int itemUid){
+    public Item findItemByUid(int itemUid){
         return itemRepository.selectByUid(itemUid);
     }
 

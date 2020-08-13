@@ -290,4 +290,6 @@ public class ReviewBoardController {
         model.addAttribute("resultCode", resultCode);
         return "/board/reviewDelete";
     }
+
+
 }

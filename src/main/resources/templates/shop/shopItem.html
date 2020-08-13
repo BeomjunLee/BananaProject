@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>BATHDAL :: A Special Day</title>
+	<th:block th:if="${sessionId == null}">
+		<th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+	</th:block>
+	<th:block th:unless="${sessionId == null}">
+		<th:block th:insert="/fragments/header1"></th:block>
+	</th:block>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Colo Shop Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/webapp/styles/bootstrap4/bootstrap.min.css">
+<link href="/webapp/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/webapp/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/webapp/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/webapp/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" href="/webapp/plugins/themify-icons/themify-icons.css">
+<link rel="stylesheet" type="text/css" href="/webapp/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/webapp/styles/single_styles.css">
+<link rel="stylesheet" type="text/css" href="/webapp/styles/single_responsive.css">
+</head>
+
+<body>
+
+<div class="super_container">
+
+
+	<div class="fs_menu_overlay"></div>
+
+	<div class="container single_product_container">
+
+		<div class="row">
+			<div class="col-lg-7">
+				<div class="single_product_pics">
+					<div class="row">
+						<div class="col-lg-9 image_col order-lg-2 order-1">
+							<div class="single_product_image">
+								<img style=" width: 500px; height: 500px;" th:src="@{/webapp/file/} + ${item.getItemImage()}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="product_details">
+					<div class="product_details_title">
+						<h2 th:text="${item.getItemName()}"></h2><br>
+						<h5 th:text="|STOCK : ${item.getItemStock()}|"></h5>
+						<br><br>
+						<p th:text="${item.getItemContent()}"></p>
+					</div>
+					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+						<span class="ti-truck"></span><span>free delivery</span>
+					</div>
+					<div class="original_price"></div>
+					<div class="product_price" th:text="${item.getItemPrice()}"></div>
+					<ul class="star_rating">
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li><i class="fa fa-star" aria-hidden="true"></i></li>
+<!--						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>-->
+					</ul>
+					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+						<span>Quantity:</span>
+							<input type="text" size="5" class="quantity_selector">
+						<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+						<div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Tabs -->
+
+	<div class="tabs_section_container">
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="tabs_container">
+						<ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
+							<li class="tab active" data-active-tab="tab_1"><span>Description</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					<!-- Tab Description -->
+
+					<div id="tab_1" class="tab_container active">
+						<div class="row">
+							<div class="col-lg-5 desc_col">
+								<div class="tab_title">
+									<h4>Description</h4>
+								</div>
+								<div class="tab_text_block">
+									<h2 th:text="${item.getItemName()}"></h2>
+									<p>“I loved everything about this bath bomb. The colours were amazing. I felt like I was in the ocean. The smell was refreshing and relaxing at the same time. I loved the way my skin felt too. It was silky and moisturised. I would definitely buy this bath bomb again...." - lozmason_6836440</p>
+								</div>
+								<div class="tab_image">
+									<img th:src="@{/webapp/file/베쓰밤 예시6.jpg}" alt="">
+								</div>
+								<div class="tab_text_block">
+									<p>"Intergalatic is, for me at least, perfect in every way. For an out of this world bathing experience, I like to darken the room, get out the candles, and put on a 'Deep Space' spa playlist; before sinking deep in to glittery blue swirls, water hot, and window letting in a slight, fresh breeze, as the almost intoxicating, minty freshness; combined with subtle sweetness of this bath bomb fill the air. It feels like the most magical planetarium experience imaginable. And, not only is the deep blue, glitteryness that is left completely beautiful, but it also works wonders for your skin. I am always left feeling impossibly relaxed all over, as well as refreshed and rejuvenated." - elzbelz1996</p>
+								</div>
+							</div>
+							<div class="col-lg-5 offset-lg-2 desc_col">
+								<div class="tab_image">
+									<img th:src="@{/webapp/file/ingredient.PNG}" alt="">
+								</div>
+								<div class="tab_text_block">
+									<h2>HOW TO USE</h2>
+									<p>Run the bath and gently place into warm waters for a stellar soak.</p>
+								</div>
+								<div class="tab_image desc_last">
+									<img th:src="@{/webapp/file/베쓰밤예시7.jpg}" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+	<!-- Benefit -->
+
+	<div class="benefit">
+		<div class="container">
+			<div class="row benefit_row">
+				<div class="col-lg-3 benefit_col">
+					<div class="benefit_item d-flex flex-row align-items-center">
+						<div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+						<div class="benefit_content">
+							<h6>free shipping</h6>
+							<p>Suffered Alteration in Some Form</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 benefit_col">
+					<div class="benefit_item d-flex flex-row align-items-center">
+						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+						<div class="benefit_content">
+							<h6>cach on delivery</h6>
+							<p>The Internet Tend To Repeat</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 benefit_col">
+					<div class="benefit_item d-flex flex-row align-items-center">
+						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+						<div class="benefit_content">
+							<h6>45 days return</h6>
+							<p>Making it Look Like Readable</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 benefit_col">
+					<div class="benefit_item d-flex flex-row align-items-center">
+						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+						<div class="benefit_content">
+							<h6>opening all week</h6>
+							<p>8AM - 09PM</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Footer -->
+
+					<footer>
+						<img src="/webapp/image/footer.png" width = "100%" height = "70%">
+					</footer>
+
+
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="js/single_custom.js"></script>
+
+</body>
+
+</html>

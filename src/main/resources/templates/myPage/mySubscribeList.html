@@ -10,6 +10,15 @@
             text-decoration-line: underline;
             text-underline-color: #f26d7d;
             color: #f26d7d;        }
+        .button3 {
+            font-family: 'Bahnschrift';
+            background-color: white;
+            border:1px solid grey;
+            font-size:15px;
+            width: 150px;
+            height: 50px;
+
+        }
     </style>
 </head>
 <body>
@@ -76,6 +85,7 @@
             <span th:text="${subscribe.getSbDeliveryStatus()}"></span>
             <span th:text="${subscribe.getSbPrice()}"></span>
             <span th:text="${subscribe.getSbRegDate()}"></span>
+            <button type="Button" class="button3" onclick="location.href=''">UNSUBSCRIBE</button>
         </th:block>
     </div>
     <div style="text-align: center; margin-top: 50px">

@@ -86,10 +86,10 @@
 
           <div class="col-lg-4 col-md-6 mb-4" th:each="item : ${itemList}">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" style="width: auto; height: auto; max-width: 252px;" th:src="@{/webapp/file/} + ${item.getItemImage()}" alt=""></a> <!-- 700 X 400 -->
+              <a th:href="@{/shopItem(itemUid=${item.getItemUid()})}"><img class="card-img-top" style="width: auto; height: auto; max-width: 252px;" th:src="@{/webapp/file/} + ${item.getItemImage()}" alt=""></a> <!-- 700 X 400 -->
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#" th:text="${item.getItemName()}">상품이름</a>
+                  <a th:href="@{/shopItem(itemUid=${item.getItemUid()})}" th:text="${item.getItemName()}">상품이름</a>
                 </h4>
                 <h5 th:text="${item.getItemPrice()}+won"></h5>
               </div>
