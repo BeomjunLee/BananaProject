@@ -1,168 +1,188 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>BATHDAL :: A Special Day</title>
     <th:block th:if="${sessionId == null}">
-    <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+        <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
     </th:block>
     <th:block th:unless="${sessionId == null}">
-    <th:block th:insert="/fragments/header1"></th:block>
+        <th:block th:insert="/fragments/header1"></th:block>
     </th:block>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/slick.-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/slick.-1.8.1/slick/slick-theme.css"/>
+
+    <script type="text/javascript" src="/jquery/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/slick.-1.8.1/slick/slick.js"></script>
 
     <style>
         body{
             margin : 0;
             padding :0;
             background: white;
-            font-family : 'Bahnschrift';
-            overflow-x: hidden  ;
+            font-family: 'Bahnschrift';
+            overflow-x : hidden;
         }
-        body{
-            margin : 0;
-            padding :0;
-            background: white;
-            font-family : 'Bahnschrift';
-            overflow-x: hidden  ;
-        }
-        img.banner_border{
-            position : absolute;
-            top : 70px;
-        }
-        div.sec1_text{
-            float : left;
-        }
-
-        div.sec1{
-            height: 671px;
-            margin-top: 0;
-            margin-left: 180px;
-            margin-right : 181px;
-            background: #f26d7d;
-            z-index: 0;
-        }
-        h4.banner{
-            position: relative;
-            top: 175px;
-            left: 65%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            color: rgba(255,255,255,0.7);
-            font-size: 1vw;
-            font-family: 'Times';
-            font-weight: 700;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-        h1.banner{
+        hr{
+            border : 1px solid rgba(0,0,0,0.3);
+            width : 30vw;
             position : relative;
-            top : 220px;
-            left : 55%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            color: white;
-            font-size: 7vw;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            white-space: nowrap;
+            right : 14%;
+
         }
-        div.circle {
-            background-color:wheat;
-            width:600px;
-            height:600px;
-            border-radius:380px;
-            text-align:center;
-            margin:0 auto;
-            font-size:12px;
-            vertical-align:middle;
-            line-height:150px;
+        .sec1_container {
             position: relative;
-            top : 600px;
-            left : 400px;
+            height : 850px;
         }
-        
-        div.banner_text{
-            position: absolute;
-            top: 43%;
-            left: 25%;
-            color : #b8b0b0;
-            font-size: 20px;
-            font-family : 'Bahnschrift';
-            text-transform: uppercase;
-            font-weight : 700;
-            font-stretch: 20px;
-            text-align: right;
+        .banner_background_video {
+            height: 850px;
+            object-fit: fill;
+            z-index: 1;
         }
-        span#stress{
-            color: white;
-        }
-
-        div.video_container{
-            position : absolute;
-            top : 70px;
-            left : 1135px;
-            z-index: 2;
-        }
-
-
-        div.description{
-            position :relative;
-            top : 110px;
-        }
-        div.sec2_text{        
-            text-align : justify;
-            position: absolute;
-            left : 700px;
-            font-size: 20px;
-            margin-right: 200px;
-            color: grey;
-        }
-        img.sec2_png{
-            position : absolute;
-            top : -40px;
-            left : 220px;
-        }
-
-        
-        div.sec3_text{
-            text-align : justify;
-            position: absolute;
-            top : 400px;    
-            right: 700px;
-            font-size: 20px;
-            margin-left: 200px;
-            color: grey;
-        }
-        img.sec3_png{
-            position: absolute;
-            top : 350px;
-            left : 1170px;
-        }
-
-
-        div.sec4{
-            position: relative;
-            top : 820px;
-            width : auto;
-            height :540px;
-            background-color : #f26d7d;
-        }
-        div.sec4_png{
-            position : relative;
-            left : 500px;
-        }
-        div.sec4_text{
-            position : relative;
-            text-align: center;
+        .sec1_text{
             color : white;
-            font-size : 40px;
-            top : 30px;
+            z-index: 2;
+            text-align: center;
+        }
+        #sec1_text1{
+            position: absolute;
+            font-size: 50px;
+            top:50%;
+            left:5%;
+            text-align : left;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #000000;
+        }
+        #sec1_text2{
+            position: absolute;
+            font-size: 30px;
+            top:72%;
+            left:5%;
+            text-shadow: 1px 1px 1px #000000;
         }
 
+        .sec4_bathdal{
+            position: relative;
+            height : 500px;
+            top : 100px;
+        }
+        .sec4_container{
+            position : relative;
+            top : 200px;
+            height : 500px;
+            width : 1200px;
+            left : 50%;
+            transform : translate(-50%, -50%);
+        }
+        #logo2 {
+            position: relative;
+            bottom : 520px;
+        }
+        #logo3{
+            position: relative;
+            bottom : 1030px;
+        }
+        .sec4_text{
+            position: relative;
+            bottom : 1160px;
+            color : dimgrey;
+            font-size: 20px;
+            text-align: center;
+        }
 
+        .sec2_container{
+            position : relative;
+            left : 63%;
+            transform: translate(-50%, -50%);
+            top : 500px;
+        }
+
+        .sec3_theme_box {
+            position: relative;
+            top: 300px;
+            width: auto;
+            height: 540px;
+            background-color: #f26d7d;
+        }
+        .sec3_image{
+            position: relative;
+            left: 37%;
+            animation: box 2s infinite linear;;
+        }
+        @keyframes box{
+            0%, 50%{
+                transform: rotate(0deg);
+            }
+            5%, 15%, 25%, 35%, 45% {
+                transform: rotate(13deg);
+            }
+            10%, 20%, 30%, 40% {
+                transform: rotate(-13deg);
+            }
+        }
+        .sec3_title{
+            position: relative;
+            left : 32%;
+            top : 20px;
+            color : #3d3d3d;
+            font-size: 45px;
+            font-family : "Tmon몬소리 Black";
+            font-weight: bold;
+        }
+        .sec3_theme{
+            position: relative;
+            left : 36%;
+            top : 50px;
+            color : white;
+            font-family : Georgia;
+            font-size: 30px;
+        }
+
+        .sec5_container{
+            position : relative;
+            left : 14%;
+            top : 450px;
+            height : 500px;
+            weight : 1000px;
+        }
+        .review_title{
+            left : 5%;
+        }
+        .sec5_review_slide{
+            position: relative;
+            bottom : 300px;
+            height : 550px;
+        }
+        .sec5_review_slide::after{
+            clear: both;
+            display: block;
+            content: '';
+        }
+        .template{
+            width : 400px;
+            height :500px;
+            border: 1px solid grey;
+            padding : 20px 20px 20px 20px;
+            float : left;
+            margin-right : 10px;
+        }
+        .template_img{
+            background-color: antiquewhite;
+            object-fit: cover;
+        }
+        .template_id {
+            background-color: aqua;
+            width :400px;
+            height : 30px;
+        }
+        .template_content{
+            background-color: aquamarine;
+            width : 400px;
+            height :120px;
+            word-break: break-all;
+        }
 
         button{
             border : 3px solid  #f26d7d;
@@ -178,7 +198,7 @@
             border-radius: 4px;
             transition-duration: 0.2s;
             position : relative;
-            top : 285px;    
+            top : 285px;
             left : 80px;
             color : white;
         }
@@ -195,163 +215,217 @@
             width: 0;
         }
         button:hover::after{
-            width: 60%; 
+            width: 60%;
             left: 21%;
         }
-
         div.button_container{
             position : relative;
-            top : 900px;  
-            left : 40%; 
+            top : 900px;
+            left : 40%;
         }
-
         div.subscribe_container{
             background-color :#fae3d9;
             border-radius: 4px;
             width : 360px;
             height : 420px;
             position : relative;
+            bottom : 560px;
         }
-
-        div.sec5_text{
+        div.sec6_text{
             position :relative;
             top : 30px;
             text-align: center;
             color : white;
         }
-        
-
-        div.sec6{
-            height : 550px;
-            position : relative;
-            top : 700px;
-        }
-        hr{
-        }
-        h2.sec6_title{
-            color :#f26d7d;
-            font-size:40px;
-            text-align: center;
-        }
-
 
         footer{
             position: relative;
             top : 800px;
         }
-
     </style>
 </head>
+
 <body>
-        <div class = "sec1">
-            <div class = "sec1_text">
-                <h4 class = "banner" style = "text-decoration: underline;">BATH SUBSCRIPTION SERVICE</h4>
-                <h1 class= "banner">BATHDAL</h1>
-            </div>
-            <div class = "video_container">
-                <video class = "banner_background_video" width = "125.7%" height = "auto" loop data-video="0" autoplay = "autoplay" muted = "muted">
-                    <source src = "/webapp/image/banner_video.mp4" type = "video/mp4">
-                </video>
-            </div>
-            <div class = "banner_text">
-                To Bring<br> a <span id ="stress">Friendly</span> & <span id ="stress">Luxurious</span> Experience<br> To Your <span id ="stress">Bathroom</span> !
-            </div>
-            <div class = "circle">
-            </div>
-            
+<div class = "main_container">
+    <div class = "sec1_container">
+        <div class = "sec1_video_container">
+            <video class = "banner_background_video" width = "100%" height = "auto" loop data-video="0" autoplay = "autoplay" muted = "muted">
+                <source src = "/webapp/image/bathbomb_goddess.mp4" type = "video/mp4">
+            </video>
         </div>
+        <div class = "sec1_text" id = "sec1_text1">
+            TO BRING <br>A FRIENDLY & LUXURIOUS EXPERIENCE <br>TO YOUR BATHROOM!
+        </div>
+        <div class = "sec1_text" id = "sec1_text2">
+            WITH BATHDAL, YOUR DAY WILL BE SPECIAL ONCE A MONTH
+        </div>
+    </div>
 
-        <div class = "description">
-            <div class = "sec2">
-                <div class = "block" data-aos="fade-up">
-                    <img class = "sec2_png" src ="/webapp/image/bathbomb.png" width = "27%"></img>
-                </div>
-                <div class = "sec2_text">
-                    <h2 style= "color: black;">BATH BOMB</h2>
-                    <div>
-                        Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+    <div class = "sec4_bathdal">
+        <hr class = "line">
+        <div class = "sec4_container">
+            <img src="/webapp/image/bathdal_logo_1.png" class = "sec4_logo" id = "logo1" width = "100%">
+            <img src="/webapp/image/bathdal_logo2.png" class = "sec4_logo" id = "logo2" width = "100%" data-aos="fade-up">
+            <img src="/webapp/image/bathdal_logo3.png" class = "sec4_logo" id = "logo3" width = "100%" data-aos="fade-up">
+            <p class = "sec4_text">
+                BATHDAL is a compound of "Bath" and "Dal", having a two meaning of Month and Moon.
+                <br>With our theme box we are sending once a month, <br>we promise one day with beautiful moon will be a special day only for yourself
+            </p></div>
+
+    </div>
+
+    <div class = "sec2_features">
+        <div class = "sec2_container">
+            <hr class = "line">
+            <div class = "sec2_image_container">
+                <img src = "/webapp/image/features.png" class = "feature_image" width = "70%" height = "auto">
+            </div>
+        </div>
+    </div>
+
+    <div class = "sec3_theme_box">
+        <div class = "sec3_container">
+            <div class = "sec3_title">WHAT'S FOR THIS MONTH?</div>
+            <div class = "sec3_theme">SUMMER EDITION :: VACANCE!</div>
+            <img class = "sec3_image" src = "webapp/image/question_box.png">
+        </div>
+    </div>
+
+    <div class = "sec"6_subscribe>
+        <div class = "button_container">
+            <div class = "subscribe">
+                <div class = "subscribe_container">
+                    <div class = "sec6_text">
+                        <h2 style = "color: black;">NOT SUBSCRIBED YET?</h2>
+                        <p>
+
+                        </p>
                     </div>
+                    <button type = "button" class= "subscribe" id="subscribeBtn" onclick="subscribeClick()">
+                        SUBSCRIBE
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class = "sec3">
-                <div class = "block" data-aos="fade-up">
-                    <img class = "sec3_png" src ="/webapp/image/natural_soap_3.png" width = "32%">
-                </div>
-                <div class = "sec3_text">
-                    <h2 style = "text-align: right; color: black;">NATURAL SOAP</h2>
-                    <div>
-                        Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+    <div class = "sec5_review">
+        <div class = "sec5_container">
+            <hr class = "line">
+            <img src = "/webapp/image/review_title.png" class = "review_title" width = "70%">
+            <div class = "sec5_review_slide">
+                <div class = "template">
+                    <div class = "template_img">
+                        <img src = "/webapp/image/1.png" width = "400px" height = "300px">
                     </div>
+                    <p class = "template_id">
+                        id
+                    </p>
+                    <p class = "template_content">
+                        example
+                    </p>
+                </div>
+                <div class = "template">
+                    <div class = "template_img">
+                        <img src = "/webapp/image/2.png" width = "400px" height = "300px">
+                    </div>
+                    <p class = "template_id">
+                        id
+                    </p>
+                    <p class = "template_content">
+                        example
+                    </p>
+                </div>
+                <div class = "template">
+                    <div class = "template_img">
+                        <img src = "/webapp/image/3.png" width = "400px" height = "300px">
+                    </div>
+                    <p class = "template_id">
+                        id
+                    </p>
+                    <p class = "template_content">
+                        example
+                    </p>
                 </div>
             </div>
         </div>
-        
-        <div class = "sec4">
-            <div class = "sec4_text" data-aos="fade-up">
-                WHAT'S FOR THIS MONTH?
-            </div>
-            <img class = "sec4_png" src = "/webapp/image/question_box.png">
-        </div>
+    </div>
+</div>
 
-        <div class = "sec5">
-            <div class = "button_container">
-                <div class = "subscribe">  
-                    <div class = "subscribe_container">
-                        <div class = "sec5_text">
-                            <h2 style = "color: black;">NOT SUBSCRIBED YET?</h2>
-                            <p>
-    
-                            </p>
-                        </div>  
-                        <button type = "button" class= "subscribe" id="subscribeBtn" onclick="subscribeClick()">
-                            SUBSCRIBE
-                        </button>
-                    </div>            
-                </div>
-            </div>
-        </div>
+<footer>
+    <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
+</footer>
 
-        <div class = "sec6">
-            <hr width = "500px" height = "30px">
-            <h2 class = "sec6_title">REVIEW</h2>
-        </div>
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5f1d696c4eb6fc4a189ae4e7/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script th:inline="javascript">
+    AOS.init({
+        duration:1500
+    });
+</script>
+<!--End Of AOS Script-->
+<script>
+    $(function(){
+        $('.sec5_review_slide').slick({
+            slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+            infinite : true, 	//무한 반복 옵션
+            slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+            slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+            speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+            arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+            dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+            autoplay : true,			// 자동 스크롤 사용 여부
+            autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+            pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+            vertical : false,		// 세로 방향 슬라이드 옵션
+            prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+            nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+            dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+            draggable : true, 	//드래그 가능 여부
 
-        <footer>
-            <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
-        </footer>
-
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src='https://embed.tawk.to/5f1d696c4eb6fc4a189ae4e7/default';
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
-            })();
-
-        </script>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script th:inline="javascript">
-            AOS.init({
-                duration:1500
-            });
-
-        <!--End of Tawk.to Script-->
-
-
-            //구독구매창 눌렀을때 로그인 안하면 못가게
-            session = [[${sessionId}]];
-            function subscribeClick(){
-                if(session == null){
-                    alert("Please login first");
-                }else{
-                    location.href="/subscribe/subscribe";
+            responsive: [ // 반응형 웹 구현 옵션
+                {
+                    breakpoint: 960, //화면 사이즈 960px
+                    settings: {
+                        //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                        slidesToShow:3
+                    }
+                },
+                {
+                    breakpoint: 768, //화면 사이즈 768px
+                    settings: {
+                        //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                        slidesToShow:2
+                    }
                 }
-            }
-        </script>
-    </body>
+            ]
+
+        });
+</script>
+<!--End Of Slick Script-->
+
+
+<script>
+    //구독구매창 눌렀을때 로그인 안하면 못가게
+    session = [[${sessionId}]];
+    function subscribeClick(){
+        if(session == null){
+            alert("Please login first");
+        }else{
+            location.href="/subscribe/subscribe";
+        }
+    }
+</script>
+</body>
 </html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:if="${sessionId == null}">
+        <th:block th:insert="/fragments/header"></th:block> <!-- 헤더 -->
+    </th:block>
+    <th:block th:unless="${sessionId == null}">
+        <th:block th:insert="/fragments/header1"></th:block>
+    </th:block>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        body{
+            margin : 0;
+            padding :0;
+            background: white;
+            font-family : 'Bahnschrift';
+            overflow-x: hidden  ;
+        }
+        div.sec1_text{
+            float : left;
+        }
+        div.sec1{
+            height: 500px;
+            z-index: 0;
+            position : relative;
+            bottom : 200px;
+        }
+        h4.banner{
+            position: relative;
+            top: 175px;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            color: rgba(255,255,255,0.7);
+            font-size: 1vw;
+            font-family: 'Times';
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        h1.banner{
+            position : relative;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            color: white;
+            font-size: 7vw;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        div.circle {
+            background-color:wheat;
+            width:600px;
+            height:600px;
+            border-radius:380px;
+            text-align:center;
+            margin:0 auto;
+            font-size:12px;
+            vertical-align:middle;
+            line-height:150px;
+            position: relative;
+            top : 600px;
+            left : 400px;
+        }
+        div.banner_text{
+            position: relative;
+            top: 43%;
+            left: 25%;
+            color : #b8b0b0;
+            font-size: 20px;
+            font-family : 'Bahnschrift';
+            text-transform: uppercase;
+            font-weight : 700;
+            font-stretch: 20px;
+            text-align: right;
+            z-index: 2;
+        }
+        div.video_container{
+            position : relative;
+            z-index: 2;
+            left :0;
+            top : 0;
+        }
+        .banner_background_video{
+            height : 850px;
+            object-fit: fill;
+            z-index: 1;
+        }
+
+        .sec2{
+            position: relative;
+            top : 300px;
+        }
+        div.description{
+            position :relative;
+            top : 110px;
+        }
+        div.sec2_text{
+            text-align : justify;
+            position: absolute;
+            left : 700px;
+            font-size: 20px;
+            margin-right: 200px;
+            color: grey;
+        }
+        img.sec2_png{
+            position : absolute;
+            top : -40px;
+            left : 220px;
+        }
+
+
+        div.sec3_text{
+            text-align : justify;
+            position: absolute;
+            top : 400px;
+            right: 700px;
+            font-size: 20px;
+            margin-left: 200px;
+            color: grey;
+        }
+        img.sec3_png{
+            position: absolute;
+            top : 350px;
+            left : 1170px;
+        }
+
+
+        div.sec4{
+            position: relative;
+            top : 820px;
+            width : auto;
+            height :540px;
+            background-color : #f26d7d;
+        }
+        div.sec4_png{
+            position : relative;
+            left : 500px;
+        }
+        div.sec4_text{
+            position : relative;
+            text-align: center;
+            color : white;
+            font-size : 40px;
+            top : 30px;
+        }
+
+
+
+        button{
+            border : 3px solid  #f26d7d;
+            background-color : #f26d7d;
+            padding : 18px 48px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-family: 'Bahnschrift';
+            border-radius: 4px;
+            transition-duration: 0.2s;
+            position : relative;
+            top : 285px;
+            left : 80px;
+            color : white;
+        }
+        button::after{
+            background: none repeat scroll 0 0 transparent;
+            bottom: 15px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            background: #fff;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            width: 0;
+        }
+        button:hover::after{
+            width: 60%;
+            left: 21%;
+        }
+
+        div.button_container{
+            position : relative;
+            top : 900px;
+            left : 40%;
+        }
+
+        div.subscribe_container{
+            background-color :#fae3d9;
+            border-radius: 4px;
+            width : 360px;
+            height : 420px;
+            position : relative;
+        }
+
+        div.sec5_text{
+            position :relative;
+            top : 30px;
+            text-align: center;
+            color : white;
+        }
+
+
+        div.sec6{
+            height : 550px;
+            position : relative;
+            top : 700px;
+        }
+        hr{
+        }
+        h2.sec6_title{
+            color :#f26d7d;
+            font-size:40px;
+            text-align: center;
+        }
+
+
+        footer{
+            position: relative;
+            top : 800px;
+        }
+
+    </style>
+</head>
+<body>
+<div class = "sec1">
+    <div class = "sec1_text">
+        <h4 class = "banner" style = "text-decoration: underline;">BATH SUBSCRIPTION SERVICE</h4>
+        <h1 class= "banner">BATHDAL</h1>
+    </div>
+    <div class = "video_container">
+        <video class = "banner_background_video" width = "100%" height = "auto" loop data-video="0" autoplay = "autoplay" muted = "muted">
+            <source src = "/webapp/image/bathbomb_goddess.mp4" type = "video/mp4">
+        </video>
+    </div>
+    <div class = "banner_text">
+        TO BRING A FRIENDLY & LUXURIOUS EXPERIENCE TO YOUR BATHROOM !
+    </div>
+    <div class = "circle">
+    </div>
+
+</div>
+
+<div class = "description">
+    <div class = "sec2">
+        <div class = "block" data-aos="fade-up">
+            <img class = "sec2_png" src ="/webapp/image/bathbomb.png" width = "27%"></img>
+        </div>
+        <div class = "sec2_text">
+            <h2 style= "color: black;">BATH BOMB</h2>
+            <div>
+                Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+            </div>
+        </div>
+    </div>
+
+    <div class = "sec3">
+        <div class = "block" data-aos="fade-up">
+            <img class = "sec3_png" src ="/webapp/image/natural_soap_3.png" width = "32%">
+        </div>
+        <div class = "sec3_text">
+            <h2 style = "text-align: right; color: black;">NATURAL SOAP</h2>
+            <div>
+                Settle in for a good soak with a bathbomb, exploding with essential oils and tons of fizzy fun. Whether you're after a relaxing, petal-laden floral soak or an invigorating multilayered explosion of color and scent, there's a bath bomb perfect for every bathing experience.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class = "sec4">
+    <div class = "sec4_text" data-aos="fade-up">
+        WHAT'S FOR THIS MONTH?
+    </div>
+    <img class = "sec4_png" src = "/webapp/image/question_box.png">
+</div>
+
+<div class = "sec5">
+    <div class = "button_container">
+        <div class = "subscribe">
+            <div class = "subscribe_container">
+                <div class = "sec5_text">
+                    <h2 style = "color: black;">NOT SUBSCRIBED YET?</h2>
+                    <p>
+
+                    </p>
+                </div>
+                <button type = "button" class= "subscribe" id="subscribeBtn" onclick="subscribeClick()">
+                    SUBSCRIBE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class = "sec6">
+    <hr width = "500px" height = "30px">
+    <h2 class = "sec6_title">REVIEW</h2>
+</div>
+
+<footer>
+    <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
+</footer>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5f1d696c4eb6fc4a189ae4e7/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+
+</script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script th:inline="javascript">
+    AOS.init({
+        duration:1500
+    });
+
+    <!--End of Tawk.to Script-->
+
+
+    //구독구매창 눌렀을때 로그인 안하면 못가게
+    session = [[${sessionId}]];
+    function subscribeClick(){
+        if(session == null){
+            alert("Please login first");
+        }else{
+            location.href="/subscribe/subscribe";
+        }
+    }
+</script>
+</body>
+</html>
