@@ -24,34 +24,37 @@
     height:100px;
     }
 
-    .selection{
-    text-align:center;
-    }
-
-    .selection div{
+    #resultabout{
     border:5px solid pink;
     text-align:center;
-    padding:10px;
-    margin:30px;
-    width:250px;
+    padding:50px;
+    margin:40px;
+    width:300px;
     top:50%;
     left:50%;
     margin:auto;
-    margin-bottom:35px;
     }
 
-    .selection div h2{
+    #resultabout h2{
     color:#F65A79;
     }
 
-    .selection div h3{
+    #resultabout h3
+    {
     color:gray;
+    }
+
+    #next{
+    text-align:center;
+    top:50%;
+    left:50%;
+    margin:auto;
     }
 
     button{
     border:3px solid #f26d7d;
     background-color:#f26d7d;
-    padding:10px 20px;
+    padding:8px 15px;
     text-align:center;
     text-decoration:none;
     display:inline-block;
@@ -62,13 +65,13 @@
     border-radius:4px;
     transition-duration:0.2s;
     position:relative;
-    top:3px;
+    top:20px;
     color:white;
     }
 
     button::after{
     background:none repeat scroll 0 0 transparent;
-    bottom:10px;
+    bottom:7px;
     content:"";
     display:block;
     height:2px;
@@ -93,28 +96,23 @@
 <body>
 
 <div class="progress">
-    <div id="type"><img src="/webapp/image/typeSelect.png"></img></div>
-    <div id="result"><img src="/webapp/image/result.png"></img></div>
+    <div id="type"><img src="/webapp/image/type.png"></img></div>
+    <div id="result"><img src="/webapp/image/resultSelect.png"></img></div>
     <div id="payment"><img src="/webapp/image/payment.png"></img></div>
 </div>
 
-<h2 style="text-align:center">Please select the payment type you want.</h2>
+<h2 style="text-align:center">Please check your payment information.</h2>
 
-<div class="selection">
-    <div id="typeselect1">
-        <h2>For me</h2>
-        <h3>Give it to yourself regularly!</h3>
-        <button type = "button" onclick="location.href='/subscribe/subscribeResult'">
-            MONTHLY PAYMENT
-        </button>
-    </div>
-    <div id="typeselect2">
-        <h2>For Others</h2>
-        <h3>Give it to someone precious around you!</h3>
-        <button type = "button" onclick="location.href='/subscribe/subscribeResult2'">
-            ONE TIME GIFT
-        </button>
-    </div>
+<div id="resultabout">
+    <h2>One time payment</h2>
+    <h3>Just take this opportunity to experience our subscription service one time.</h3>
+    <h2 th:text="|${charge} won/month|"></h2>
+</div>
+
+<div id="next">
+    <button type = "button" onclick="location.href='/subscribe/subscribeInfo'">
+        NEXT
+    </button>
 </div>
 
 <footer>
