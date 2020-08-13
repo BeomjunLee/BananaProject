@@ -63,6 +63,13 @@ public class ReviewBoardRepository {
         List<ReviewBoard> result = jdbcTemplate.query("select * from review_board where member_uid = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), memberUid, startIndex, pageSize);
         return result;
     }
+    /**
+     * 홈배너 리뷰 3개출력
+     */
+    public List<ReviewBoard> selectThreeReview(){
+        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), 0, 3);
+        return result;
+    }
 
     /**
      * 리뷰 글 수정 update

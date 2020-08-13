@@ -105,6 +105,7 @@
             width: auto;
             height: 540px;
             background-color: #f26d7d;
+            /*background-color: #d8bfd8;*/
         }
         .sec3_image{
             position: relative;
@@ -173,12 +174,10 @@
             object-fit: cover;
         }
         .template_id {
-            background-color: aqua;
             width :400px;
             height : 30px;
         }
         .template_content{
-            background-color: aquamarine;
             width : 400px;
             height :120px;
             word-break: break-all;
@@ -287,7 +286,7 @@
         <div class = "sec3_container">
             <div class = "sec3_title">WHAT'S FOR THIS MONTH?</div>
             <div class = "sec3_theme">SUMMER EDITION :: VACANCE!</div>
-            <img class = "sec3_image" src = "webapp/image/question_box.png">
+            <img class = "sec3_image" src = "/webapp/image/question_box.png">
         </div>
     </div>
 
@@ -314,46 +313,26 @@
             <hr class = "line">
             <img src = "/webapp/image/review_title.png" class = "review_title" width = "70%">
             <div class = "sec5_review_slide">
-                <div class = "template">
+
+                <div class = "template" th:each="board : ${boardList}">
                     <div class = "template_img">
-                        <img src = "/webapp/image/1.png" width = "400px" height = "300px">
+                        <img th:src = "@{/webapp/file/} + ${board.getRvBoardFile()}" width = "400px" height = "300px">
                     </div>
-                    <p class = "template_id">
+                    <h3 class = "template_id" th:text="${board.getRvBoardWriter()}">
                         id
-                    </p>
-                    <p class = "template_content">
+                    </h3>
+                    <p class = "template_content" th:text="${board.getRvBoardContent()}">
                         example
                     </p>
                 </div>
-                <div class = "template">
-                    <div class = "template_img">
-                        <img src = "/webapp/image/2.png" width = "400px" height = "300px">
-                    </div>
-                    <p class = "template_id">
-                        id
-                    </p>
-                    <p class = "template_content">
-                        example
-                    </p>
-                </div>
-                <div class = "template">
-                    <div class = "template_img">
-                        <img src = "/webapp/image/3.png" width = "400px" height = "300px">
-                    </div>
-                    <p class = "template_id">
-                        id
-                    </p>
-                    <p class = "template_content">
-                        example
-                    </p>
-                </div>
+
             </div>
         </div>
     </div>
 </div>
 
 <footer>
-    <img src="../../webapp/image/footer.png" width = "100%" height = "70%">
+    <img src="/webapp/image/footer.png" width = "100%" height = "70%">
 </footer>
 
 <script type="text/javascript">
@@ -416,7 +395,7 @@
 <!--End Of Slick Script-->
 
 
-<script>
+<script th:inline="javascript">
     //구독구매창 눌렀을때 로그인 안하면 못가게
     session = [[${sessionId}]];
     function subscribeClick(){
