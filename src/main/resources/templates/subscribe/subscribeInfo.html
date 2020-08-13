@@ -27,7 +27,7 @@
     .payform{
     border:5px solid pink;
     width:500px;
-    height:1000px;
+    height:1100px;
     padding:15px;
     top:50%;
     left:50%;
@@ -139,6 +139,24 @@
         width : 250px;
     }
 
+    .name{
+    color:#f26d7d;
+    }
+    .phonenum{
+    color:#f26d7d;
+    }
+    .cardnum{
+    color:#f26d7d;
+    }
+    .cardexpdate{
+    color:#f26d7d;
+    }
+    .cardcode{
+    color:#f26d7d;
+    }
+    .cardpw{
+    color:#f26d7d;
+    }
     .Postcode{
         width:100px;
     }
@@ -221,14 +239,17 @@
                     <div id = "id_pw">
                         <div class="name">NAME *</div>
                         <a th:text="${member.getMemberName()}"></a>
+                        <br><br>
 
                         <div class="phonenum">Phone number *</div>
                         <a th:text="${member.getMemberPhoneNum()}"></a>
+                        <br><br>
 
                         <div class="Postcode">
                             <input type="text" class="signupForm" id="postcode" size="10">
                             <label for="postcode">Post code</label><input type="button" onclick="openDaumPostcode()" value="SEARCH">
                         </div>
+                        <br>
 
                         <div class="addr">
                             <input type="text" class="signupForm" id="address" name="addressA" size="30">
@@ -251,16 +272,19 @@
                             <br>
                             <input type="text" class="signupForm" id="num1" placeholder="XXXX"><input type="text" class="signupForm" id="num2" placeholder="XXXX"><input type="text" class="signupForm" id="num3" placeholder="XXXX"><input type="text" class="signupForm" id="num4" placeholder="XXXX">
                         </div>
+                        <br>
 
                         <div class="cardexpdate">Card expiration date
                             <br>
                             <input type="text" class="signupForm" id="date1" placeholder="MM"><input type="text" class="signupForm" id="date2" placeholder="YY">
                         </div>
+                        <br>
 
                         <div class="cardcode">Security Code
                             <br>
                             <input type="password" class="signupForm" id="security" size="1">
                         </div>
+                        <br>
 
                         <div class="cardpw">First two digits of the card password
                             <br>
