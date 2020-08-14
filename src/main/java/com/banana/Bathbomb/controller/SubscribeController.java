@@ -123,4 +123,21 @@ public class SubscribeController {
 //
 //        return "/subscribe/unSubscribe";
 //    }
+
+
+    /**
+     * 설문조사
+     */
+    @GetMapping("/subscribe/subscribeSurvey")
+    public String subscribeSurvey(){
+        return "/subscribe/subscribeSurvey";
+    }
+
+    /**
+     * 설문결과
+     */
+    @GetMapping("/subscribe/subscribeResult2")
+    public String subscribeR(){
+        return "/subscribe/subscribeResult2";
+    }
 }

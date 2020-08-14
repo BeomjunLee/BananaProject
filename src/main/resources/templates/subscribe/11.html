@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
+    <style>
+    .progress{
+    margin:100px;
+    text-align:center;
+     }
+
+    .progress div{
+    border:5px solid pink;
+    display:inline;
+    padding:5px;
+    margin:40px;
+    }
+
+    #survey{
+    border:5px solid #F65A79;
+    }
+
+    div.buttonSub
+    {
+    margin: auto;
+    width: 50%;
+    }
+
+    div.button input
+    {
+    padding: 5px;
+    width: 100%;
+    font-size: 18px;
+    }
+
+    .sub{
+    text-align:center;
+    }
+
+    .sub a{
+    border:5px solid pink;
+    display:inline;
+    }
+    </style>
+</head>
+<body>
+
+
+<div class="progress">
+    <div id="survey">survey</div>
+</div>
+
+<h2 style="text-align:center">Please answer this survey.</h2>
+<div>1. 어떤 상품을 원하시나요?</div><br><br>
+<div>2. 어떤 색깔을 선호하시나요?</div><br><br>
+<div>3. 사용 목적은 무엇인가요?</div><br><br>
+<div>4. 어떤 향을 좋아하시나요?</div><br><br>
+<div>5. 어떤 향을 싫어하시나요?</div><br><br>
+<div>6. 어떤 성분을 원하시나요?</div><br><br>
+
+<div class="sub"><a href="/subscribe/subscribeResult2">SUBMISSION</a></div>
+
+</body>
+</html>

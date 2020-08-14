@@ -6,25 +6,41 @@
     <title>BATHDAL :: A Special Day</title>
     <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
     <style>
-    h3{
-    color:gray;
+    .progress{
+    margin:50px;
+    margin-top:80px;
+    margin-bottom:20px;
+    text-align:center;
+     }
+
+    .progress div{
+    display:inline;
+    padding:5px;
+    margin:40px;
     }
 
-    #recomabout{
+    .progress img{
+    width:100px;
+    height:100px;
+    }
+
+    #resultabout{
     border:5px solid pink;
-    padding:20px;
+    text-align:center;
+    padding:50px;
     margin:40px;
-    width:600px;
+    width:300px;
     top:50%;
     left:50%;
     margin:auto;
     }
 
-    #recomabout a{
+    #resultabout h2{
     color:#F65A79;
     }
 
-    #recomabout h3{
+    #resultabout h3
+    {
     color:gray;
     }
 
@@ -33,20 +49,6 @@
     top:50%;
     left:50%;
     margin:auto;
-    }
-
-    .rec1{
-    margin-top:30px;
-    margin-bottom:50px;
-    }
-    .rec2{
-    margin-bottom:50px;
-    }
-    .rec3{
-    margin-bottom:50px;
-    }
-    .rec4{
-    margin-bottom:50px;
     }
 
     button{
@@ -86,39 +88,28 @@
     }
 
     footer{
-    position: relative;
-    top : 800px;
-    }
+            position: relative;
+            top : 800px;
+        }
     </style>
 </head>
 <body>
 
-<h2 style="text-align:center">Thank you for using our recommendation service.</h2>
-<h3 style="text-align:center">The survey results are as follows.</h3>
+<div class="progress">
+    <div id="type"><img src="/webapp/image/type.png"></img></div>
+    <div id="result"><img src="/webapp/image/resultSelect.png"></img></div>
+    <div id="payment"><img src="/webapp/image/payment.png"></img></div>
+</div>
 
+<h2 style="text-align:center">Please check your payment information.</h2>
 
-<div id="recomabout">
-    <div class="Recommand">
-        <div class="rec1">
-            <img src="/webapp/image/bathbomb1.png">
-        </div>
-        <div class="rec2">
-            <img src="/webapp/image/bathbomb2.png">
-        </div>
-        <div class="rec3">
-            <img src="/webapp/image/bathbomb3.png">
-        </div>
-        <div class="rec4">
-            <img src="/webapp/image/bathbomb4.png">
-        </div>
-    </div>
-
+<div id="resultabout">
+    <h2>One time payment</h2>
+    <h3>Just take this opportunity to experience our subscription service one time.</h3>
+    <h2 text="20000 won/month"></h2>
 </div>
 
 <div id="next">
-    <button type = "button" onclick="location.href='/subscribe/subscribeSurvey'">
-        AGAIN
-    </button>
     <button type = "button" onclick="location.href='/'">
         HOME
     </button>
