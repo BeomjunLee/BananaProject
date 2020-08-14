@@ -103,13 +103,15 @@
             position: relative;
             top: 300px;
             width: auto;
-            height: 540px;
+            height: 600px;
             background-color: #f26d7d;
         }
         .sec3_image{
             position: relative;
             left: 37%;
             animation: box 2s infinite linear;;
+            bottom : 230px;
+            width : 400px;
         }
         @keyframes box{
             0%, 50%{
@@ -134,12 +136,17 @@
         .sec3_theme{
             position: relative;
             left : 36%;
-            top : 50px;
             color : white;
+            top : 30px;
             font-family : Georgia;
             font-size: 30px;
         }
-
+        .sec3_image2{
+            width : 70%;
+            position: relative;
+            bottom : 30px;
+            right : 220px;
+        }
         .sec5_container{
             position : relative;
             left : 14%;
@@ -237,7 +244,24 @@
             text-align: center;
             color : white;
         }
-
+        .sec6_go_to_shop{
+            position: relative;
+            top : 340px;
+            right : 10px;
+            text-align: center;
+            color : grey;
+            font-size: 20px;
+        }
+        .sec6_hyperlink{
+            position: relative;
+            top : 330px;
+            left : 44%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color : #f26d7d;
+            font-size: 19px;
+            text-decoration: underline;
+        }
         footer{
             position: relative;
             top : 800px;
@@ -288,10 +312,12 @@
             <div class = "sec3_title">WHAT'S FOR THIS MONTH?</div>
             <div class = "sec3_theme">SUMMER EDITION :: VACANCE!</div>
             <img class = "sec3_image" src = "webapp/image/question_box.png">
+            <img class = "sec3_image2" src = "webapp/image/theme_box_compositions.png">
+            <p>Theme Box consists of 3 exclusive items with the theme of month.<br></p>
         </div>
     </div>
 
-    <div class = "sec"6_subscribe>
+    <div class = "sec6_subscribe">
         <div class = "button_container">
             <div class = "subscribe">
                 <div class = "subscribe_container">
@@ -307,6 +333,10 @@
                 </div>
             </div>
         </div>
+        <p class = "sec6_go_to_shop">
+            OR JUST WANT TO BUY FOR ONE TIME
+        </p>
+        <a src = "/shop" class = "sec6_hyperlink">GO TO SHOPPING MALL</a>
     </div>
 
     <div class = "sec5_review">
