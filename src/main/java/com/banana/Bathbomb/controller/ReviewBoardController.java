@@ -291,5 +291,35 @@ public class ReviewBoardController {
         return "/board/reviewDelete";
     }
 
+    /**
+     * 피드백 페이지
+     */
+    @GetMapping("/feedBack")
+    public String feedBack(HttpSession session, Model model){
+
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+        return "/board/feedBack";
+    }
+
+    /**
+     * 피드백 쓰기
+     */
+    @GetMapping("/feedBackWrite")
+    public String feedBackW(HttpSession session, Model model){
+
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+        return "/board/feedBackWrite";
+    }
+
+    /**
+     * 피드백 보기
+     */
+    @GetMapping("/feedBackRead")
+    public String feedBackR(HttpSession session, Model model){
+
+        model.addAttribute("sessionId", session.getAttribute("sessionId"));
+        return "/board/feedBackRead";
+    }
+
 
 }
