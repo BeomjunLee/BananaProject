@@ -53,6 +53,7 @@
 
 
     .signupForm{
+        white-space:nowrap;
         width : 100%;
         padding :20px 10px 10px;
         background-color: transparent;
@@ -128,6 +129,13 @@
         position: relative;
         top : 800px;
     }
+    input{
+        white-space:nowrap;
+    }
+    a{
+        white-space:nowrap;
+        color: red;
+    }
 
 </style>
 <body>
@@ -138,6 +146,7 @@
         <div class= "banner_text">SIGN UP</div>
     </div>
 
+
     <!-- 회원 가입 폼 -->
     <div class = "signup_form_area">
         <div class = "signup_form">
@@ -146,29 +155,29 @@
                     <div class = "signup_form_user" id = "id_pw">
                         <input type="text" th:field="*{memberId}" class="signupForm" id = "form_id" th:class="${#fields.hasErrors('memberId')} ? 'signupForm inputError' : 'signupForm'">
                         <label for = "form_id">ID</label>
-                        <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</p>
+                        <a th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}">아이디기입 오류</a>
 
                         <input type="password" th:field="*{memberPw}" class="signupForm" id = "form_pw" th:class="${#fields.hasErrors('memberPw') ? 'signupForm inputError' : 'signupForm'}">
                         <label for = "form_pw">PASSWORD</label>
-                        <p th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</p>
+                        <a th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}">비빌번호기입 오류</a>
 
                         <input type="password" th:field="*{memberPw2}" class="signupForm" id = "form_pw2" th:class="${#fields.hasErrors('memberPw2') ? 'signupForm inputError' : 'signupForm'}">
                         <label for = "form_pw2">PASSWORD DOUBLE-CHECK</label>
-                        <p th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</p>
+                        <a th:if="${#fields.hasErrors('memberPw2')}" th:errors="*{memberPw2}">비빌번호기입 오류</a>
 
                         <!--<hr class = "signup_line">-->
 
                         <input type="text" th:field="*{memberName}" class="signupForm" id = "form_name" th:class="${#fields.hasErrors('memberName')} ? 'signupForm inputError' : 'signupForm'">
                         <label for = "form_name">NAME</label>
-                        <p th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</p>
+                        <a th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}">이름기입 오류</a>
 
                         <input type="text" th:field="*{memberPhoneNum}" class="signupForm" id = "form_phonenum" th:class="${#fields.hasErrors('memberPhoneNum')} ? 'signupForm inputError' : 'signupForm'">
                         <label for = "form_phonenum">PHONE NUMBER</label>
-                        <p th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</p>
+                        <a th:if="${#fields.hasErrors('memberPhoneNum')}" th:errors="*{memberPhoneNum}">전화번호기입 오류</a>
 
                         <input type="text" th:field="*{memberEmail}" class="signupForm" id = "form_email" th:class="${#fields.hasErrors('memberEmail')} ? 'signupForm inputError' : 'signupForm'">
                         <label for = "form_email" id = "form_email_text">EMAIL</label>
-                        <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</p>
+                        <a th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}">이메일 오류</a>
 
                     </div>
 
@@ -188,7 +197,7 @@
     </div>
 
     <footer>
-        <img src="../../../webapp/image/footer.png" width = "100%" height = "70%">
+        <img src="/webapp/image/footer.png" width = "100%" height = "70%">
     </footer>
 
 </body>

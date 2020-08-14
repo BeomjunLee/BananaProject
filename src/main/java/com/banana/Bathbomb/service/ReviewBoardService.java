@@ -47,7 +47,12 @@ public class ReviewBoardService {
         return reviewBoardRepository.selectByMemberUid(memberUid, startIndex, pageSize);
     }
 
-
+    /**
+     * 홈베너 리뷰 3개
+     */
+    public List<ReviewBoard> homeBoardList(){
+        return reviewBoardRepository.selectThreeReview();
+    }
 
     /**
      * 리뷰 글 수정 update
