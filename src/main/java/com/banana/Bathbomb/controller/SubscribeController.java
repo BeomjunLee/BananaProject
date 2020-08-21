@@ -30,9 +30,9 @@ public class SubscribeController {
         Member member = memberService.findMember(sessionId);
         Subscribe subscribe = subscribeService.findSubscribe(sessionId);
 
+        model.addAttribute("subscribe", subscribe);
         //찾은 멤버 객체 넘기기
         model.addAttribute("member", member);
-        model.addAttribute("subscribe", subscribe);
         return "/myPage/mySubscribeList";
     }
 
@@ -63,7 +63,7 @@ public class SubscribeController {
         Member member = memberService.findMember(sessionId);
         Subscribe subscribe = new Subscribe();
         int charge = subscribe.getSbPrice();
-        model.addAttribute("charege", charge);
+        model.addAttribute("charge", charge);
         model.addAttribute("member", member);
         return "/subscribe/subscribeInfo";
     }
@@ -74,7 +74,6 @@ public class SubscribeController {
     @PostMapping("/subscribe/subscribeChk")
     public String subscribeChk(Subscribe subscribe, HttpSession session, Model model){
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
-
         //현재 날짜 담기
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//날짜 형태
         Date time = new Date();
@@ -89,18 +88,17 @@ public class SubscribeController {
         sc.setSbRegDate(regDate);//구독 일자
         sc.setSbDeliveryStatus("배송 준비중"); //배송상태
         sc.setSbCancelStatus("구독중");
-    
         //구독테이블에서 회원정보 찾기
         Subscribe findSubscribe = subscribeService.findSubscribe(sessionId);
-
+        
         int resultCode = 0;
-        if(findSubscribe == null){
-            resultCode = subscribeService.doSubscribe(sc);
-            return "/subscribe/subscribeComplete";
-        }else if(findSubscribe != null){
+        if(findSubscribe != null){
             resultCode = 2;
             model.addAttribute("resultCode", resultCode);
             return "/subscribe/subscribeChk";
+        }else if(findSubscribe == null){
+            resultCode = subscribeService.doSubscribe(sc);
+            return "/subscribe/subscribeComplete";
         }else{
             model.addAttribute("resultCode", resultCode);
             return "/subscribe/subscribeChk";
@@ -115,14 +113,27 @@ public class SubscribeController {
         return "/subscribe/subscribeComplete";
     }
 
-//    /**
-//     * 구독 취소
-//     */
-//    @GetMapping("/subscribe/unSubscribe")
-//    public String unSubscribe(){
-//
-//        return "/subscribe/unSubscribe";
-//    }
+    /**
+     * 구독 취소
+     */
+    @GetMapping("/subscribe/unSubscribe")
+    public String unSubscribe(HttpSession session, Model model){
+
+        int resultCode = 0;
+        int uid = Integer.parseInt(session.getAttribute("sessionId").toString());
+        Subscribe subscribe = subscribeService.findSubscribe(uid);
+
+        if(subscribe.getSbDeliveryStatus().equals("배송 준비중")){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date time = new Date();
+            String localTime = simpleDateFormat.format(time);
+            resultCode = subscribeService.deleteSubscribe("취소신청", localTime, uid);
+        }else{
+            resultCode = 2; //이미 배송중이라서 취소 불가능
+        }
+        model.addAttribute("resultCode", resultCode);
+        return "/subscribe/unSubscribe";
+    }
 
 
     /**

@@ -57,15 +57,15 @@
             <a href="/myPage/myCart" id="cart">Cart</a>
         </div>
         <div class="subscriptionBtn">
-            <th:block th:if="${subscribe == null}">
+            <th:block th:if="${subscribe != null}">
+                <div id="subscriber">
+                    You are BATHDAL subscriber!
+                </div>
+            </th:block>
+            <th:block th:unless="${subscribe != null}">
                 <img src="/webapp/image/subscribe_btn.gif"  width="200px" height="150px">
                 <div id="subscribeHiddenBtn">
                     <button type="button" onclick="location.href='/subscribe/subscribe'">구독 하러 가기</button>
-                </div>
-            </th:block>
-            <th:block th:unless="${subscribe == null}">
-                <div id="subscriber">
-                    You are BATHDAL subscriber!
                 </div>
             </th:block>
         </div>
@@ -85,7 +85,7 @@
             <span th:text="${subscribe.getSbDeliveryStatus()}"></span>
             <span th:text="${subscribe.getSbPrice()}"></span>
             <span th:text="${subscribe.getSbRegDate()}"></span>
-            <button type="Button" class="button3" onclick="location.href=''">UNSUBSCRIBE</button>
+            <button type="Button" class="button3" onclick="location.href='/subscribe/unSubscribe'">UNSUBSCRIBE</button>
             <span></span>
             <span></span>
             <span></span>

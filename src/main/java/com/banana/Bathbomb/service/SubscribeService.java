@@ -26,4 +26,11 @@ public class SubscribeService {
         return subscribeRepository.selectByUid(memberUid);
     }
 
+    /**
+     * 구독 취소
+     */
+    public int deleteSubscribe(String status, String date, int uid){
+        return subscribeRepository.delete(status, date, uid);
+    }
+
 }

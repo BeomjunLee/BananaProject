@@ -55,7 +55,6 @@ public class MemberController {
             System.out.println("오류있음");
             return "/signUpForm";
         }
-
         //현재 날짜 담기
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");//날짜 형태
         Date time = new Date();
@@ -71,8 +70,6 @@ public class MemberController {
         member.setMemberEmail(form.getMemberEmail());
         member.setMemberGender(form.getMemberGender());
         member.setMemberRegDate(memberRegDate);
-
-        System.out.println("비밀번호 암호화 한 값 : " + member.getMemberPw());
         int resultCode = 0;
         try {
             resultCode = memberService.join(member);

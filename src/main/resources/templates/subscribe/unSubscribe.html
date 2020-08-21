@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+
+<th:block th:if="${resultCode == 1}">
+    <script>
+        alert("Cancel Successful");    //취소 완료
+        location.replace("/myPage/mySubscribeList");
+    </script>
+</th:block>
+
+<th:block th:if="${resultCode == 2}">
+    <script>
+        alert("Your delivery is already departure");    //이미 배송중이여서 취소 불가능
+        location.replace("/myPage/mySubscribeList");
+    </script>
+</th:block>
+
+<th:block th:if="${resultCode == 0}">
+    <script>
+        alert("Fail, If you keep failing, please contact me");    //오류
+        location.replace("/myPage/mySubscribeList");
+    </script>
+</th:block>
+</body>
+</html>

@@ -34,7 +34,7 @@ public class SubscribeRepository {
      * 구독 정보 select by member_uid
      */
     public Subscribe selectByUid(int member_uid){
-        List<Subscribe> result = jdbcTemplate.query("select * from subscribe where member_uid = ?", subscribeRowMapper(), member_uid);
+        List<Subscribe> result = jdbcTemplate.query("select * from subscribe where member_uid = ? and sb_cancel_status = '구독중'", subscribeRowMapper(), member_uid);
         if (result.isEmpty()) return null;
         else return result.get(0);
     }
@@ -43,16 +43,10 @@ public class SubscribeRepository {
     /**
      * 구독 취소 delete
      */
-
-
-
-    /**
-     * 다음달도 구독 했을 경우
-     */
-    public int update(){
-        return 0;
+    public int delete(String status, String date, int uid){
+        return jdbcTemplate.update("update subscribe set sb_cancel_status = ?, sb_cancel_date = ? where member_uid = ? and sb_cancel_status = '구독중'",
+                status, date, uid);
     }
-
 
 
     /**
