@@ -26,6 +26,9 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
 
+    /**
+     * 쇼핑몰로 
+     */
     @GetMapping("/shop")
     public String shop(Model model, Item item, @RequestParam(defaultValue = "1") int page, HttpSession session){
 
@@ -45,21 +48,27 @@ public class ItemController {
         return "/shop/shop";
     }
 
+    /**
+     * 쇼핑 상품등록 페이지로
+     */
     @GetMapping("/shop/addItem")
     public String addShop(){
         return "/shop/addItem";
     }
 
+
+    /**
+     * 쇼핑 상품등록 로직
+     */
     @PostMapping("/shop/addItemChk")
     public String addShopChk(Item item, Category category, @RequestPart("file") MultipartFile file, Model model, HttpServletRequest request){
-        //카테고리 등록
+        //카테고리 등록(상품등록하면 카테고리 등록부터 됨)
         itemService.insertCategory(category);
 
         int uid = itemService.findCategoryUid();
 
         //업로드파일
         String uploadPath = request.getSession().getServletContext().getRealPath("/file/");
-        //String uploadPath = "/file/";
         System.out.println("업로드 Path: " + uploadPath);
         String fileName = System.currentTimeMillis() + file.getOriginalFilename(); //동일한 파일명 처리를 위해
         try{
@@ -69,7 +78,7 @@ public class ItemController {
         }
         System.out.println("파일 이름명 : "+ fileName);
 
-        item.setCategoryUid(uid);
+        item.setCategoryUid(uid); //카테고리 uid도 들어감 외래키
         item.setItemImage(fileName);
 
         int resultCode = itemService.insertItem(item);
@@ -78,6 +87,9 @@ public class ItemController {
         return "/shop/addItemChk";
     }
 
+    /**
+     * 상품 클릭시 이동되는 구매페이지 
+     */
     @GetMapping("/shopItem")
     public String shopItem(@RequestParam("itemUid") int itemUid, HttpSession session, Model model){
 

@@ -11,5 +11,4 @@ public class Cart {
     private int memberUid;           //회원uid
     private int cartItemPrice;     //바구니에 담은 상품가격
     private int cartItemQuantity;   //바구니에 담은 상품 수량
-    private int cartStatus;         //바구니 활성화 비활성화
 }
