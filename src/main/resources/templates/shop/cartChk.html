@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BATHDAL :: A Special Day</title>
+</head>
+<body>
+<th:block th:if="${resultCode == 1}">
+    <script>
+       if(confirm("If you want to go cart?")) {    //장바구니로 갈지 쇼핑 더할지
+           location.replace("/myPage/myCart");
+       }else{
+           history.back();
+       }
+    </script>
+</th:block>
+
+<th:block th:if="${resultCode == 0}">
+    <script>
+        alert("Fail, If you keep failing, please contact me");   //실패
+        history.back();
+    </script>
+</th:block>
+
+<th:block th:if="${resultCode == 2}">
+    <script>
+        alert("Please login first!!");   //로그인 해야됨
+        location.replace("/login");
+    </script>
+</th:block>
+</body>
+</html>

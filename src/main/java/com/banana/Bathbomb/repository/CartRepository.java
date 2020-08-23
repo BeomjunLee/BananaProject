@@ -25,24 +25,33 @@ public class CartRepository {
      */
     public int insert(Cart cart){
         return jdbcTemplate.update("insert into cart(cart_uid, item_uid, member_uid, cart_item_price, cart_item_quantity) " +
-                "values cart_SEQ.NEXTVAL, ?, ?, ?, ?", cart.getItemUid(), cart.getMemberUid(), cart.getCartItemPrice(), cart.getCartItemQuantity());
+                "values (cart_SEQ.NEXTVAL, ?, ?, ?, ?)", cart.getItemUid(), cart.getMemberUid(), cart.getCartItemPrice(), cart.getCartItemQuantity());
     }
 
     /**
      * 카트 삭제
      */
-    public int deleteByUid(int cartUid, int memberUid){
-        return jdbcTemplate.update("delete from cart where cart_uid = ? and member_uid = ?", cartUid, memberUid);
+    public int deleteByUid(int cartUid){
+        return jdbcTemplate.update("delete from cart where cart_uid = ?", cartUid);
     }
 
     /**
      * 카트 select all by 회원uid
      */
     public List<Cart> selectAllByMemberUid(int memberUid){
-        List<Cart> result = jdbcTemplate.query("select * from cart where member_uid = ?", cartRowMapper(), memberUid);
-        return result;
+        List<Cart> result = jdbcTemplate.query("select * from cart where member_uid = ? order by cart_uid desc", cartRowMapper(), memberUid);
+        if(result.isEmpty()) return null;
+        else return result;
     }
 
+    /**
+     * 카트 uid로 select
+     */
+    public Cart selectAllByUid(int cartUid){
+        List<Cart> result = jdbcTemplate.query("select * from cart where cart_uid = ? order by cart_uid desc", cartRowMapper(), cartUid);
+        if(result.isEmpty()) return null;
+        else return result.get(0);
+    }
 
 
     private RowMapper<Cart> cartRowMapper(){

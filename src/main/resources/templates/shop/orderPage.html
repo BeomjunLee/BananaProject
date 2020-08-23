@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>BATHDAL :: A Special Day</title>
+    <th:block th:insert="/fragments/header1"></th:block> <!-- 헤더 -->
+    <style>
+    .progress{
+    margin:50px;
+    margin-top:80px;
+    margin-bottom:20px;
+    text-align:center;
+     }
+
+    .progress div{
+    display:inline;
+    padding:5px;
+    margin:40px;
+    }
+
+    .progress img{
+    width:100px;
+    height:100px;
+    }
+
+    .payform{
+    border:5px solid pink;
+    width:500px;
+    height:1100px;
+    padding:15px;
+    top:50%;
+    left:50%;
+    margin:auto;
+     }
+
+    #num1{
+    width:70px;
+    }
+    #num2{
+    width:70px;
+    }
+    #num3{
+    width:70px;
+    }
+    #num4{
+    width:70px;
+    }
+
+    #date1{
+    width:70px;
+    }
+    #date2{
+    width:70px;
+    }
+
+    #security{
+    width:50px;
+    }
+
+    #cardpassword{
+    width:50px;
+    }
+
+    #deliveryabout{
+    border:5px solid #F65A79;
+    text-align:center;
+    padding:5px;
+    margin:30px;
+    width:250px;
+    top:50%;
+    left:50%;
+    margin:auto;
+    }
+
+    #deliveryabout h4{
+    color:gray;
+    }
+
+    button{
+    border:3px solid #f26d7d;
+    background-color:#f26d7d;
+    padding:8px 15px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:15px;
+    margin:2px 2px;
+    cursor:pointer;
+    font-family:'Bahnschrift';
+    border-radius:4px;
+    transition-duration:0.2s;
+    position:relative;
+    top:3px;
+    color:white;
+    }
+
+    button::after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 7px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+    }
+
+    button:hover::after{
+    width:60%;
+    left:21%;
+    }
+
+    footer{
+            position: relative;
+            top : 800px;
+        }
+
+
+    .signup_form_area{
+        grid-area: signup;
+        display: flex;
+        position :relative;
+    }
+
+
+    .signupForm{
+        width : 100%;
+        padding :20px 10px 10px;
+        background-color: transparent;
+        border: 1px solid rgba(0,0,0,.3);
+        color : rgba(0,0,0,0.8);
+        border-radius: 6px;
+    }
+
+    .signup_form_user{
+        width : 250px;
+    }
+
+    .name{
+    color:#f26d7d;
+    }
+    .phonenum{
+    color:#f26d7d;
+    }
+    .cardnum{
+    color:#f26d7d;
+    }
+    .cardexpdate{
+    color:#f26d7d;
+    }
+    .cardcode{
+    color:#f26d7d;
+    }
+    .cardpw{
+    color:#f26d7d;
+    }
+    .Postcode{
+        width:100px;
+    }
+    .addr{
+        width:200px;
+    }
+    .detailaddr{
+        width:250px;
+    }
+
+    .signup_form label{
+        position : relative;
+        bottom : 30px;
+        left : 10px;
+        font-size: 15px;
+        color : rgba(0,0,0,.2);
+        transition: all 0.1s ease;
+    }
+    .signup_form_user.warning{
+        color : red !important;
+        animation : warning .3s ease;
+        animation-iteration-count: 3;
+    }
+    @keyframes warning{
+        0%{transform : translateX(-8px);}
+        25%{transform : translateX(8px);}
+        50%{transform : translateX(-8px);}
+        75%{transform : translateX(8px);}
+    }
+    .signupForm:focus + label,
+    .signupForm:valid + label{
+        position : relative;
+        bottom : 48px;
+        font-size: 13px;
+        color : #f26d7d
+    }
+    .signupForm:focus{
+        box-shadow: 0 0 8px  #f26d7d;
+        border: 2px solid #f26d7d;
+    }
+    .signup_line{
+        width : 300px;
+        color : rgba(0,0,0,.3);
+        position : relative;
+        top : 15px;
+        right : 15px;
+    }
+    #id_pw {
+        position : relative;
+    }
+
+    .radio_button_area{
+        margin-top: 50px;
+    }
+    .signupForm_radio{
+        margin-left: 0px;
+    }
+    .signup_submit_area {
+        position: relative;
+        top: 70px;
+    }
+    </style>
+</head>
+<body>
+
+
+<div class="progress">
+    <div id="type"><img src="/webapp/image/type.png"></img></div>
+    <div id="result"><img src="/webapp/image/result.png"></img></div>
+    <div id="payment"><img src="/webapp/image/paymentSelect.png"></img></div>
+</div>
+
+<h2 style="text-align:center">Please fill in the delivery information.</h2>
+
+<div class="payform">
+    <div class="signup_form_area">
+        <div class="signup_form">
+            <div class="signup_form_input">
+                <form action="/order" method="post">
+                    <div id = "id_pw">
+                        <div class="name">NAME *</div>
+                        <a th:text="${member.getMemberName()}"></a>
+                        <br><br>
+
+                        <div class="phonenum">Phone number *</div>
+                        <a th:text="${member.getMemberPhoneNum()}"></a>
+                        <br><br>
+
+                        <div class="Postcode">
+                            <input type="text" class="signupForm" id="postcode" size="10">
+                            <label for="postcode">Post code</label><input type="button" onclick="openDaumPostcode()" value="SEARCH">
+                        </div>
+                        <br>
+
+                        <div class="addr">
+                            <input type="text" class="signupForm" id="address" name="addressA" size="30">
+                            <label for="address">Street name address</label>
+                            <input type="text" class="signupForm" id="extraAddress" size="20">
+                            <label for="extraAddress">Extra address</label>
+                        </div>
+
+                        <div class="detailaddr">
+                            <input type="text" class="signupForm" id="detailAddress" name="addressB" size="56">
+                            <label for="detailAddress">Detailed address</label>
+                        </div>
+
+                        <div class="specifics">
+                            <input type="text" class="signupForm" id="specificsIn" name="orderDeliveryMemo">
+                            <label for="specificsIn">Please write unusual details when shipping</label>
+                        </div>
+
+                        <div class="cardnum">Card number [XXXX-XXXX-XXXX-XXXX]
+                            <br>
+                            <input type="text" class="signupForm" id="num1" placeholder="XXXX"><input type="text" class="signupForm" id="num2" placeholder="XXXX"><input type="text" class="signupForm" id="num3" placeholder="XXXX"><input type="text" class="signupForm" id="num4" placeholder="XXXX">
+                        </div>
+                        <br>
+
+                        <div class="cardexpdate">Card expiration date
+                            <br>
+                            <input type="text" class="signupForm" id="date1" placeholder="MM"><input type="text" class="signupForm" id="date2" placeholder="YY">
+                        </div>
+                        <br>
+
+                        <div class="cardcode">Security Code
+                            <br>
+                            <input type="password" class="signupForm" id="security" size="1">
+                        </div>
+                        <br>
+
+                        <div class="cardpw">First two digits of the card password
+                            <br>
+                            <input type="password" class="signupForm" id="cardpassword" placeholder="**">
+                        </div>
+                        <th:block th:each="cartUid : ${cartUidList}">
+                        <input type="hidden" name="cartUidList" th:value="${cartUid}">
+                        </th:block>
+                        <br><br>
+                        <div id="deliveryabout">
+                            <h2>BATHDAL</h2>
+                            <h3 style="color:#F65A79;" th:text="|Charge : ${charge} won|"></h3>
+                            <div id="next">
+                                <button type="submit">
+                                    PAY
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //주소 api
+    function openDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = '';
+                var extraAddr = '';
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드로
+                    document.getElementById("extraAddress").value = extraAddr;
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+                // 우편번호와 주소 정보를 해당 필드
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                // 커서를 상세주소로
+                document.getElementById("detailAddress").focus();
+            }
+        }).open();
+    }
+</script> <!-- 주소 API -->
+
+
+<footer>
+    <img src="/webapp/image/footer.png" width = "100%" height = "70%">
+</footer>
+
+</body>
+</html>

@@ -22,7 +22,15 @@
 <link rel="stylesheet" type="text/css" href="/webapp/styles/single_styles.css">
 <link rel="stylesheet" type="text/css" href="/webapp/styles/single_responsive.css">
 </head>
-
+<style>
+	.add_to_cart_button{
+		background-color: #f8585b;
+		border: none;
+		padding: 8px 0;
+		border-radius:10px;
+		font-family: Bahnschrift;
+	}
+</style>
 <body>
 
 <div class="super_container">
@@ -67,8 +75,11 @@
 					</ul>
 					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 						<span>Quantity:</span>
+						<form action="/shop/cart" method="get">
 							<input type="text" size="5" name="cartItemQuantity" class="quantity_selector">
-						<div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+							<input type="hidden" name="itemUid" th:value="${item.getItemUid()}">
+							<button type="submit" class="add_to_cart_button">add to cart</button>
+						</form>
 						<div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
 					</div>
 				</div>

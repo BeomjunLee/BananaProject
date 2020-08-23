@@ -154,7 +154,6 @@ body{
 }
 .userCartDetails {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     margin-top: 50px;
     margin-left: 400px;
     margin-right: 400px;

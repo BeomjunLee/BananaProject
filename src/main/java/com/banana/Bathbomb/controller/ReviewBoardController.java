@@ -41,7 +41,6 @@ public class ReviewBoardController {
 
         Member member = memberService.findMember(sessionId);
 
-
         int totalListCnt = reviewBoardService.totalMyListCount(sessionId);
         Pagination pagination = new Pagination(totalListCnt, page, 5); //Pagination객체 생성후 전체 글수랑 page수를 입력
 

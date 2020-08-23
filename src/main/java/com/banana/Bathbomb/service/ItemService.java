@@ -86,5 +86,12 @@ public class ItemService {
         return itemRepository.totalListCount();
     }
 
+    /**
+     * 재고 변화
+     */
+    public int changeStock(int itemStock, int itemUid){
+        return itemRepository.updateStock(itemStock, itemUid);
+    }
+
 
 }

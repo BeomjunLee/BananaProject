@@ -42,8 +42,8 @@ public class ReviewBoardRepository {
      * 리뷰게시판 글 리스트 (베스밤, 천연비누 카테고리)
      */
     public List<ReviewBoard> selectItem(String item, int startIndex, int pageSize){
-        return jdbcTemplate.query("select * from review_board where rv_board_item = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(),
-                item, startIndex, pageSize);
+        return jdbcTemplate.query("select * from review_board where rv_board_item = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY",
+                reviewBoardRowMapper(), item, startIndex, pageSize);
     }
 
  
@@ -60,14 +60,16 @@ public class ReviewBoardRepository {
      * 내가 쓴 리뷰 글 리스트
      */
     public List<ReviewBoard> selectByMemberUid(int memberUid, int startIndex, int pageSize){
-        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board where member_uid = ? ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), memberUid, startIndex, pageSize);
+        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board where member_uid = ? ORDER BY rv_board_uid " +
+                        "DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), memberUid, startIndex, pageSize);
         return result;
     }
     /**
      * 홈배너 리뷰 3개출력
      */
     public List<ReviewBoard> selectThreeReview(){
-        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY", reviewBoardRowMapper(), 0, 3);
+        List<ReviewBoard> result = jdbcTemplate.query("select * from review_board ORDER BY rv_board_uid DESC OFFSET ? ROWS FETCH FIRST ? ROWS ONLY",
+                reviewBoardRowMapper(), 0, 3);
         return result;
     }
 

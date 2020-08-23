@@ -89,6 +89,14 @@ public class ItemRepository {
         return jdbcTemplate.queryForObject("select count(*) from item", Integer.class);
     }
 
+
+    /**
+     * 상품 재고량 변화
+     */
+    public int updateStock(int itemStock, int itemUid){
+        return jdbcTemplate.update("update item set item_stock = ? where item_uid = ?", itemStock,  itemUid);
+    }
+
     /**
      * 상품정보에 필요한 메서드
      */

@@ -8,7 +8,10 @@ import lombok.Setter;
 public class Order {
     private int orderUid;                   //주문 uid
     private int memberUid;                  //회원 uid
+    private String orderItemName;           //주문상품이름
     private String orderDeliveryAddress;    //배송주소
+    private String addressA;    //배송주소1
+    private String addressB;    //배송주소2
     private String orderDeliveryMemo;       //배송메모
     private String orderDeliveryStatus;     //배송상태
     private int orderPrice;                 //주문가격
