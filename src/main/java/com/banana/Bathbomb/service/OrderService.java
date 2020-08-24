@@ -49,9 +49,33 @@ public class OrderService {
     }
 
     /**
+     * 주문 총 요금
+     */
+    public int orderPrice(int[] cartUidList){
+        int charge = 0;
+        for(int i = 0; i < cartUidList.length; i++) {
+            charge += cartRepository.selectAllByUid(cartUidList[i]).getCartItemPrice();
+        }
+        return charge;
+    }
+
+    /**
      * 주문 목록 보기
      */
     public List<Order> orderList(int memberUid){
         return orderRepository.selectAll(memberUid);
+    }
+
+    /**
+     * 주문 삭제
+     */
+    @Transactional
+    public int deleteOrder(Order order){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date time = new Date();
+        String regDate = simpleDateFormat.format(time);
+        order.setOrderCancelStatus("취소 신청");
+        order.setOrderCancelDate(regDate);
+        return orderRepository.update(order);
     }
 }

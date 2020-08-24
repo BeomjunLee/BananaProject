@@ -12,20 +12,21 @@
 </head>
 <body>
 <br><br><br><br> <!--헤더 때매 가려서 나중에 작업필요 -->
+<div style="text-align: center;">
     글 제목 <input type="text" th:value="${board.getRvBoardTitle()}"><br>
     작성자 : <a th:text="${board.getRvBoardWriter()}"></a><br>
     종류 :  <a th:text="${board.getRvBoardItem()}"></a><br>
     작성일 : <a th:text="${board.getRvBoardRegDate()}"></a><br>
     조회수 : <a th:text="${board.getRvBoardViewCount()}"></a><br>
     <textarea th:text="${board.getRvBoardContent()}" readonly="readonly" cols=85 rows=15></textarea><br>
-    <img th:src="@{/webapp/file/} + ${board.getRvBoardFile()}"><br>
+    <img style="height: 400px; width: 400px;" th:src="@{/webapp/file/} + ${board.getRvBoardFile()}"><br>
     <th:block th:if="${sessionChk == null}"> <!-- 로그인 안했을때 -->
     </th:block>
     <th:block th:unless="${sessionChk == null}"><!-- 로그인 했을때 -->
         <button type="button" onclick="sendBoardUidUpdate();">Modification</button>
         <button type="button" onclick="sendBoardUidDelete();">Delete</button>
     </th:block>
-
+</div>
 <script>
     //수정
     rvBoardUid = [[${rvBoardUid}]];

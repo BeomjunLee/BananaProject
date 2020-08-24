@@ -6,6 +6,7 @@ import com.banana.Bathbomb.repository.CartRepository;
 import com.banana.Bathbomb.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class CartService {
     /**
      * 장바구니에 추가
      */
+    @Transactional
     public int addCart(Cart cart, int itemUid, int sessionId){
         //상품테이블에서 상품찾기
         Item item = itemRepository.selectByUid(itemUid);

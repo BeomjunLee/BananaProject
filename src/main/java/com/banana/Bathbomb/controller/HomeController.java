@@ -42,13 +42,13 @@ public class HomeController {
         return "/login";
     }
 
-//
-//    /**
-//     * 에러 페이지
-//     */
-//    @GetMapping("/error")
-//    public String error() throws Exception {
-//        throw new Exception("error");
-//    }
+
+    /**
+     * 에러 페이지
+     */
+    @GetMapping("/error")
+    public String error() throws Exception {
+        throw new Exception("error");
+    }
 
 }

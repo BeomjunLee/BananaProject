@@ -152,6 +152,17 @@ body{
     padding-top: 70px;
     font-size: 20px;
 }
+.orderDetails2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 70px;
+    border-top: 3px pink solid;
+    padding-top: 70px;
+    font-size: 17px;
+}
 .userCartDetails {
     display: grid;
     margin-top: 50px;

@@ -71,15 +71,16 @@
 <!--        <button type="button">3 months</button>-->
 <!--        <button type="button">6 months</button>-->
 <!--    </div>-->
-    <div class="orderDetails">
+    <div class="orderDetails2">
         <span>Order Date</span>
         <span>Item</span>
         <span>Price</span>
         <span>Delivery Address</span>
         <span>Delivery State</span>
         <span>Order State</span>
+        <span>Order Change</span>
     </div>
-    <div  class="cartDetails">
+    <div  class="orderDetails2">
         <th:block th:each="order : ${orderList}">
             <span th:text="${order.getOrderRegDate()}"></span>
             <span th:text="${order.getOrderItemName()}"></span>
@@ -87,6 +88,7 @@
             <span th:text="${order.getOrderDeliveryAddress()}"></span>
             <span style="color:dodgerblue; font-weight: bold;" th:text="${order.getOrderDeliveryStatus()}"></span>
             <span style="color:red; font-weight: bold;" th:text="${order.getOrderCancelStatus()}"></span>
+            <a th:href="@{/order/delete(orderUid=${order.getOrderUid()})}" style="color: #6f42c1; font-weight: bold;">주문 취소</a>
         </th:block>
     </div>
 

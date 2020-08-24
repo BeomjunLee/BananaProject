@@ -26,7 +26,10 @@ public class OrderController {
     private final OrderService orderService;
     private final CartService cartService;
 
-    @GetMapping("/myPage/myOrderList")//주문 목록으로
+    /**
+     * 주문 목록으로
+     */
+    @GetMapping("/myPage/myOrderList")
     public String myOrderList(Model model, HttpSession session){
         //세션값
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
@@ -49,10 +52,8 @@ public class OrderController {
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
         Member member = memberService.findMember(sessionId);
         //총 요금 출력
-        int charge = 0;
-        for(int i = 0; i < cartUidList.length; i++) {
-            charge += cartService.findCart(cartUidList[i]).getCartItemPrice();
-        }
+        int charge = orderService.orderPrice(cartUidList);
+
         model.addAttribute("charge", charge);
         model.addAttribute("member", member);
         model.addAttribute("cartUidList", cartUidList);
@@ -66,11 +67,17 @@ public class OrderController {
     public String order(Model model, HttpSession session, @RequestParam("cartUidList") int[] cartUidList, Order order){
         //세션값
         int sessionId = Integer.parseInt(session.getAttribute("sessionId").toString());
-        for(int i = 0; i < cartUidList.length; i++) {
-            System.out.println(cartUidList[i]);
-        }
         orderService.insertOrder(sessionId, cartUidList, order);
         return "/shop/orderComplete";
+    }
+
+    /**
+     * 주문 취소
+     */
+    @GetMapping("/order/delete")
+    public String deleteOrder(Order order){
+        orderService.deleteOrder(order);
+        return "redirect:/myPage/myOrderList";
     }
 
 }

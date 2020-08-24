@@ -33,15 +33,19 @@ public class OrderRepository {
      * 주문 신청
      */
     public int insert(Order order){
-        return jdbcTemplate.update("insert into orders(order_uid, member_uid, order_item_name, order_delivery_address, order_delivery_memo, order_delivery_status, order_price, order_reg_date, order_cancel_status, order_cancel_date) " +
-                "values (orders_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", order.getMemberUid(), order.getOrderItemName(), order.getOrderDeliveryAddress(), order.getOrderDeliveryMemo(), order.getOrderDeliveryStatus(), order.getOrderPrice(), order.getOrderRegDate(), order.getOrderCancelStatus(), order.getOrderCancelDate());
+        return jdbcTemplate.update("insert into orders(order_uid, member_uid, order_item_name, order_delivery_address, order_delivery_memo, " +
+                "order_delivery_status, order_price, order_reg_date, order_cancel_status, order_cancel_date) " +
+                "values (orders_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", order.getMemberUid(), order.getOrderItemName(),
+                order.getOrderDeliveryAddress(), order.getOrderDeliveryMemo(), order.getOrderDeliveryStatus(), order.getOrderPrice(),
+                order.getOrderRegDate(), order.getOrderCancelStatus(), order.getOrderCancelDate());
     }
 
     /**
      * 주문 취소
      */
     public int update(Order order){
-        return 0;
+        return jdbcTemplate.update("update orders set order_cancel_status = ?, order_cancel_date = ? where order_uid = ?",
+                order.getOrderCancelStatus(), order.getOrderCancelDate(), order.getOrderUid());
     }
 
 
